@@ -11,7 +11,7 @@
   <meta property="og:url" content="https://philomath.is" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Outfit:wght@300;400;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
       --bg: #f4f1eb;
@@ -26,7 +26,7 @@
       --rule: #d1cbc2;
       --rule-light: #e2ddd5;
       --display: 'Outfit', sans-serif;
-      --body: 'Source Serif 4', Georgia, serif;
+      --body: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
       --mono: 'DM Mono', 'Consolas', monospace;
     }
 
@@ -48,20 +48,7 @@
       padding: 0 2.5rem;
     }
 
-    /* Subtle dot grid accent */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: radial-gradient(var(--rule) 0.5px, transparent 0.5px);
-      background-size: 32px 32px;
-      opacity: 0.5;
-      pointer-events: none;
-      z-index: 0;
-    }
+    /* Background kept clean — no overlay */
 
     /* Hero */
     .hero {
@@ -539,10 +526,9 @@
         <span class="greek">&phi;&iacute;&lambda;os &mu;&alpha;&nu;&theta;&alpha;&nu;&epsilon;&iota;&nu;</span>
         <br /><span class="subtext">...a lover of learning.</span>
       </div>
-      <div class="hero-definition hero-quote" style="margin-top: 1.2rem; font-size: 0.92rem;">
-        Montaigne built an entire philosophy around three words: <em>Que sais-je?</em> &mdash; What do I know?
-        This is my space to work out an answer consistently just out of reach...
-        <div class="hero-attribution">Michel de Montaigne, Essais, 1580</div>
+      <div class="hero-definition hero-quote" style="margin-top: 1.2rem; font-size: 0.92rem; font-style: italic; color: var(--fg-light);">
+        Spiral out, keep going.
+        <div class="hero-attribution">Tool, Lateralus</div>
       </div>
       <div class="hero-bar"></div>
       <div class="hero-intro">
@@ -578,7 +564,7 @@
             Built Geocities sites before Google existed. Decades of hands-on experience across
             personal, business, and creative software categories. Now building AI-assisted tools,
             industrial IoT pipelines, and workflow automation&mdash;still just as
-            curious about what the next command does.
+            curious about what the next command does. Active member of the Association for the Advancement of Artificial Intelligence (AAAI).
           </p>
         </div>
       </div>
@@ -754,7 +740,7 @@
       <div class="connect-grid">
         <div class="connect-card">
           <div class="label">Email</div>
-          <a href="mailto:hello@philomath.is">hello@philomath.is</a>
+          <a href="mailto:luke@philomath.is">luke@philomath.is</a>
         </div>
         <div class="connect-card">
           <div class="label">GitHub</div>
