@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root { --bg:#f4f1eb;--bg-warm:#ebe6dc;--fg:#2c2825;--fg-mid:#5a534c;--fg-light:#6e675f;--fg-faint:#9a928a;--accent:#c05e2f;--accent-light:#d4865e;--accent-bg:rgba(192,94,47,0.07);--rule:#b8b0a6;--rule-light:#cfc9c0;--display:'Outfit',sans-serif;--body:'DM Sans','Helvetica Neue',Arial,sans-serif;--mono:'DM Mono','Consolas',monospace; }
+    :root { --bg:#f4f1eb;--bg-warm:#ebe6dc;--fg:#2c2825;--fg-mid:#5a534c;--fg-light:#6e675f;--fg-faint:#9a928a;--accent:#c05e2f;--accent-light:#d4865e;--accent-bg:rgba(192,94,47,0.07);--rule:#8a7d6f;--rule-light:#b8b0a6;--display:'Outfit',sans-serif;--body:'DM Sans','Helvetica Neue',Arial,sans-serif;--mono:'DM Mono','Consolas',monospace; }
     *{margin:0;padding:0;box-sizing:border-box}html{font-size:18px;scroll-behavior:smooth}body{background-color:var(--bg);background-image:linear-gradient(rgba(193,156,112,0.18) 1px,transparent 1px),linear-gradient(90deg,rgba(193,156,112,0.18) 1px,transparent 1px);background-size:24px 24px;color:var(--fg);font-family:var(--body);font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased}.container{max-width:760px;margin:0 auto;padding:0 2.5rem}
     .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}.hero-eyebrow{font-family:var(--mono);font-size:.72rem;font-weight:300;color:var(--fg-light);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.2rem;opacity:0;animation:fadeUp 1s ease forwards}.hero h1{font-family:var(--display);font-size:5rem;font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:.6rem;color:var(--fg);opacity:0;animation:fadeUp 1s ease .15s forwards}.hero h1 .trailing{font-weight:300;color:var(--fg-light)}.hero-definition{font-family:var(--body);font-size:1.15rem;color:var(--fg-mid);margin-bottom:2.5rem;max-width:540px;opacity:0;animation:fadeUp 1s ease .3s forwards}.hero-definition .greek{font-style:normal;color:var(--accent)}.hero-definition .subtext{font-size:.82rem;color:var(--fg-light)}.hero-attribution{font-family:var(--mono);font-size:.68rem;color:var(--fg-faint);letter-spacing:.03em;margin-top:.4rem}.hero-bar{width:48px;height:3px;background:var(--accent);margin-bottom:2rem;opacity:0;animation:fadeUp 1s ease .45s forwards}.hero-intro{font-size:1.05rem;color:var(--fg-mid);max-width:520px;opacity:0;animation:fadeUp 1s ease .6s forwards}
     section{padding:5rem 0;border-top:2px solid var(--rule);position:relative;z-index:1}.section-label{font-family:var(--display);font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;gap:.75rem}.section-label::after{content:'';flex:1;height:1px;background:var(--rule-light)}h2{font-family:var(--display);font-size:2.2rem;font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:1.5rem;color:var(--fg)}p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s ease}a:hover{border-bottom-color:var(--accent)}
@@ -27,15 +27,15 @@
     .connect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}.connect-card{padding:1.5rem;background:var(--bg-warm);border-top:2px solid var(--rule);transition:border-color .2s ease;border-radius:6px}.connect-card:hover{border-color:var(--accent)}.connect-card .label{font-family:var(--display);font-size:.68rem;font-weight:700;color:var(--fg-light);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}.connect-card a{font-family:var(--mono);font-size:.82rem;color:var(--fg-mid);word-break:break-all}
     footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}.footer-left{font-family:var(--display);font-size:.88rem;font-weight:700;color:var(--fg)}.footer-right{font-family:var(--mono);font-size:.62rem;color:var(--fg-faint);letter-spacing:.04em}
     /* Gallery section */
-    .gallery-section{padding:3.5rem 0 5rem;border-top:2px solid var(--rule);overflow:visible;position:relative;z-index:1}.gallery-section .section-label{max-width:760px;margin:0 auto 1.5rem;padding:0 2.5rem}.gallery-strip-label{max-width:760px;margin:0 auto .8rem;padding:0 2.5rem;font-family:var(--mono);font-size:.65rem;font-weight:400;color:var(--fg-faint);letter-spacing:.12em;text-transform:uppercase}.gallery-strip-label:not(:first-of-type){margin-top:2.5rem}
-    /* Technical gallery: card grid with captions */
-    .tech-gallery{max-width:760px;margin:0 auto;padding:0 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}.tech-card{background:var(--bg-warm);border:1px solid var(--rule);overflow:hidden;border-radius:6px;position:relative;cursor:pointer;transition:border-color .3s ease,transform .35s ease,box-shadow .35s ease}.tech-card:hover{border-color:var(--accent);transform:scale(1.04);box-shadow:0 8px 24px rgba(44,40,37,0.12)}.tech-card img{width:100%;height:auto;display:block;opacity:.85;transition:opacity .3s ease}.tech-card:hover img{opacity:1}.tech-card-caption{padding:.75rem 1rem;font-family:var(--mono);font-size:.68rem;color:var(--fg-light);letter-spacing:.02em;border-top:1px solid var(--rule-light)}.tech-card-caption strong{color:var(--fg-mid);font-weight:400;display:block;margin-bottom:.2rem;font-size:.72rem}.tech-card a{display:block;color:inherit;border-bottom:none}.tech-card a:hover{border-bottom:none}
-    /* Creative gallery: scrolling strip */
-    .gallery-track-wrapper{position:relative;width:100vw;left:50%;transform:translateX(-50%);overflow:hidden;mask-image:linear-gradient(to right,transparent,black 80px,black calc(100% - 80px),transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 80px,black calc(100% - 80px),transparent)}.gallery-track{display:flex;gap:1.25rem;width:max-content;animation:galleryScroll 55s linear infinite}.gallery-track:hover{animation-play-state:paused}.gallery-track img{height:180px;width:auto;border:1px solid var(--rule);display:block;opacity:.85;transition:opacity .3s ease,transform .35s ease,box-shadow .35s ease;border-radius:6px;cursor:pointer}.gallery-track img:hover{opacity:1;border-color:var(--accent);transform:scale(1.08);box-shadow:0 8px 24px rgba(44,40,37,0.12)}
+    .gallery-section{padding:3.5rem 0 5rem;border-top:2px solid var(--rule);position:relative;z-index:1}.gallery-section .section-label{max-width:760px;margin:0 auto 1.5rem;padding:0 2.5rem}.gallery-strip-label{max-width:760px;margin:0 auto .8rem;padding:0 2.5rem;font-family:var(--mono);font-size:.65rem;font-weight:400;color:var(--fg-faint);letter-spacing:.12em;text-transform:uppercase}.gallery-strip-label:not(:first-of-type){margin-top:2.5rem}
+    /* Scrolling gallery strips (both technical and creative) */
+    .gallery-track-wrapper{position:relative;width:100vw;left:50%;transform:translateX(-50%);overflow:hidden;mask-image:linear-gradient(to right,transparent,black 80px,black calc(100% - 80px),transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 80px,black calc(100% - 80px),transparent)}.gallery-track{display:flex;gap:1.25rem;width:max-content;animation:galleryScroll 55s linear infinite}.gallery-track:hover{animation-play-state:paused}.gallery-track img{height:180px;width:auto;border:1px solid var(--rule-light);display:block;opacity:.85;transition:opacity .3s ease,transform .35s ease,box-shadow .35s ease;border-radius:6px;cursor:pointer}.gallery-track img:hover{opacity:1;border-color:var(--accent);transform:scale(1.08);box-shadow:0 8px 24px rgba(44,40,37,0.12)}
+    .gallery-track-tech{animation-duration:35s}
+    .gallery-track a{display:block;border-bottom:none;height:180px}.gallery-track a:hover{border-bottom:none}
     @keyframes galleryScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
     @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
     @keyframes pulse{0%,100%{opacity:.2}50%{opacity:.6}}
-    @media(max-width:680px){html{font-size:16px}.hero h1{font-size:3.4rem}.container{padding:0 1.5rem}.about-columns{grid-template-columns:1fr;gap:2rem}.connect-grid{grid-template-columns:1fr}.post-item{grid-template-columns:1fr;gap:.3rem}footer{flex-direction:column;gap:.5rem;text-align:center}.tech-gallery{grid-template-columns:1fr}.gallery-track img{height:140px}.gallery-section .section-label,.gallery-strip-label{padding:0 1.5rem}}
+    @media(max-width:680px){html{font-size:16px}.hero h1{font-size:3.4rem}.container{padding:0 1.5rem}.about-columns{grid-template-columns:1fr;gap:2rem}.connect-grid{grid-template-columns:1fr}.post-item{grid-template-columns:1fr;gap:.3rem}footer{flex-direction:column;gap:.5rem;text-align:center}.gallery-track img{height:140px}.gallery-track a{height:140px}.gallery-section .section-label,.gallery-strip-label{padding:0 1.5rem}}
   </style>
 </head>
 <body>
@@ -74,7 +74,7 @@
         <div class="about-col">
           <h3>The creative</h3>
           <p>
-            Lifelong violinist and drummer. Listening habits run from Mozart to Meshuggah, Getz to Gojira, Brahms to Beastie Boys. Stipple artist and illustrator. VW tuning enthusiast. Custom watchmaker: sourcing movements, cases, dials, hands, and bracelets to design and assemble full builds from the ground up. Trained audio engineer (Fanshawe College, Music Industry Arts) with a project studio. The thread is figuring out how to do stuff I find interesting without relying on prefab options. Just find some tools and start tinkering.
+            Lifelong violinist and drummer. Listening habits run from Mozart to Meshuggah, Grappelli to Gojira, Brahms to Beastie Boys. Stipple artist and illustrator. VW tuning enthusiast. Custom watchmaker — full builds from sourced movements, cases, and dials. Trained audio engineer (Fanshawe College, Music Industry Arts) with a project studio. The thread is figuring out how to do stuff I find interesting without relying on prefab options. Just find some tools and start tinkering.
           </p>
         </div>
         <div class="about-col">
@@ -90,29 +90,25 @@
       </div>
     </section>
 
-    <!-- Gallery: Technical (card grid) + Creative (scrolling strip) -->
+    <!-- Gallery: Technical (scrolling strip) + Creative (scrolling strip) -->
     <div class="gallery-section">
       <div class="section-label" style="max-width:760px;margin:0 auto 1.5rem;padding:0 2.5rem;">Sketchbook</div>
 
-      <!-- Technical: captioned card grid with real images -->
+      <!-- Technical: scrolling strip with click-to-project links -->
       <div class="gallery-strip-label">Technical</div>
-      <div class="tech-gallery">
-        <div class="tech-card"><a href="#project-pulse">
-          <img src="gallery/technical/priority-pulse.jpg" alt="Priority Pulse — local-first AI triage dashboard" />
-          <div class="tech-card-caption"><strong>Priority Pulse</strong>Daily AI triage output with time allocation and pattern analysis</div>
-        </a></div>
-        <div class="tech-card"><a href="#project-diagnostic">
-          <img src="gallery/technical/diagnostic-assistant.jpg" alt="Diagnostic Assistant — AI fault diagnosis workflow" />
-          <div class="tech-card-caption"><strong>Diagnostic Assistant</strong>Multi-turn AI diagnosis with conditional branching and manufacturer docs</div>
-        </a></div>
-        <div class="tech-card"><a href="#project-metals">
-          <img src="gallery/technical/metals-identifier.jpg" alt="Metals Identification — ML classification with expert retraining" />
-          <div class="tech-card-caption"><strong>Metals Identification</strong>ML image classification with expert-in-the-loop continuous retraining</div>
-        </a></div>
-        <div class="tech-card"><a href="#project-lokker">
-          <img src="gallery/technical/part-lokker.jpg" alt="Part Lokker — document to CMMS import pipeline" />
-          <div class="tech-card-caption"><strong>Part Lokker</strong>OCR + LLM extraction pipeline from vendor docs to CMMS-ready import</div>
-        </a></div>
+      <div class="gallery-track-wrapper">
+        <div class="gallery-track gallery-track-tech">
+          <!-- First copy -->
+          <a href="#project-pulse"><img src="gallery/technical/priority-pulse.jpg" alt="Priority Pulse" /></a>
+          <a href="#project-diagnostic"><img src="gallery/technical/diagnostic-assistant.jpg" alt="Diagnostic Assistant" /></a>
+          <a href="#project-metals"><img src="gallery/technical/metals-identifier.jpg" alt="Metals Identification" /></a>
+          <a href="#project-lokker"><img src="gallery/technical/part-lokker.jpg" alt="Part Lokker" /></a>
+          <!-- Second copy (seamless loop) -->
+          <a href="#project-pulse"><img src="gallery/technical/priority-pulse.jpg" alt="Priority Pulse" /></a>
+          <a href="#project-diagnostic"><img src="gallery/technical/diagnostic-assistant.jpg" alt="Diagnostic Assistant" /></a>
+          <a href="#project-metals"><img src="gallery/technical/metals-identifier.jpg" alt="Metals Identification" /></a>
+          <a href="#project-lokker"><img src="gallery/technical/part-lokker.jpg" alt="Part Lokker" /></a>
+        </div>
       </div>
 
       <!-- Creative: scrolling strip -->
