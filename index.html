@@ -13,511 +13,32 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg: #f4f1eb;
-      --bg-warm: #ebe6dc;
-      --fg: #2c2825;
-      --fg-mid: #5a534c;
-      --fg-light: #8a827a;
-      --fg-faint: #b8b0a6;
-      --accent: #c05e2f;
-      --accent-light: #d4865e;
-      --accent-bg: rgba(192, 94, 47, 0.07);
-      --rule: #d1cbc2;
-      --rule-light: #e2ddd5;
-      --display: 'Outfit', sans-serif;
-      --body: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
-      --mono: 'DM Mono', 'Consolas', monospace;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { font-size: 18px; scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: var(--body);
-      font-weight: 300;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-    }
-
-    /* Background kept clean — no overlay */
-
-    /* Hero */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-eyebrow {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      font-weight: 300;
-      color: var(--fg-light);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 1.2rem;
-      opacity: 0;
-      animation: fadeUp 1s ease forwards;
-    }
-
-    .hero h1 {
-      font-family: var(--display);
-      font-size: 5rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 1.0;
-      margin-bottom: 0.6rem;
-      color: var(--fg);
-      opacity: 0;
-      animation: fadeUp 1s ease 0.15s forwards;
-    }
-
-    .hero h1 .trailing {
-      font-weight: 300;
-      color: var(--fg-light);
-    }
-
-    .hero-definition {
-      font-family: var(--body);
-      font-size: 1.15rem;
-      color: var(--fg-mid);
-      margin-bottom: 2.5rem;
-      max-width: 540px;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.3s forwards;
-    }
-
-    .hero-definition .greek {
-      font-style: normal;
-      color: var(--accent);
-    }
-
-    .hero-definition .subtext {
-      font-size: 0.82rem;
-      color: var(--fg-light);
-    }
-
-    .hero-attribution {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--fg-faint);
-      letter-spacing: 0.03em;
-      margin-top: 0.4rem;
-    }
-
-    .hero-bar {
-      width: 48px;
-      height: 3px;
-      background: var(--accent);
-      margin-bottom: 2rem;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.45s forwards;
-    }
-
-    .hero-intro {
-      font-size: 1.05rem;
-      color: var(--fg-mid);
-      max-width: 520px;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.6s forwards;
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 2.5rem;
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      color: var(--fg-faint);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      writing-mode: vertical-rl;
-      opacity: 0;
-      animation: fadeUp 1s ease 1.2s forwards;
-    }
-
-    .scroll-hint::after {
-      content: '';
-      display: block;
-      width: 1px;
-      height: 32px;
-      background: var(--rule);
-      margin: 0.6rem auto 0;
-      animation: pulse 2.5s ease-in-out infinite;
-    }
-
-    /* Sections */
-    section {
-      padding: 5rem 0;
-      border-top: 2px solid var(--rule);
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-label {
-      font-family: var(--display);
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--rule-light);
-    }
-
-    h2 {
-      font-family: var(--display);
-      font-size: 2.2rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 1.5rem;
-      color: var(--fg);
-    }
-
-    p { margin-bottom: 1rem; color: var(--fg-mid); }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s ease;
-    }
-
-    a:hover { border-bottom-color: var(--accent); }
-
-    /* About */
-    .about-text {
-      font-size: 1.05rem;
-      line-height: 1.85;
-    }
-
-    .about-columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      margin-top: 2.5rem;
-    }
-
-    .about-col h3 {
-      font-family: var(--display);
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--fg);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--accent);
-      display: inline-block;
-    }
-
-    .about-col p {
-      font-size: 0.92rem;
-      line-height: 1.75;
-    }
-
-    /* Projects */
-    .project {
-      margin-bottom: 3rem;
-      padding: 2rem;
-      background: var(--bg-warm);
-      border-left: 3px solid var(--accent);
-    }
-
-    .project-status {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.6rem;
-      display: inline-block;
-      margin-bottom: 0.6rem;
-    }
-
-    .status-oss { background: rgba(192, 94, 47, 0.12); color: var(--accent); }
-    .status-progress { background: rgba(90, 83, 76, 0.12); color: var(--fg-mid); }
-    .status-parked { background: rgba(138, 130, 122, 0.1); color: var(--fg-light); }
-
-    .project h3 {
-      font-family: var(--display);
-      font-size: 1.3rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-desc { font-size: 0.95rem; margin-bottom: 0.6rem; }
-
-    .project-tech {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--fg-light);
-      letter-spacing: 0.02em;
-      padding-top: 0.8rem;
-      border-top: 1px solid var(--rule-light);
-      margin-top: 0.8rem;
-      margin-bottom: 0;
-    }
-
-    /* Writing */
-    .post-list { list-style: none; }
-
-    .post-item {
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--rule-light);
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      gap: 1.5rem;
-      align-items: start;
-    }
-
-    .post-item:last-child { border-bottom: none; }
-
-    .post-date {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      color: var(--fg-faint);
-      letter-spacing: 0.03em;
-      padding-top: 0.25rem;
-    }
-
-    .post-title {
-      font-family: var(--display);
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--fg);
-      letter-spacing: -0.01em;
-      line-height: 1.35;
-    }
-
-    .post-title a { color: var(--fg); }
-    .post-title a:hover { color: var(--accent); }
-
-    .post-desc {
-      font-size: 0.88rem;
-      color: var(--fg-light);
-      margin-top: 0.25rem;
-    }
-
-    .coming-note {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--fg-faint);
-      margin-top: 1.5rem;
-    }
-
-    /* Connect */
-    .connect-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .connect-card {
-      padding: 1.5rem;
-      background: var(--bg-warm);
-      border-top: 2px solid var(--rule);
-      transition: border-color 0.2s ease;
-    }
-
-    .connect-card:hover { border-color: var(--accent); }
-
-    .connect-card .label {
-      font-family: var(--display);
-      font-size: 0.68rem;
-      font-weight: 700;
-      color: var(--fg-light);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 0.4rem;
-    }
-
-    .connect-card a {
-      font-family: var(--mono);
-      font-size: 0.82rem;
-      color: var(--fg-mid);
-      word-break: break-all;
-    }
-
-    /* Footer */
-    footer {
-      padding: 3rem 0;
-      border-top: 2px solid var(--rule);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .footer-left {
-      font-family: var(--display);
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--fg);
-    }
-
-    .footer-right {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      color: var(--fg-faint);
-      letter-spacing: 0.04em;
-    }
-
-    /* Gallery — dual auto-scrolling strips */
-    .gallery-section {
-      padding: 3.5rem 0;
-      border-top: 2px solid var(--rule);
-      overflow: hidden;
-      position: relative;
-      z-index: 1;
-    }
-
-    .gallery-section .section-label {
-      max-width: 760px;
-      margin: 0 auto 1.5rem;
-      padding: 0 2.5rem;
-    }
-
-    .gallery-strip-label {
-      max-width: 760px;
-      margin: 0 auto 0.8rem;
-      padding: 0 2.5rem;
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      font-weight: 400;
-      color: var(--fg-faint);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .gallery-strip-label:not(:first-of-type) {
-      margin-top: 2rem;
-    }
-
-    .gallery-track-wrapper {
-      position: relative;
-      width: 100vw;
-      left: 50%;
-      transform: translateX(-50%);
-      overflow: hidden;
-      mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
-    }
-
-    .gallery-track {
-      display: flex;
-      gap: 1.25rem;
-      width: max-content;
-      animation: galleryScroll 45s linear infinite;
-    }
-
-    .gallery-track-reverse {
-      display: flex;
-      gap: 1.25rem;
-      width: max-content;
-      animation: galleryScrollReverse 50s linear infinite;
-    }
-
-    .gallery-track:hover,
-    .gallery-track-reverse:hover {
-      animation-play-state: paused;
-    }
-
-    .gallery-track img,
-    .gallery-track-reverse img {
-      height: 180px;
-      width: auto;
-      border: 1px solid var(--rule);
-      display: block;
-      opacity: 0.85;
-      transition: opacity 0.3s ease;
-    }
-
-    .gallery-track img:hover,
-    .gallery-track-reverse img:hover {
-      opacity: 1;
-    }
-
-    @keyframes galleryScroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    @keyframes galleryScrollReverse {
-      0% { transform: translateX(-50%); }
-      100% { transform: translateX(0); }
-    }
-
-    /* Empty gallery placeholder */
-    .gallery-placeholder {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 2rem 2.5rem;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--fg-faint);
-      text-align: center;
-      border: 1px dashed var(--rule);
-      background: var(--bg-warm);
-    }
-
-    @media (max-width: 680px) {
-      .gallery-track img,
-      .gallery-track-reverse img { height: 140px; }
-      .gallery-section .section-label,
-      .gallery-strip-label { padding: 0 1.5rem; }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 0.6; }
-    }
-
-    @media (max-width: 680px) {
-      html { font-size: 16px; }
-      .hero h1 { font-size: 3.4rem; }
-      .container { padding: 0 1.5rem; }
-      .about-columns { grid-template-columns: 1fr; gap: 2rem; }
-      .connect-grid { grid-template-columns: 1fr; }
-      .post-item { grid-template-columns: 1fr; gap: 0.3rem; }
-      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
-    }
+    :root { --bg:#f4f1eb;--bg-warm:#ebe6dc;--fg:#2c2825;--fg-mid:#5a534c;--fg-light:#8a827a;--fg-faint:#b8b0a6;--accent:#c05e2f;--accent-light:#d4865e;--accent-bg:rgba(192,94,47,0.07);--rule:#d1cbc2;--rule-light:#e2ddd5;--display:'Outfit',sans-serif;--body:'DM Sans','Helvetica Neue',Arial,sans-serif;--mono:'DM Mono','Consolas',monospace; }
+    *{margin:0;padding:0;box-sizing:border-box}html{font-size:18px;scroll-behavior:smooth}body{background:var(--bg);color:var(--fg);font-family:var(--body);font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased}.container{max-width:760px;margin:0 auto;padding:0 2.5rem}
+    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}.hero-eyebrow{font-family:var(--mono);font-size:.72rem;font-weight:300;color:var(--fg-light);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.2rem;opacity:0;animation:fadeUp 1s ease forwards}.hero h1{font-family:var(--display);font-size:5rem;font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:.6rem;color:var(--fg);opacity:0;animation:fadeUp 1s ease .15s forwards}.hero h1 .trailing{font-weight:300;color:var(--fg-light)}.hero-definition{font-family:var(--body);font-size:1.15rem;color:var(--fg-mid);margin-bottom:2.5rem;max-width:540px;opacity:0;animation:fadeUp 1s ease .3s forwards}.hero-definition .greek{font-style:normal;color:var(--accent)}.hero-definition .subtext{font-size:.82rem;color:var(--fg-light)}.hero-attribution{font-family:var(--mono);font-size:.68rem;color:var(--fg-faint);letter-spacing:.03em;margin-top:.4rem}.hero-bar{width:48px;height:3px;background:var(--accent);margin-bottom:2rem;opacity:0;animation:fadeUp 1s ease .45s forwards}.hero-intro{font-size:1.05rem;color:var(--fg-mid);max-width:520px;opacity:0;animation:fadeUp 1s ease .6s forwards}
+    .scroll-hint{position:absolute;bottom:2.5rem;left:2.5rem;font-family:var(--mono);font-size:.62rem;color:var(--fg-faint);letter-spacing:.15em;text-transform:uppercase;writing-mode:vertical-rl;opacity:0;animation:fadeUp 1s ease 1.2s forwards}.scroll-hint::after{content:'';display:block;width:1px;height:32px;background:var(--rule);margin:.6rem auto 0;animation:pulse 2.5s ease-in-out infinite}
+    section{padding:5rem 0;border-top:2px solid var(--rule);position:relative;z-index:1}.section-label{font-family:var(--display);font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;gap:.75rem}.section-label::after{content:'';flex:1;height:1px;background:var(--rule-light)}h2{font-family:var(--display);font-size:2.2rem;font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:1.5rem;color:var(--fg)}p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s ease}a:hover{border-bottom-color:var(--accent)}
+    .about-text{font-size:1.05rem;line-height:1.85}.about-columns{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2.5rem}.about-col h3{font-family:var(--display);font-size:.82rem;font-weight:700;color:var(--fg);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:2px solid var(--accent);display:inline-block}.about-col p{font-size:.92rem;line-height:1.75}
+    .project{margin-bottom:3rem;padding:2rem;background:var(--bg-warm);border-left:3px solid var(--accent)}.project-status{font-family:var(--mono);font-size:.65rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;display:inline-block;margin-bottom:.6rem}.status-oss{background:rgba(192,94,47,0.12);color:var(--accent)}.status-progress{background:rgba(90,83,76,0.12);color:var(--fg-mid)}.status-parked{background:rgba(138,130,122,0.1);color:var(--fg-light)}.project h3{font-family:var(--display);font-size:1.3rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.5rem}.project-desc{font-size:.95rem;margin-bottom:.6rem}.project-tech{font-family:var(--mono);font-size:.7rem;color:var(--fg-light);letter-spacing:.02em;padding-top:.8rem;border-top:1px solid var(--rule-light);margin-top:.8rem;margin-bottom:0}
+    .post-list{list-style:none}.post-item{padding:1.5rem 0;border-bottom:1px solid var(--rule-light);display:grid;grid-template-columns:100px 1fr;gap:1.5rem;align-items:start}.post-item:last-child{border-bottom:none}.post-date{font-family:var(--mono);font-size:.68rem;color:var(--fg-faint);letter-spacing:.03em;padding-top:.25rem}.post-title{font-family:var(--display);font-size:1.1rem;font-weight:600;color:var(--fg);letter-spacing:-.01em;line-height:1.35}.post-title a{color:var(--fg)}.post-title a:hover{color:var(--accent)}.post-desc{font-size:.88rem;color:var(--fg-light);margin-top:.25rem}.coming-note{font-family:var(--mono);font-size:.72rem;color:var(--fg-faint);margin-top:1.5rem}
+    .connect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}.connect-card{padding:1.5rem;background:var(--bg-warm);border-top:2px solid var(--rule);transition:border-color .2s ease}.connect-card:hover{border-color:var(--accent)}.connect-card .label{font-family:var(--display);font-size:.68rem;font-weight:700;color:var(--fg-light);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}.connect-card a{font-family:var(--mono);font-size:.82rem;color:var(--fg-mid);word-break:break-all}
+    footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}.footer-left{font-family:var(--display);font-size:.88rem;font-weight:700;color:var(--fg)}.footer-right{font-family:var(--mono);font-size:.62rem;color:var(--fg-faint);letter-spacing:.04em}
+    /* Gallery section */
+    .gallery-section{padding:3.5rem 0;border-top:2px solid var(--rule);overflow:hidden;position:relative;z-index:1}.gallery-section .section-label{max-width:760px;margin:0 auto 1.5rem;padding:0 2.5rem}.gallery-strip-label{max-width:760px;margin:0 auto .8rem;padding:0 2.5rem;font-family:var(--mono);font-size:.65rem;font-weight:400;color:var(--fg-faint);letter-spacing:.12em;text-transform:uppercase}.gallery-strip-label:not(:first-of-type){margin-top:2.5rem}
+    /* Technical gallery: card grid with captions */
+    .tech-gallery{max-width:760px;margin:0 auto;padding:0 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}.tech-card{background:var(--bg-warm);border:1px solid var(--rule);overflow:hidden;transition:border-color .2s ease}.tech-card:hover{border-color:var(--accent)}.tech-card img{width:100%;height:180px;object-fit:cover;display:block;opacity:.85;transition:opacity .3s ease}.tech-card:hover img{opacity:1}.tech-card-caption{padding:.75rem 1rem;font-family:var(--mono);font-size:.68rem;color:var(--fg-light);letter-spacing:.02em;border-top:1px solid var(--rule-light)}.tech-card-caption strong{color:var(--fg-mid);font-weight:400;display:block;margin-bottom:.2rem;font-size:.72rem}
+    .tech-placeholder{background:var(--bg-warm);border:1px dashed var(--rule);display:flex;align-items:center;justify-content:center;min-height:180px;font-family:var(--mono);font-size:.68rem;color:var(--fg-faint);text-align:center;padding:1.5rem}
+    /* Creative gallery: scrolling strip */
+    .gallery-track-wrapper{position:relative;width:100vw;left:50%;transform:translateX(-50%);overflow:hidden;mask-image:linear-gradient(to right,transparent,black 80px,black calc(100% - 80px),transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 80px,black calc(100% - 80px),transparent)}.gallery-track{display:flex;gap:1.25rem;width:max-content;animation:galleryScroll 45s linear infinite}.gallery-track:hover{animation-play-state:paused}.gallery-track img{height:180px;width:auto;border:1px solid var(--rule);display:block;opacity:.85;transition:opacity .3s ease}.gallery-track img:hover{opacity:1}
+    .gallery-placeholder{max-width:760px;margin:0 auto;padding:2rem 2.5rem;font-family:var(--mono);font-size:.72rem;color:var(--fg-faint);text-align:center;border:1px dashed var(--rule);background:var(--bg-warm)}
+    @keyframes galleryScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes pulse{0%,100%{opacity:.2}50%{opacity:.6}}
+    @media(max-width:680px){html{font-size:16px}.hero h1{font-size:3.4rem}.container{padding:0 1.5rem}.about-columns{grid-template-columns:1fr;gap:2rem}.connect-grid{grid-template-columns:1fr}.post-item{grid-template-columns:1fr;gap:.3rem}footer{flex-direction:column;gap:.5rem;text-align:center}.tech-gallery{grid-template-columns:1fr}.gallery-track img{height:140px}.gallery-section .section-label,.gallery-strip-label{padding:0 1.5rem}}
   </style>
 </head>
 <body>
-
   <div class="container">
-
     <!-- Hero -->
     <div class="hero">
       <div class="hero-eyebrow">Luke McCarter &middot; Toronto</div>
@@ -533,7 +54,7 @@
       <div class="hero-bar"></div>
       <div class="hero-intro">
         Over twenty years in industrial maintenance operations, environmental compliance,
-        and continuous improvement; driven by emerging technology and learning
+        and continuous improvement, driven by emerging technology and learning
         something new every day.
       </div>
       <div class="scroll-hint">scroll</div>
@@ -544,17 +65,16 @@
       <div class="section-label">About</div>
       <h2>The short version</h2>
       <p class="about-text">
-        I manage maintenance operations for industrial processing and manufacturing&mdash;asset counts
-        in the thousands across multiple divisions and sites.
+        I manage maintenance operations for industrial processing and manufacturing.
+        Asset counts in the thousands across multiple divisions and sites.
         My professional life is CMMS management, predictive maintenance, environmental compliance,
         and building data pipelines to help make the invisible parts of operations visible.
       </p>
-
       <div class="about-columns">
         <div class="about-col">
           <h3>The creative side</h3>
           <p>
-            Lifelong violinist and drummer. Listening habits run from Mozart to Meshuggah, Getz to Gojira and Brahms to Beastie Boys. Stipple artist and illustrator. VW tuning enthusiast. Custom watchmaker &mdash; sourcing movements, cases, dials, hands, and bracelets to design and assemble full builds from the ground up. Trained audio engineer (Fanshawe College &mdash; Music Industry Arts) with a project studio. The thread is figuring out how to do stuff I find interesting without relying on prefab options...just find some tools and start tinkering!
+            Lifelong violinist and drummer. Listening habits run from Mozart to Meshuggah, Getz to Gojira, Brahms to Beastie Boys. Stipple artist and illustrator. VW tuning enthusiast. Custom watchmaker: sourcing movements, cases, dials, hands, and bracelets to design and assemble full builds from the ground up. Trained audio engineer (Fanshawe College, Music Industry Arts) with a project studio. The thread is figuring out how to do stuff I find interesting without relying on prefab options. Just find some tools and start tinkering.
           </p>
         </div>
         <div class="about-col">
@@ -563,143 +83,93 @@
             Wannabe tech nerd since my first DOS command on a Commodore 64.
             Built Geocities sites before Google existed. Decades of hands-on experience across
             personal, business, and creative software categories. Now building AI-assisted tools,
-            industrial IoT pipelines, and workflow automation&mdash;still just as
+            industrial IoT pipelines, and workflow automation. Still just as
             curious about what the next command does. Active member of the Association for the Advancement of Artificial Intelligence (AAAI).
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Gallery — dual auto-scrolling strips
-         TO ADD IMAGES:
-         1. Drop files into /gallery/creative/ and /gallery/technical/
-         2. Add <img> tags in BOTH copies of each track (they must match for seamless loop)
-         3. Images look best at roughly 400×280px, saved as .jpg quality 85-90
-         4. Once images are added, remove the <div class="gallery-placeholder"> blocks
-    -->
+    <!-- Gallery: Technical (card grid) + Creative (scrolling strip) -->
     <div class="gallery-section">
-      <div class="section-label" style="max-width: 760px; margin: 0 auto 1.5rem; padding: 0 2.5rem;">Sketchbook</div>
+      <div class="section-label" style="max-width:760px;margin:0 auto 1.5rem;padding:0 2.5rem;">Sketchbook</div>
 
-      <!-- Creative strip — scrolls left -->
+      <!-- Technical: captioned card grid -->
+      <div class="gallery-strip-label">Technical</div>
+      <div class="tech-gallery">
+        <!-- Uncomment and update src when images are ready -->
+        <div class="tech-card">
+          <div class="tech-placeholder">Priority Pulse<br/>dashboard screenshot</div>
+          <div class="tech-card-caption"><strong>Priority Pulse</strong>Daily AI triage output with time allocation and pattern analysis</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-placeholder">n8n workflow<br/>automation screenshot</div>
+          <div class="tech-card-caption"><strong>n8n Workflows</strong>Multi-agent dispatch for daily analysis and action extraction</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-placeholder">Obsidian daily note<br/>screenshot</div>
+          <div class="tech-card-caption"><strong>Obsidian Integration</strong>Auto-generated daily notes with calendar, tasks, and triage</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-placeholder">CMMS / Limble<br/>dashboard screenshot</div>
+          <div class="tech-card-caption"><strong>CMMS Pipeline</strong>Weather station API linked to Limble for condition-based maintenance</div>
+        </div>
+      </div>
+
+      <!-- Creative: scrolling strip -->
       <div class="gallery-strip-label">Creative</div>
       <div class="gallery-track-wrapper">
         <div class="gallery-track">
-          <!-- ─── First copy ─── -->
+          <!-- First copy: uncomment when images are in /gallery/creative/ -->
           <!-- <img src="gallery/creative/stipple-dog.jpg" alt="Stipple portrait of a Bernese" /> -->
-          <!-- <img src="gallery/creative/watch-mesh.jpg" alt="Custom watch with mesh bracelet" /> -->
           <!-- <img src="gallery/creative/watch-diver.jpg" alt="Custom diver watch on NATO strap" /> -->
+          <!-- <img src="gallery/creative/watch-mesh.jpg" alt="Custom watch with mesh bracelet" /> -->
           <!-- <img src="gallery/creative/stipple-bird.jpg" alt="Stipple drawing of a bird" /> -->
-          <!-- <img src="gallery/creative/studio-drums.jpg" alt="Project studio — drums and mics" /> -->
-          <!-- ─── Second copy (must match first for seamless loop) ─── -->
+          <!-- <img src="gallery/creative/studio-drums.jpg" alt="Project studio" /> -->
+          <!-- Second copy (must match first for seamless loop) -->
           <!-- <img src="gallery/creative/stipple-dog.jpg" alt="Stipple portrait of a Bernese" /> -->
-          <!-- <img src="gallery/creative/watch-mesh.jpg" alt="Custom watch with mesh bracelet" /> -->
           <!-- <img src="gallery/creative/watch-diver.jpg" alt="Custom diver watch on NATO strap" /> -->
+          <!-- <img src="gallery/creative/watch-mesh.jpg" alt="Custom watch with mesh bracelet" /> -->
           <!-- <img src="gallery/creative/stipple-bird.jpg" alt="Stipple drawing of a bird" /> -->
-          <!-- <img src="gallery/creative/studio-drums.jpg" alt="Project studio — drums and mics" /> -->
+          <!-- <img src="gallery/creative/studio-drums.jpg" alt="Project studio" /> -->
         </div>
       </div>
-      <div class="gallery-placeholder">Images coming soon — art, watches, studio</div>
-
-      <!-- Technical strip — scrolls right (reverse direction, slightly different speed) -->
-      <div class="gallery-strip-label">Technical</div>
-      <div class="gallery-track-wrapper">
-        <div class="gallery-track-reverse">
-          <!-- ─── First copy ─── -->
-          <!-- <img src="gallery/technical/priority-pulse.jpg" alt="Priority Pulse — productivity intelligence dashboard" /> -->
-          <!-- <img src="gallery/technical/n8n-workflow.jpg" alt="n8n automation workflow" /> -->
-          <!-- <img src="gallery/technical/limble-dashboard.jpg" alt="Limble CMMS dashboard" /> -->
-          <!-- <img src="gallery/technical/gti-artistic.jpg" alt="MK7 GTI wheel detail" /> -->
-          <!-- ─── Second copy (must match first for seamless loop) ─── -->
-          <!-- <img src="gallery/technical/priority-pulse.jpg" alt="Priority Pulse — productivity intelligence dashboard" /> -->
-          <!-- <img src="gallery/technical/n8n-workflow.jpg" alt="n8n automation workflow" /> -->
-          <!-- <img src="gallery/technical/limble-dashboard.jpg" alt="Limble CMMS dashboard" /> -->
-          <!-- <img src="gallery/technical/gti-artistic.jpg" alt="MK7 GTI wheel detail" /> -->
-        </div>
-      </div>
-      <div class="gallery-placeholder">Images coming soon — dashboards, automation, builds</div>
+      <div class="gallery-placeholder">Images coming soon: art, watches, studio</div>
     </div>
 
     <!-- Projects -->
     <section id="projects">
       <div class="section-label">Projects</div>
       <h2>Things I'm building</h2>
-
       <div class="project">
         <div class="project-status status-oss">Open Source</div>
         <h3><a href="https://github.com/lukemccarter-ux/priority-pulse">Priority Pulse</a></h3>
-        <p class="project-desc">
-          A personal AI assistant that watches how you actually spend your time and tells you
-          what you're avoiding. Built for ADHD brains in high-interrupt jobs where the day
-          disappears before you've touched the important stuff.
-        </p>
-        <div class="project-tech">
-          Python &middot; Claude API (Haiku for classification, Sonnet for analysis) &middot;
-          OAuth 2.0 multi-source ingestion (Gmail, Google Calendar/Tasks, Outlook ICS) &middot;
-          Power Automate pipeline &middot; Obsidian vault output &middot;
-          Local-first &mdash; no cloud, no telemetry
-        </div>
+        <p class="project-desc">A personal AI assistant that watches how you actually spend your time and tells you what you're avoiding. Built for ADHD brains in high-interrupt jobs where the day disappears before you've touched the important stuff.</p>
+        <div class="project-tech">Python &middot; Claude API (Haiku for classification, Sonnet for analysis) &middot; OAuth 2.0 multi-source ingestion (Gmail, Google Calendar/Tasks, Outlook ICS) &middot; Power Automate pipeline &middot; Obsidian vault output &middot; Local-first, no cloud, no telemetry</div>
       </div>
-
       <div class="project">
         <div class="project-status status-progress">In Progress</div>
         <h3>Part Lokker</h3>
-        <p class="project-desc">
-          Drop a photo of a quote, invoice, or packing slip and get a clean, ready-to-import
-          file for your CMMS. No manual data entry, no reformatting spreadsheets. Handles PDFs,
-          scanned documents, and photos from the shop floor.
-        </p>
-        <div class="project-tech">
-          AI document extraction (OCR + LLM) &middot; .pdf, .doc, .jpeg, .png input &middot;
-          Auto-formatted .csv to CMMS import spec &middot;
-          Field mapping for vendor-specific formats &middot; Batch processing
-        </div>
+        <p class="project-desc">Drop a photo of a quote, invoice, or packing slip and get a clean, ready-to-import file for your CMMS. No manual data entry, no reformatting spreadsheets. Handles PDFs, scanned documents, and photos from the shop floor.</p>
+        <div class="project-tech">AI document extraction (OCR + LLM) &middot; .pdf, .doc, .jpeg, .png input &middot; Auto-formatted .csv to CMMS import spec &middot; Field mapping for vendor-specific formats &middot; Batch processing</div>
       </div>
-
       <div class="project">
         <div class="project-status status-progress">In Progress</div>
         <h3>Diagnostic Assistant</h3>
-        <p class="project-desc">
-          An AI coach that walks technicians through diagnosis and repair of niche industrial
-          systems. Uses manufacturer documentation first, asks for specific photos or videos
-          mid-conversation, and guides rather than guesses.
-        </p>
-        <div class="project-tech">
-          RAG over manufacturer service manuals &middot; Multi-turn conversational UI &middot;
-          In-context image/video analysis &middot;
-          Guided decision trees with conditional branching &middot;
-          Per-equipment knowledge base
-        </div>
+        <p class="project-desc">An AI coach that walks technicians through diagnosis and repair of niche industrial systems. Uses manufacturer documentation first, asks for specific photos or videos mid-conversation, and guides rather than guesses.</p>
+        <div class="project-tech">RAG over manufacturer service manuals &middot; Multi-turn conversational UI &middot; In-context image/video analysis &middot; Guided decision trees with conditional branching &middot; Per-equipment knowledge base</div>
       </div>
-
       <div class="project">
         <div class="project-status status-progress">In Progress</div>
         <h3>Scrap Metal ID</h3>
-        <p class="project-desc">
-          A mobile app that helps yard workers identify metal grades on the spot.
-          The model improves continuously because the people using it are the ones
-          training it&mdash;designed to fit into existing workflows without adding steps.
-        </p>
-        <div class="project-tech">
-          Custom ML image classification &middot; On-device inference &middot;
-          Continuous learning &mdash; expert corrections feed training data &middot;
-          Workflow-integrated capture/classify/confirm UX &middot;
-          Ferrous + non-ferrous multi-grade taxonomy
-        </div>
+        <p class="project-desc">A mobile app that helps yard workers identify metal grades on the spot. The model improves continuously because the people using it are the ones training it. Designed to fit into existing workflows without adding steps.</p>
+        <div class="project-tech">Custom ML image classification &middot; On-device inference &middot; Continuous learning: expert corrections feed training data &middot; Workflow-integrated capture/classify/confirm UX &middot; Ferrous + non-ferrous multi-grade taxonomy</div>
       </div>
-
       <div class="project">
         <div class="project-status status-parked">Parked</div>
         <h3>VRespite</h3>
-        <p class="project-desc">
-          VR applications with two focus areas: rapid-access sensory environments for students
-          experiencing autism-related sensory overloads at school, and custom-built immersive
-          experiences for long-term and palliative care patients. Co-founded.
-        </p>
-        <div class="project-tech">
-          360&deg; video production &middot; Purpose-built VR environments &middot;
-          Clinical + educational deployment &middot;
-          Sensory modulation research-informed
-        </div>
+        <p class="project-desc">VR applications with two focus areas: rapid-access sensory environments for students experiencing autism-related sensory overloads at school, and custom-built immersive experiences for long-term and palliative care patients. Co-founded.</p>
+        <div class="project-tech">360&deg; video production &middot; Purpose-built VR environments &middot; Clinical + educational deployment &middot; Sensory modulation research-informed</div>
       </div>
     </section>
 
@@ -708,27 +178,9 @@
       <div class="section-label">Writing</div>
       <h2>Dispatches</h2>
       <ul class="post-list">
-        <li class="post-item">
-          <div class="post-date">Coming soon</div>
-          <div>
-            <div class="post-title">Why I Built an AI System to Tell Me What I'm Avoiding</div>
-            <div class="post-desc">Priority Pulse, ADHD, and the uncomfortable honesty of your own data.</div>
-          </div>
-        </li>
-        <li class="post-item">
-          <div class="post-date">Coming soon</div>
-          <div>
-            <div class="post-title">The Maintenance Controller's Case for Operations Technology</div>
-            <div class="post-desc">How a maintenance department became a data operation.</div>
-          </div>
-        </li>
-        <li class="post-item">
-          <div class="post-date">Coming soon</div>
-          <div>
-            <div class="post-title">Que Sais-Je? &mdash; Negative Capability in Industrial Settings</div>
-            <div class="post-desc">What Montaigne and Keats knew about uncertainty that most managers don't.</div>
-          </div>
-        </li>
+        <li class="post-item"><div class="post-date">Coming soon</div><div><div class="post-title">Why I Built an AI System to Tell Me What I'm Avoiding</div><div class="post-desc">Priority Pulse, ADHD, and the uncomfortable honesty of your own data.</div></div></li>
+        <li class="post-item"><div class="post-date">Coming soon</div><div><div class="post-title">The Maintenance Controller's Case for Operations Technology</div><div class="post-desc">How a maintenance department became a data operation.</div></div></li>
+        <li class="post-item"><div class="post-date">Coming soon</div><div><div class="post-title">Que Sais-Je? Negative Capability in Industrial Settings</div><div class="post-desc">What Montaigne and Keats knew about uncertainty that most managers don't.</div></div></li>
       </ul>
       <p class="coming-note">The writing happens when it happens.</p>
     </section>
@@ -738,18 +190,9 @@
       <div class="section-label">Connect</div>
       <h2>Say hello</h2>
       <div class="connect-grid">
-        <div class="connect-card">
-          <div class="label">Email</div>
-          <a href="mailto:luke@philomath.is">luke@philomath.is</a>
-        </div>
-        <div class="connect-card">
-          <div class="label">GitHub</div>
-          <a href="https://github.com/lukemccarter-ux">lukemccarter-ux</a>
-        </div>
-        <div class="connect-card">
-          <div class="label">LinkedIn</div>
-          <a href="https://linkedin.com/in/lukemccarter">lukemccarter</a>
-        </div>
+        <div class="connect-card"><div class="label">Email</div><a href="mailto:luke@philomath.is">luke@philomath.is</a></div>
+        <div class="connect-card"><div class="label">GitHub</div><a href="https://github.com/lukemccarter-ux">lukemccarter-ux</a></div>
+        <div class="connect-card"><div class="label">LinkedIn</div><a href="https://linkedin.com/in/lukemccarter">lukemccarter</a></div>
       </div>
     </section>
 
@@ -757,8 +200,6 @@
       <div class="footer-left">&phi; philomath.is</div>
       <div class="footer-right">Toronto &middot; 2026</div>
     </footer>
-
   </div>
-
 </body>
 </html>
