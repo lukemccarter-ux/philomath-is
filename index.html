@@ -9,6 +9,10 @@
   <meta property="og:description" content="φίλος μανθάνειν — one who loves to learn." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://philomath.is" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
@@ -19,18 +23,16 @@
     .scroll-hint{position:absolute;bottom:2.5rem;left:2.5rem;font-family:var(--mono);font-size:.62rem;color:var(--fg-faint);letter-spacing:.15em;text-transform:uppercase;writing-mode:vertical-rl;opacity:0;animation:fadeUp 1s ease 1.2s forwards}.scroll-hint::after{content:'';display:block;width:1px;height:32px;background:var(--rule);margin:.6rem auto 0;animation:pulse 2.5s ease-in-out infinite}
     section{padding:5rem 0;border-top:2px solid var(--rule);position:relative;z-index:1}.section-label{font-family:var(--display);font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;gap:.75rem}.section-label::after{content:'';flex:1;height:1px;background:var(--rule-light)}h2{font-family:var(--display);font-size:2.2rem;font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:1.5rem;color:var(--fg)}p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s ease}a:hover{border-bottom-color:var(--accent)}
     .about-text{font-size:1.05rem;line-height:1.85}.about-columns{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2.5rem}.about-col h3{font-family:var(--display);font-size:.82rem;font-weight:700;color:var(--fg);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:2px solid var(--accent);display:inline-block}.about-col p{font-size:.92rem;line-height:1.75}
-    .project{margin-bottom:3rem;padding:2rem;background:var(--bg-warm);border-left:3px solid var(--accent)}.project-status{font-family:var(--mono);font-size:.65rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;display:inline-block;margin-bottom:.6rem}.status-oss{background:rgba(192,94,47,0.12);color:var(--accent)}.status-progress{background:rgba(90,83,76,0.12);color:var(--fg-mid)}.status-parked{background:rgba(138,130,122,0.1);color:var(--fg-light)}.project h3{font-family:var(--display);font-size:1.3rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.5rem}.project-desc{font-size:.95rem;margin-bottom:.6rem}.project-tech{font-family:var(--mono);font-size:.7rem;color:var(--fg-light);letter-spacing:.02em;padding-top:.8rem;border-top:1px solid var(--rule-light);margin-top:.8rem;margin-bottom:0}
+    .project{margin-bottom:3rem;padding:2rem;background:var(--bg-warm);border-left:3px solid var(--accent);border-radius:6px}.project-status{font-family:var(--mono);font-size:.65rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;display:inline-block;margin-bottom:.6rem;border-radius:3px}.status-oss{background:rgba(192,94,47,0.12);color:var(--accent)}.status-progress{background:rgba(90,83,76,0.12);color:var(--fg-mid)}.status-parked{background:rgba(138,130,122,0.1);color:var(--fg-light)}.project h3{font-family:var(--display);font-size:1.3rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.5rem}.project-desc{font-size:.95rem;margin-bottom:.6rem}.project-tech{font-family:var(--mono);font-size:.7rem;color:var(--fg-light);letter-spacing:.02em;padding-top:.8rem;border-top:1px solid var(--rule-light);margin-top:.8rem;margin-bottom:0}
     .post-list{list-style:none}.post-item{padding:1.5rem 0;border-bottom:1px solid var(--rule-light);display:grid;grid-template-columns:100px 1fr;gap:1.5rem;align-items:start}.post-item:last-child{border-bottom:none}.post-date{font-family:var(--mono);font-size:.68rem;color:var(--fg-faint);letter-spacing:.03em;padding-top:.25rem}.post-title{font-family:var(--display);font-size:1.1rem;font-weight:600;color:var(--fg);letter-spacing:-.01em;line-height:1.35}.post-title a{color:var(--fg)}.post-title a:hover{color:var(--accent)}.post-desc{font-size:.88rem;color:var(--fg-light);margin-top:.25rem}.coming-note{font-family:var(--mono);font-size:.72rem;color:var(--fg-faint);margin-top:1.5rem}
-    .connect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}.connect-card{padding:1.5rem;background:var(--bg-warm);border-top:2px solid var(--rule);transition:border-color .2s ease}.connect-card:hover{border-color:var(--accent)}.connect-card .label{font-family:var(--display);font-size:.68rem;font-weight:700;color:var(--fg-light);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}.connect-card a{font-family:var(--mono);font-size:.82rem;color:var(--fg-mid);word-break:break-all}
+    .connect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}.connect-card{padding:1.5rem;background:var(--bg-warm);border-top:2px solid var(--rule);transition:border-color .2s ease;border-radius:6px}.connect-card:hover{border-color:var(--accent)}.connect-card .label{font-family:var(--display);font-size:.68rem;font-weight:700;color:var(--fg-light);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}.connect-card a{font-family:var(--mono);font-size:.82rem;color:var(--fg-mid);word-break:break-all}
     footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}.footer-left{font-family:var(--display);font-size:.88rem;font-weight:700;color:var(--fg)}.footer-right{font-family:var(--mono);font-size:.62rem;color:var(--fg-faint);letter-spacing:.04em}
     /* Gallery section */
     .gallery-section{padding:3.5rem 0;border-top:2px solid var(--rule);overflow:hidden;position:relative;z-index:1}.gallery-section .section-label{max-width:760px;margin:0 auto 1.5rem;padding:0 2.5rem}.gallery-strip-label{max-width:760px;margin:0 auto .8rem;padding:0 2.5rem;font-family:var(--mono);font-size:.65rem;font-weight:400;color:var(--fg-faint);letter-spacing:.12em;text-transform:uppercase}.gallery-strip-label:not(:first-of-type){margin-top:2.5rem}
     /* Technical gallery: card grid with captions */
-    .tech-gallery{max-width:760px;margin:0 auto;padding:0 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}.tech-card{background:var(--bg-warm);border:1px solid var(--rule);overflow:hidden;transition:border-color .2s ease}.tech-card:hover{border-color:var(--accent)}.tech-card img{width:100%;height:180px;object-fit:cover;display:block;opacity:.85;transition:opacity .3s ease}.tech-card:hover img{opacity:1}.tech-card-caption{padding:.75rem 1rem;font-family:var(--mono);font-size:.68rem;color:var(--fg-light);letter-spacing:.02em;border-top:1px solid var(--rule-light)}.tech-card-caption strong{color:var(--fg-mid);font-weight:400;display:block;margin-bottom:.2rem;font-size:.72rem}
-    .tech-placeholder{background:var(--bg-warm);border:1px dashed var(--rule);display:flex;align-items:center;justify-content:center;min-height:180px;font-family:var(--mono);font-size:.68rem;color:var(--fg-faint);text-align:center;padding:1.5rem}
+    .tech-gallery{max-width:760px;margin:0 auto;padding:0 2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}.tech-card{background:var(--bg-warm);border:1px solid var(--rule);overflow:hidden;transition:border-color .2s ease;border-radius:6px}.tech-card:hover{border-color:var(--accent)}.tech-card img{width:100%;height:180px;object-fit:cover;display:block;opacity:.85;transition:opacity .3s ease;border-radius:5px 5px 0 0}.tech-card:hover img{opacity:1}.tech-card-caption{padding:.75rem 1rem;font-family:var(--mono);font-size:.68rem;color:var(--fg-light);letter-spacing:.02em;border-top:1px solid var(--rule-light)}.tech-card-caption strong{color:var(--fg-mid);font-weight:400;display:block;margin-bottom:.2rem;font-size:.72rem}
     /* Creative gallery: scrolling strip */
-    .gallery-track-wrapper{position:relative;width:100vw;left:50%;transform:translateX(-50%);overflow:hidden;mask-image:linear-gradient(to right,transparent,black 80px,black calc(100% - 80px),transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 80px,black calc(100% - 80px),transparent)}.gallery-track{display:flex;gap:1.25rem;width:max-content;animation:galleryScroll 45s linear infinite}.gallery-track:hover{animation-play-state:paused}.gallery-track img{height:180px;width:auto;border:1px solid var(--rule);display:block;opacity:.85;transition:opacity .3s ease}.gallery-track img:hover{opacity:1}
-    .gallery-placeholder{max-width:760px;margin:0 auto;padding:2rem 2.5rem;font-family:var(--mono);font-size:.72rem;color:var(--fg-faint);text-align:center;border:1px dashed var(--rule);background:var(--bg-warm)}
+    .gallery-track-wrapper{position:relative;width:100vw;left:50%;transform:translateX(-50%);overflow:hidden;mask-image:linear-gradient(to right,transparent,black 80px,black calc(100% - 80px),transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 80px,black calc(100% - 80px),transparent)}.gallery-track{display:flex;gap:1.25rem;width:max-content;animation:galleryScroll 55s linear infinite}.gallery-track:hover{animation-play-state:paused}.gallery-track img{height:180px;width:auto;border:1px solid var(--rule);display:block;opacity:.85;transition:opacity .3s ease;border-radius:6px}.gallery-track img:hover{opacity:1}
     @keyframes galleryScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
     @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
     @keyframes pulse{0%,100%{opacity:.2}50%{opacity:.6}}
@@ -94,25 +96,24 @@
     <div class="gallery-section">
       <div class="section-label" style="max-width:760px;margin:0 auto 1.5rem;padding:0 2.5rem;">Sketchbook</div>
 
-      <!-- Technical: captioned card grid -->
+      <!-- Technical: captioned card grid with real images -->
       <div class="gallery-strip-label">Technical</div>
       <div class="tech-gallery">
-        <!-- Uncomment and update src when images are ready -->
         <div class="tech-card">
-          <div class="tech-placeholder">Priority Pulse<br/>dashboard screenshot</div>
+          <img src="gallery/technical/priority-pulse.jpg" alt="Priority Pulse — local-first AI triage dashboard" />
           <div class="tech-card-caption"><strong>Priority Pulse</strong>Daily AI triage output with time allocation and pattern analysis</div>
         </div>
         <div class="tech-card">
-          <div class="tech-placeholder">n8n workflow<br/>automation screenshot</div>
-          <div class="tech-card-caption"><strong>n8n Workflows</strong>Multi-agent dispatch for daily analysis and action extraction</div>
+          <img src="gallery/technical/diagnostic-assistant.jpg" alt="Diagnostic Assistant — AI fault diagnosis workflow" />
+          <div class="tech-card-caption"><strong>Diagnostic Assistant</strong>Multi-turn AI diagnosis with conditional branching and manufacturer docs</div>
         </div>
         <div class="tech-card">
-          <div class="tech-placeholder">Obsidian daily note<br/>screenshot</div>
-          <div class="tech-card-caption"><strong>Obsidian Integration</strong>Auto-generated daily notes with calendar, tasks, and triage</div>
+          <img src="gallery/technical/metals-identifier.jpg" alt="Metals Identification — ML classification with expert retraining" />
+          <div class="tech-card-caption"><strong>Metals Identification</strong>ML image classification with expert-in-the-loop continuous retraining</div>
         </div>
         <div class="tech-card">
-          <div class="tech-placeholder">CMMS / Limble<br/>dashboard screenshot</div>
-          <div class="tech-card-caption"><strong>CMMS Pipeline</strong>Weather station API linked to Limble for condition-based maintenance</div>
+          <img src="gallery/technical/part-lokker.jpg" alt="Part Lokker — document to CMMS import pipeline" />
+          <div class="tech-card-caption"><strong>Part Lokker</strong>OCR + LLM extraction pipeline from vendor docs to CMMS-ready import</div>
         </div>
       </div>
 
@@ -120,21 +121,34 @@
       <div class="gallery-strip-label">Creative</div>
       <div class="gallery-track-wrapper">
         <div class="gallery-track">
-          <!-- First copy: uncomment when images are in /gallery/creative/ -->
-          <!-- <img src="gallery/creative/stipple-dog.jpg" alt="Stipple portrait of a Bernese" /> -->
-          <!-- <img src="gallery/creative/watch-diver.jpg" alt="Custom diver watch on NATO strap" /> -->
-          <!-- <img src="gallery/creative/watch-mesh.jpg" alt="Custom watch with mesh bracelet" /> -->
-          <!-- <img src="gallery/creative/stipple-bird.jpg" alt="Stipple drawing of a bird" /> -->
-          <!-- <img src="gallery/creative/studio-drums.jpg" alt="Project studio" /> -->
-          <!-- Second copy (must match first for seamless loop) -->
-          <!-- <img src="gallery/creative/stipple-dog.jpg" alt="Stipple portrait of a Bernese" /> -->
-          <!-- <img src="gallery/creative/watch-diver.jpg" alt="Custom diver watch on NATO strap" /> -->
-          <!-- <img src="gallery/creative/watch-mesh.jpg" alt="Custom watch with mesh bracelet" /> -->
-          <!-- <img src="gallery/creative/stipple-bird.jpg" alt="Stipple drawing of a bird" /> -->
-          <!-- <img src="gallery/creative/studio-drums.jpg" alt="Project studio" /> -->
+          <!-- First copy -->
+          <img src="gallery/creative/dog1.jpg" alt="Stipple portrait — Bernese mountain dog profile" />
+          <img src="gallery/creative/watch1.jpg" alt="Custom diver watch — hand-painted blue dial on NATO strap" />
+          <img src="gallery/creative/gti-front.jpg" alt="MK7 GTI — low angle front quarter at golden hour" />
+          <img src="gallery/creative/bird1.jpg" alt="Stipple drawing — small bird" />
+          <img src="gallery/creative/drums1.jpg" alt="Project studio — drum kit with cymbals and monitors" />
+          <img src="gallery/creative/watch2.jpg" alt="Custom watch — textured dial with orange accents" />
+          <img src="gallery/creative/skyline-drawing.jpg" alt="Ink drawing — Nissan Skyline rear quarter" />
+          <img src="gallery/creative/bass1.jpg" alt="Stipple drawing — bass guitar" />
+          <img src="gallery/creative/dog2.jpg" alt="Stipple portrait — Bernese mountain dog face" />
+          <img src="gallery/creative/gti1.jpg" alt="MK7 GTI — rear quarter with aftermarket wheels" />
+          <img src="gallery/creative/dog3.jpg" alt="Stipple portrait — Bernese mountain dog looking up" />
+          <img src="gallery/creative/gti2.jpg" alt="MK7 GTI — APR intake in engine bay" />
+          <!-- Second copy (seamless loop) -->
+          <img src="gallery/creative/dog1.jpg" alt="Stipple portrait — Bernese mountain dog profile" />
+          <img src="gallery/creative/watch1.jpg" alt="Custom diver watch — hand-painted blue dial on NATO strap" />
+          <img src="gallery/creative/gti-front.jpg" alt="MK7 GTI — low angle front quarter at golden hour" />
+          <img src="gallery/creative/bird1.jpg" alt="Stipple drawing — small bird" />
+          <img src="gallery/creative/drums1.jpg" alt="Project studio — drum kit with cymbals and monitors" />
+          <img src="gallery/creative/watch2.jpg" alt="Custom watch — textured dial with orange accents" />
+          <img src="gallery/creative/skyline-drawing.jpg" alt="Ink drawing — Nissan Skyline rear quarter" />
+          <img src="gallery/creative/bass1.jpg" alt="Stipple drawing — bass guitar" />
+          <img src="gallery/creative/dog2.jpg" alt="Stipple portrait — Bernese mountain dog face" />
+          <img src="gallery/creative/gti1.jpg" alt="MK7 GTI — rear quarter with aftermarket wheels" />
+          <img src="gallery/creative/dog3.jpg" alt="Stipple portrait — Bernese mountain dog looking up" />
+          <img src="gallery/creative/gti2.jpg" alt="MK7 GTI — APR intake in engine bay" />
         </div>
       </div>
-      <div class="gallery-placeholder">Images coming soon: art, watches, studio</div>
     </div>
 
     <!-- Projects -->
