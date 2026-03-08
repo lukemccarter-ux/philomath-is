@@ -401,7 +401,7 @@
       letter-spacing: 0.04em;
     }
 
-    /* Gallery — auto-scrolling strip */
+    /* Gallery — dual auto-scrolling strips */
     .gallery-section {
       padding: 3.5rem 0;
       border-top: 2px solid var(--rule);
@@ -414,6 +414,22 @@
       max-width: 760px;
       margin: 0 auto 1.5rem;
       padding: 0 2.5rem;
+    }
+
+    .gallery-strip-label {
+      max-width: 760px;
+      margin: 0 auto 0.8rem;
+      padding: 0 2.5rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--fg-faint);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .gallery-strip-label:not(:first-of-type) {
+      margin-top: 2rem;
     }
 
     .gallery-track-wrapper {
@@ -433,11 +449,20 @@
       animation: galleryScroll 45s linear infinite;
     }
 
-    .gallery-track:hover {
+    .gallery-track-reverse {
+      display: flex;
+      gap: 1.25rem;
+      width: max-content;
+      animation: galleryScrollReverse 50s linear infinite;
+    }
+
+    .gallery-track:hover,
+    .gallery-track-reverse:hover {
       animation-play-state: paused;
     }
 
-    .gallery-track img {
+    .gallery-track img,
+    .gallery-track-reverse img {
       height: 180px;
       width: auto;
       border: 1px solid var(--rule);
@@ -446,7 +471,8 @@
       transition: opacity 0.3s ease;
     }
 
-    .gallery-track img:hover {
+    .gallery-track img:hover,
+    .gallery-track-reverse img:hover {
       opacity: 1;
     }
 
@@ -455,9 +481,29 @@
       100% { transform: translateX(-50%); }
     }
 
+    @keyframes galleryScrollReverse {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Empty gallery placeholder */
+    .gallery-placeholder {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2rem 2.5rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--fg-faint);
+      text-align: center;
+      border: 1px dashed var(--rule);
+      background: var(--bg-warm);
+    }
+
     @media (max-width: 680px) {
-      .gallery-track img { height: 140px; }
-      .gallery-section .section-label { padding: 0 1.5rem; }
+      .gallery-track img,
+      .gallery-track-reverse img { height: 140px; }
+      .gallery-section .section-label,
+      .gallery-strip-label { padding: 0 1.5rem; }
     }
 
     @keyframes fadeUp {
@@ -495,7 +541,7 @@
       </div>
       <div class="hero-definition hero-quote" style="margin-top: 1.2rem; font-size: 0.92rem;">
         Montaigne built an entire philosophy around three words: <em>Que sais-je?</em> &mdash; What do I know?
-        This is my space to work out an answer consistenly out of reach...
+        This is my space to work out an answer consistently just out of reach...
         <div class="hero-attribution">Michel de Montaigne, Essais, 1580</div>
       </div>
       <div class="hero-bar"></div>
@@ -522,7 +568,7 @@
         <div class="about-col">
           <h3>The creative side</h3>
           <p>
-            Lifelong violinist and drummer. Listening habits run from Mozart to Meshuggah, Getz to Gojira and Brahams to Beastie Boys. Stipple artist and illustrator. VW Tuning enthusiast. Custom watchmaker &mdash; sourcing movements, cases, dials, hands, and bracelets to design and assemble full builds from the ground up. Trained audio engineer (Fanshawe College &mdash; Music Industry Arts) with a project studio. The thread is figuring out how to do stuff I find interesting without relying on prefab options...just find some tools and start tinkering!
+            Lifelong violinist and drummer. Listening habits run from Mozart to Meshuggah, Getz to Gojira and Brahms to Beastie Boys. Stipple artist and illustrator. VW tuning enthusiast. Custom watchmaker &mdash; sourcing movements, cases, dials, hands, and bracelets to design and assemble full builds from the ground up. Trained audio engineer (Fanshawe College &mdash; Music Industry Arts) with a project studio. The thread is figuring out how to do stuff I find interesting without relying on prefab options...just find some tools and start tinkering!
           </p>
         </div>
         <div class="about-col">
@@ -538,22 +584,53 @@
       </div>
     </section>
 
-    <!-- Gallery — auto-scrolling strip
-         TO ADD IMAGES: Drop .jpg or .png files into the /gallery folder,
-         then add an <img> tag in BOTH copies of the track below (they must match).
-         TO REMOVE: Delete the <img> tag from BOTH copies.
-         Images look best at roughly 400×280px, saved as .jpg quality 85-90. -->
+    <!-- Gallery — dual auto-scrolling strips
+         TO ADD IMAGES:
+         1. Drop files into /gallery/creative/ and /gallery/technical/
+         2. Add <img> tags in BOTH copies of each track (they must match for seamless loop)
+         3. Images look best at roughly 400×280px, saved as .jpg quality 85-90
+         4. Once images are added, remove the <div class="gallery-placeholder"> blocks
+    -->
     <div class="gallery-section">
       <div class="section-label" style="max-width: 760px; margin: 0 auto 1.5rem; padding: 0 2.5rem;">Sketchbook</div>
+
+      <!-- Creative strip — scrolls left -->
+      <div class="gallery-strip-label">Creative</div>
       <div class="gallery-track-wrapper">
         <div class="gallery-track">
-          <!-- ─── First copy (original) ─── -->
-          <img src="gallery/stipple-dog.jpg" alt="Stipple portrait of a Bernese" />
-          <img src="gallery/watch-mesh.jpg" alt="Watch with mesh bracelet" />
-          <!-- ─── Second copy (for seamless loop) ─── -->
-          <img src="gallery/stipple-dog.jpg" alt="Stipple portrait of a Bernese" />
+          <!-- ─── First copy ─── -->
+          <!-- <img src="gallery/creative/stipple-dog.jpg" alt="Stipple portrait of a Bernese" /> -->
+          <!-- <img src="gallery/creative/watch-mesh.jpg" alt="Custom watch with mesh bracelet" /> -->
+          <!-- <img src="gallery/creative/watch-diver.jpg" alt="Custom diver watch on NATO strap" /> -->
+          <!-- <img src="gallery/creative/stipple-bird.jpg" alt="Stipple drawing of a bird" /> -->
+          <!-- <img src="gallery/creative/studio-drums.jpg" alt="Project studio — drums and mics" /> -->
+          <!-- ─── Second copy (must match first for seamless loop) ─── -->
+          <!-- <img src="gallery/creative/stipple-dog.jpg" alt="Stipple portrait of a Bernese" /> -->
+          <!-- <img src="gallery/creative/watch-mesh.jpg" alt="Custom watch with mesh bracelet" /> -->
+          <!-- <img src="gallery/creative/watch-diver.jpg" alt="Custom diver watch on NATO strap" /> -->
+          <!-- <img src="gallery/creative/stipple-bird.jpg" alt="Stipple drawing of a bird" /> -->
+          <!-- <img src="gallery/creative/studio-drums.jpg" alt="Project studio — drums and mics" /> -->
         </div>
       </div>
+      <div class="gallery-placeholder">Images coming soon — art, watches, studio</div>
+
+      <!-- Technical strip — scrolls right (reverse direction, slightly different speed) -->
+      <div class="gallery-strip-label">Technical</div>
+      <div class="gallery-track-wrapper">
+        <div class="gallery-track-reverse">
+          <!-- ─── First copy ─── -->
+          <!-- <img src="gallery/technical/priority-pulse.jpg" alt="Priority Pulse — productivity intelligence dashboard" /> -->
+          <!-- <img src="gallery/technical/n8n-workflow.jpg" alt="n8n automation workflow" /> -->
+          <!-- <img src="gallery/technical/limble-dashboard.jpg" alt="Limble CMMS dashboard" /> -->
+          <!-- <img src="gallery/technical/gti-artistic.jpg" alt="MK7 GTI wheel detail" /> -->
+          <!-- ─── Second copy (must match first for seamless loop) ─── -->
+          <!-- <img src="gallery/technical/priority-pulse.jpg" alt="Priority Pulse — productivity intelligence dashboard" /> -->
+          <!-- <img src="gallery/technical/n8n-workflow.jpg" alt="n8n automation workflow" /> -->
+          <!-- <img src="gallery/technical/limble-dashboard.jpg" alt="Limble CMMS dashboard" /> -->
+          <!-- <img src="gallery/technical/gti-artistic.jpg" alt="MK7 GTI wheel detail" /> -->
+        </div>
+      </div>
+      <div class="gallery-placeholder">Images coming soon — dashboards, automation, builds</div>
     </div>
 
     <!-- Projects -->
@@ -677,7 +754,7 @@
       <div class="connect-grid">
         <div class="connect-card">
           <div class="label">Email</div>
-          <a href="/cdn-cgi/l/email-protection#127e67797752627a7b7e7d7f73667a3c7b61"><span class="__cf_email__" data-cfemail="620e17090722120a0b0e0d0f03160a4c0b11">[email&#160;protected]</span></a>
+          <a href="mailto:hello@philomath.is">hello@philomath.is</a>
         </div>
         <div class="connect-card">
           <div class="label">GitHub</div>
@@ -691,4 +768,11 @@
     </section>
 
     <footer>
-      <div class="footer-left">&phi; philomath.is<
+      <div class="footer-left">&phi; philomath.is</div>
+      <div class="footer-right">Toronto &middot; 2026</div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
