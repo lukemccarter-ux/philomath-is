@@ -1,192 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>philomath.is</title>
-  <meta name="description" content="Luke McCarter — one who loves to learn. The sentence never finishes." />
-  <meta property="og:title" content="philomath.is" />
-  <meta property="og:description" content="φίλος μανθάνειν — one who loves to learn." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://philomath.is" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root { --bg:#f4f1eb;--bg-warm:#ebe6dc;--fg:#2c2825;--fg-mid:#5a534c;--fg-light:#6e675f;--fg-faint:#9a928a;--accent:#c05e2f;--accent-light:#d4865e;--accent-bg:rgba(192,94,47,0.07);--rule:#8a7d6f;--rule-light:#b8b0a6;--brown:#4a3f34;--display:'Outfit',sans-serif;--body:'DM Sans','Helvetica Neue',Arial,sans-serif;--mono:'DM Mono','Consolas',monospace; }
-    *{margin:0;padding:0;box-sizing:border-box}html{font-size:18px;scroll-behavior:smooth}body{background-color:var(--bg);background-image:linear-gradient(rgba(193,156,112,0.18) 1px,transparent 1px),linear-gradient(90deg,rgba(193,156,112,0.18) 1px,transparent 1px);background-size:24px 24px;color:var(--fg);font-family:var(--body);font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased}.container{max-width:760px;margin:0 auto;padding:0 2.5rem}
-    .hero{padding:12vh 0 4rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}.hero-eyebrow{font-family:var(--mono);font-size:.72rem;font-weight:300;color:var(--fg-light);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.2rem;opacity:0;animation:fadeUp 1s ease forwards}.hero h1{font-family:var(--display);font-size:5rem;font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:.6rem;color:var(--fg);opacity:0;animation:fadeUp 1s ease .15s forwards}.hero h1 .trailing{font-weight:300;color:var(--fg-light)}.hero-definition{font-family:var(--body);font-size:1.15rem;color:var(--fg-mid);margin-bottom:2.5rem;max-width:540px;opacity:0;animation:fadeUp 1s ease .3s forwards}.hero-definition .greek{font-style:normal;color:var(--accent)}.hero-definition .subtext{font-size:.82rem;color:var(--fg-light)}.hero-attribution{font-family:var(--mono);font-size:.68rem;color:var(--fg-faint);letter-spacing:.03em;margin-top:.4rem}.hero-bar{width:48px;height:3px;background:var(--accent);margin-bottom:2rem;opacity:0;animation:fadeUp 1s ease .45s forwards}.hero-intro{font-size:1.05rem;color:var(--fg-mid);max-width:520px;opacity:0;animation:fadeUp 1s ease .6s forwards}
-    section{padding:3.5rem 0;border-top:2px solid var(--rule);position:relative;z-index:1}.section-label{font-family:var(--display);font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;gap:.75rem}.section-label::after{content:'';flex:1;height:1px;background:var(--rule-light)}h2{font-family:var(--display);font-size:2.2rem;font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:1.5rem;color:var(--fg)}p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s ease}a:hover{border-bottom-color:var(--accent)}
-    .about-text{font-size:1.05rem;line-height:1.85}.about-columns{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2.5rem}.about-col h3{font-family:var(--display);font-size:.82rem;font-weight:700;color:var(--fg);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:2px solid var(--accent);display:inline-block}.about-col p{font-size:.92rem;line-height:1.75}
-    .project{margin-bottom:3rem;padding:2rem;background:var(--bg-warm);border-left:3px solid var(--accent);border-radius:6px;scroll-margin-top:2rem}.project-status{font-family:var(--mono);font-size:.65rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;display:inline-block;margin-bottom:.6rem;border-radius:3px}.status-oss{background:rgba(192,94,47,0.12);color:var(--accent)}.status-progress{background:rgba(90,83,76,0.12);color:var(--fg-mid)}.status-parked{background:rgba(138,130,122,0.1);color:var(--fg-light)}.project h3{font-family:var(--display);font-size:1.3rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.5rem}.project-desc{font-size:.95rem;margin-bottom:.6rem}.project-tech{font-family:var(--mono);font-size:.7rem;color:var(--fg-light);letter-spacing:.02em;padding-top:.8rem;border-top:1px solid var(--rule-light);margin-top:.8rem;margin-bottom:0}
-    .post-list{list-style:none}.post-item{padding:1.5rem 0;border-bottom:1px solid var(--rule-light);display:grid;grid-template-columns:100px 1fr;gap:1.5rem;align-items:start}.post-item:last-child{border-bottom:none}.post-date{font-family:var(--mono);font-size:.68rem;color:var(--fg-faint);letter-spacing:.03em;padding-top:.25rem}.post-title{font-family:var(--display);font-size:1.1rem;font-weight:600;color:var(--fg);letter-spacing:-.01em;line-height:1.35}.post-title a{color:var(--fg)}.post-title a:hover{color:var(--accent)}.post-desc{font-size:.88rem;color:var(--fg-light);margin-top:.25rem}.coming-note{font-family:var(--mono);font-size:.72rem;color:var(--fg-faint);margin-top:1.5rem}
-    .connect-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2rem}.connect-card{padding:1.5rem 1.8rem;background:var(--bg-warm);border-top:2px solid var(--rule);transition:border-color .2s ease;border-radius:6px}.connect-card:hover{border-color:var(--accent)}.connect-card .label{font-family:var(--display);font-size:.68rem;font-weight:700;color:var(--fg-light);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}.connect-card a{font-family:var(--mono);font-size:.82rem;color:var(--fg-mid);word-break:break-all}
-    footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-direction:column;align-items:center;gap:.4rem;position:relative;z-index:1;text-align:center}.footer-left{font-family:var(--display);font-size:.88rem;font-weight:700;color:var(--fg)}.footer-right{font-family:var(--mono);font-size:.62rem;color:var(--fg-light);letter-spacing:.04em}
-    /* Project showcase — case study cards with inline images */
-    .showcase-card{margin-bottom:3.5rem;scroll-margin-top:2rem}.showcase-card:last-child{margin-bottom:2rem}.showcase-header{display:flex;align-items:baseline;gap:.8rem;margin-bottom:.6rem}.showcase-header h3{font-family:var(--display);font-size:1.4rem;font-weight:700;letter-spacing:-.01em;margin:0}.showcase-header h3 a{color:var(--fg);border-bottom:none}.showcase-header h3 a:hover{color:var(--accent)}.showcase-images{display:flex;gap:.75rem;margin:1rem 0 1.2rem;overflow-x:auto;scrollbar-width:thin;scrollbar-color:var(--rule-light) transparent;padding-bottom:.5rem}.showcase-images img{height:220px;width:auto;border-radius:6px;border:1px solid var(--rule-light);flex-shrink:0;transition:border-color .2s ease}.showcase-images img:hover{border-color:var(--accent)}.showcase-body{font-size:.95rem;color:var(--fg-mid);line-height:1.8;margin-bottom:.8rem}
-    .creative-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-top:1.5rem}.creative-grid img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px;border:1px solid var(--rule-light);transition:border-color .2s ease,opacity .2s ease;opacity:.85}.creative-grid img:hover{border-color:var(--accent);opacity:1}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-    @media(max-width:680px){html{font-size:16px}.hero h1{font-size:3.4rem}.container{padding:0 1.5rem}.about-columns{grid-template-columns:1fr;gap:2rem}.connect-grid{grid-template-columns:1fr 1fr}.post-item{grid-template-columns:1fr;gap:.3rem}footer{flex-direction:column;gap:.5rem;text-align:center}.showcase-images img{height:160px}.creative-grid{grid-template-columns:repeat(3,1fr)}}
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>philomath.is</title>
+<meta name="description" content="Luke McCarter — one who loves to learn. The sentence never finishes."/>
+<meta property="og:title" content="philomath.is"/>
+<meta property="og:description" content="φίλος μανθάνειν — one who loves to learn."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://philomath.is"/>
+<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"/>
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#f4f1eb;--bg-warm:#ebe6dc;--fg:#2c2825;--fg-mid:#5a534c;--fg-light:#6e675f;--fg-faint:#9a928a;--accent:#c05e2f;--accent-light:#d4865e;--rule:#8a7d6f;--rule-light:#b8b0a6;--display:'Outfit',sans-serif;--body:'DM Sans','Helvetica Neue',Arial,sans-serif;--mono:'DM Mono','Consolas',monospace}
+*{margin:0;padding:0;box-sizing:border-box}html{font-size:18px;scroll-behavior:smooth}
+body{background:var(--bg);background-image:linear-gradient(rgba(193,156,112,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(193,156,112,.18) 1px,transparent 1px);background-size:24px 24px;color:var(--fg);font-family:var(--body);font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased}
+.container{max-width:760px;margin:0 auto;padding:0 2.5rem}
+/* Hero */
+.hero{padding:12vh 0 4rem;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:1}
+.hero-eyebrow{font-family:var(--mono);font-size:.72rem;font-weight:300;color:var(--fg-light);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.2rem;opacity:0;animation:fadeUp 1s ease forwards}
+.hero h1{font-family:var(--display);font-size:5rem;font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:.6rem;color:var(--fg);opacity:0;animation:fadeUp 1s ease .15s forwards}
+.hero h1 .trailing{font-weight:300;color:var(--fg-light)}
+.hero-definition{font-family:var(--body);font-size:1.15rem;color:var(--fg-mid);margin-bottom:2.5rem;max-width:540px;opacity:0;animation:fadeUp 1s ease .3s forwards}
+.hero-definition .subtext{font-size:.82rem;color:var(--fg-light);display:block;text-align:center}
+.hero-definition .greek{font-style:normal;color:var(--accent);display:block;text-align:center;font-size:.72rem;opacity:.65;letter-spacing:.04em;margin-top:.3rem}
+.hero-bar{width:48px;height:3px;background:var(--accent);margin-bottom:2rem;opacity:0;animation:fadeUp 1s ease .45s forwards}
+.hero-intro{font-size:1.05rem;color:var(--fg-mid);max-width:520px;opacity:0;animation:fadeUp 1s ease .6s forwards}
+/* Sections */
+section{padding:3.5rem 0;border-top:2px solid var(--rule);position:relative;z-index:1}
+.section-label{font-family:var(--display);font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;gap:.75rem}
+.section-label::after{content:'';flex:1;height:1px;background:var(--rule-light)}
+h2{font-family:var(--display);font-size:2.2rem;font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:1.5rem;color:var(--fg)}
+p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s ease}a:hover{border-bottom-color:var(--accent)}
+/* About */
+.about-text{font-size:1.05rem;line-height:1.85}
+.about-columns{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2.5rem}
+.about-col h3{font-family:var(--display);font-size:.82rem;font-weight:700;color:var(--fg);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:2px solid var(--accent);display:inline-block}
+.about-col p{font-size:.92rem;line-height:1.75}
+/* Project cards */
+.project-status{font-family:var(--mono);font-size:.65rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;display:inline-block;margin-bottom:.6rem;border-radius:3px}
+.status-oss{background:rgba(192,94,47,.12);color:var(--accent)}.status-progress{background:rgba(90,83,76,.12);color:var(--fg-mid)}.status-parked{background:rgba(138,130,122,.1);color:var(--fg-light)}
+.project-tech{font-family:var(--mono);font-size:.7rem;color:var(--fg-light);letter-spacing:.02em;padding-top:.8rem;border-top:1px solid var(--rule-light);margin-top:.8rem;margin-bottom:0}
+/* Showcase */
+.showcase-card{margin-bottom:3.5rem;scroll-margin-top:2rem}.showcase-card:last-child{margin-bottom:2rem}
+.showcase-header{display:flex;align-items:baseline;gap:.8rem;margin-bottom:.6rem;flex-wrap:wrap}
+.showcase-header h3{font-family:var(--display);font-size:1.4rem;font-weight:700;letter-spacing:-.01em;margin:0}
+.showcase-header h3 a{color:var(--fg);border-bottom:none}.showcase-header h3 a:hover{color:var(--accent)}
+.showcase-images{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin:1rem 0 1.2rem}
+.showcase-images.single{grid-template-columns:1fr}
+.showcase-images img{width:100%;height:auto;max-height:280px;object-fit:cover;object-position:top left;border-radius:6px;border:1px solid var(--rule-light);cursor:pointer;transition:border-color .2s,transform .15s}
+.showcase-images img:hover{border-color:var(--accent);transform:scale(1.02)}
+.showcase-body{font-size:.95rem;color:var(--fg-mid);line-height:1.8;margin-bottom:.8rem}
+/* Lightbox */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(26,24,22,.92);z-index:100;align-items:center;justify-content:center;cursor:zoom-out}
+.lightbox.active{display:flex}
+.lightbox img{max-width:92vw;max-height:90vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+/* Sketchbook gallery */
+.sketch-featured{width:100%;margin-bottom:1rem;border-radius:8px;overflow:hidden;position:relative;background:var(--bg-warm)}
+.sketch-featured img{width:100%;height:340px;object-fit:cover;border-radius:8px;border:1px solid var(--rule-light);transition:opacity .5s ease}
+.sketch-thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem}
+.sketch-thumbs img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px;border:2px solid transparent;opacity:.6;cursor:pointer;transition:opacity .2s,border-color .2s}
+.sketch-thumbs img:hover,.sketch-thumbs img.active{opacity:1;border-color:var(--accent)}
+/* Connect */
+.connect-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2rem}
+.connect-card{padding:1.5rem 1.8rem;background:var(--bg-warm);border-top:2px solid var(--rule);transition:border-color .2s;border-radius:6px}
+.connect-card:hover{border-color:var(--accent)}
+.connect-card .label{font-family:var(--display);font-size:.68rem;font-weight:700;color:var(--fg-light);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}
+.connect-card a{font-family:var(--mono);font-size:.82rem;color:var(--fg-mid);word-break:break-all}
+/* Footer */
+footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-direction:column;align-items:center;gap:.4rem;position:relative;z-index:1;text-align:center}
+.footer-left{font-family:var(--display);font-size:.88rem;font-weight:700;color:var(--fg)}.footer-right{font-family:var(--mono);font-size:.62rem;color:var(--fg-light);letter-spacing:.04em}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:680px){html{font-size:16px}.hero h1{font-size:3.4rem}.container{padding:0 1.5rem}.about-columns,.connect-grid{grid-template-columns:1fr}.showcase-images{grid-template-columns:1fr}.sketch-thumbs{grid-template-columns:repeat(5,1fr)}.sketch-featured img{height:240px}}
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="hero">
-      <div class="hero-eyebrow">Luke McCarter &middot; Toronto</div>
-      <h1>philomath <span class="trailing">is...</span></h1>
-      <div class="hero-definition">
-        <span class="subtext">...a lover of learning.</span>
-        <div class="greek" style="font-size:0.72rem;opacity:0.65;letter-spacing:0.04em;margin-top:0.3rem">&phi;&iacute;&lambda;os &mu;&alpha;&nu;&theta;&alpha;&nu;&epsilon;&iota;&nu;</div>
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">Luke McCarter &middot; Toronto</div>
+    <h1>philomath <span class="trailing">is...</span></h1>
+    <div class="hero-definition">
+      <span class="subtext">...a lover of learning.</span>
+      <span class="greek">&phi;&iacute;&lambda;os &mu;&alpha;&nu;&theta;&alpha;&nu;&epsilon;&iota;&nu;</span>
+    </div>
+    <div class="hero-bar"></div>
+    <div class="hero-intro">Over twenty years in industrial maintenance operations, environmental compliance, and continuous improvement, driven by emerging technology and learning something new every day.</div>
+  </div>
+
+  <section id="about">
+    <div class="section-label">About</div>
+    <h2>Short version</h2>
+    <p class="about-text">Twenty years building maintenance operations for industrial processing and manufacturing. 3,000+ assets across multiple sites. My professional life is CMMS implementation, predictive maintenance, environmental compliance, and building data pipelines to help make the invisible parts of operations visible.</p>
+    <div class="about-columns">
+      <div class="about-col">
+        <h3>The creative</h3>
+        <p>Lifelong violinist and drummer. Listening habits run from Mozart to Meshuggah, Grappelli to Gojira, Brahms to Beastie Boys. Stipple artist and illustrator. VW tuning enthusiast. Custom watchmaker creating full builds from sourced movements, cases, and hand-painted dials. Trained audio engineer with a project studio. The common thread is a simple curiosity of how things work and when possible, exploring how I can leverage tools within reach to go deeper.</p>
       </div>
-      <div class="hero-bar"></div>
-      <div class="hero-intro">
-        Over twenty years in industrial maintenance operations, environmental compliance,
-        and continuous improvement, driven by emerging technology and learning
-        something new every day.
+      <div class="about-col">
+        <h3>The technical</h3>
+        <p>Self-taught technologist since my first DOS command on a Commodore 64. Built Geocities sites before Google existed. Decades of hands-on experience across personal, business, and creative software categories. Now building AI-assisted tools, industrial IoT pipelines, and workflow automation. Still just as curious about what the next command does. Active member of the Association for the Advancement of Artificial Intelligence (AAAI).</p>
       </div>
     </div>
+  </section>
 
-    <section id="about">
-      <div class="section-label">About</div>
-      <h2>The short version</h2>
-      <p class="about-text">
-        Twenty years building maintenance operations for industrial processing and manufacturing.
-        3,000+ assets across multiple sites.
-        My professional life is CMMS implementation, predictive maintenance, environmental compliance,
-        and building data pipelines to help make the invisible parts of operations visible.
-      </p>
-      <div class="about-columns">
-        <div class="about-col">
-          <h3>The creative</h3>
-          <p>
-            Lifelong violinist and drummer. Listening habits run from Mozart to Meshuggah, Grappelli to Gojira, Brahms to Beastie Boys. Stipple artist and illustrator. VW tuning enthusiast. Custom watchmaker creating full builds from sourced movements, cases, and hand-painted dials. Trained audio engineer with a project studio. The common thread is a simple curiosity of how things work and when possible, exploring how I can leverage tools within reach to go deeper.
-          </p>
-        </div>
-        <div class="about-col">
-          <h3>The technical</h3>
-          <p>
-            Self-taught technologist since my first DOS command on a Commodore 64.
-            Built Geocities sites before Google existed. Decades of hands-on experience across
-            personal, business, and creative software categories. Now building AI-assisted tools,
-            industrial IoT pipelines, and workflow automation. Still just as
-            curious about what the next command does. Active member of the Association for the Advancement of Artificial Intelligence (AAAI).
-          </p>
-        </div>
+  <section id="projects">
+    <div class="section-label">Projects</div>
+    <h2>Things I'm working on</h2>
+
+    <div class="showcase-card" id="project-diagnostic">
+      <div class="showcase-header">
+        <h3>Diagnostic Assistant</h3>
+        <span class="project-status status-progress">In Progress</span>
       </div>
-    </section>
-
-    <section id="projects">
-      <div class="section-label">Projects</div>
-      <h2>Things I build</h2>
-
-      <div class="showcase-card" id="project-diagnostic">
-        <div class="showcase-header">
-          <h3>Diagnostic Assistant</h3>
-          <span class="project-status status-progress">In Progress</span>
-        </div>
-        <div class="showcase-images">
-          <img src="gallery/technical/da-chat-interface.jpg" alt="Diagnostic conversation — AI-guided fault identification with contextual questions" />
-          <img src="gallery/technical/da-decision-tree.jpg" alt="Guided troubleshooting — conditional branching with component-specific options" />
-          <img src="gallery/technical/da-history.jpg" alt="Session history — persistent diagnostic records for recurring issues" />
-        </div>
-        <p class="showcase-body">
-          An AI diagnostic coach that walks maintenance technicians through fault identification and repair on niche industrial equipment. Built around manufacturer service manuals for the Accent 470 wire strapping system — the kind of machine where institutional knowledge lives in one person's head until they retire. The interface guides rather than guesses: asking for specific photos mid-conversation, presenting conditional decision trees, and citing exact manual references. Designed for a phone on the shop floor, not a desktop in an office.
-        </p>
-        <div class="project-tech">RAG over manufacturer service manuals &middot; Multi-turn conversational UI &middot; In-context image analysis &middot; Guided decision trees with conditional branching &middot; Per-equipment knowledge base</div>
+      <div class="showcase-images">
+        <img src="gallery/technical/da-chat-interface.jpg" alt="Diagnostic conversation — AI-guided fault identification" onclick="openLightbox(this)"/>
+        <img src="gallery/technical/da-decision-tree.jpg" alt="Guided troubleshooting — conditional branching" onclick="openLightbox(this)"/>
       </div>
+      <p class="showcase-body">An AI diagnostic coach that walks maintenance technicians through fault identification and repair on niche industrial equipment. Built around manufacturer service manuals for an industrial wire strapping system — the kind of machine where institutional knowledge lives in one person's head until they retire. The interface guides rather than guesses: asking for specific photos mid-conversation, presenting conditional decision trees, and citing exact manual references.</p>
+      <div class="project-tech">RAG over manufacturer service manuals &middot; Multi-turn conversational UI &middot; In-context image analysis &middot; Guided decision trees with conditional branching &middot; Per-equipment knowledge base</div>
+    </div>
 
-      <div class="showcase-card" id="project-pulse">
-        <div class="showcase-header">
-          <h3><a href="https://github.com/lukemccarter-ux/priority-pulse">Priority Pulse</a></h3>
-          <span class="project-status status-oss">Open Source</span>
-        </div>
-        <div class="showcase-images">
-          <img src="gallery/technical/priority-pulse.png" alt="Priority Pulse — pipeline architecture overview" />
-        </div>
-        <p class="showcase-body">
-          A local-first productivity intelligence system built for ADHD brains in high-interrupt operational roles. Passively collects data from nine sources throughout the workday — UI activity, email, calendar, meeting transcripts, phone calls, browser history — packages it into a consolidated daily analysis file, and delivers AI-triaged feedback via the Claude API. Surfaces dropped tasks, flags strategic drift, and provides honest time-allocation analysis. No cloud, no telemetry. Runs entirely on a Windows workstation using a background Python scheduler immune to corporate Group Policy restrictions.
-        </p>
-        <div class="project-tech">Python &middot; Claude API (Haiku for classification, Sonnet for analysis) &middot; OAuth 2.0 multi-source ingestion (Gmail, Google Calendar/Tasks, Outlook ICS) &middot; Power Automate pipeline &middot; Obsidian vault output &middot; Local-first, no cloud, no telemetry</div>
+    <div class="showcase-card" id="project-pulse">
+      <div class="showcase-header">
+        <h3><a href="https://github.com/lukemccarter-ux/priority-pulse">Priority Pulse</a></h3>
+        <span class="project-status status-oss">Open Source</span>
       </div>
-
-      <div class="showcase-card" id="project-metals">
-        <div class="showcase-header">
-          <h3>Scrap Metal ID</h3>
-          <span class="project-status status-progress">In Progress</span>
-        </div>
-        <div class="showcase-images">
-          <img src="gallery/technical/nyckel-dashboard.png" alt="Nyckel ML dashboard — 93.8% accuracy across 10,275 samples" />
-          <img src="gallery/technical/metals-identifier.png" alt="Metals Identifier — camera capture and classification interface" />
-        </div>
-        <p class="showcase-body">
-          A mobile classification tool that helps yard workers identify scrap metal grades on the spot. Trained on 15,000+ images using Nyckel, achieving 98–99% accuracy on broad material categories and 78%+ on subcategories and contamination detection. The model improves continuously because the people using it are the ones training it — expert corrections on the floor feed directly back into the training pipeline. Designed to slot into existing grading workflows without adding steps or requiring anyone to learn a new system.
-        </p>
-        <div class="project-tech">Custom ML image classification (Nyckel) &middot; On-device inference &middot; Continuous learning from expert corrections &middot; Workflow-integrated capture/classify/confirm UX &middot; Ferrous + non-ferrous multi-grade taxonomy</div>
+      <div class="showcase-images">
+        <img src="gallery/technical/priority-pulse.png" alt="Priority Pulse — pipeline architecture overview" onclick="openLightbox(this)"/>
+        <a href="priority-pulse-demo.html" target="_blank" style="display:flex;align-items:center;justify-content:center;border-radius:6px;border:1px solid var(--rule-light);background:var(--bg-warm);text-decoration:none;padding:1.5rem;min-height:200px;transition:border-color .2s"><span style="text-align:center"><span style="display:block;font-family:var(--display);font-size:.9rem;color:var(--fg);margin-bottom:.4rem">Sample Triage Output</span><span style="display:block;font-family:var(--mono);font-size:.65rem;color:var(--accent)">▸ View styled demo →</span></span></a>
       </div>
+      <p class="showcase-body">A local-first productivity intelligence system built for ADHD brains in high-interrupt operational roles. Passively collects data from nine sources throughout the workday — UI activity, email, calendar, meeting transcripts, phone calls, browser history — packages it into a consolidated daily analysis file, and delivers AI-triaged feedback via the Claude API. Surfaces dropped tasks, flags strategic drift, and provides honest time-allocation analysis. No cloud, no telemetry.</p>
+      <div class="project-tech">Python &middot; Claude API (Haiku for classification, Sonnet for analysis) &middot; OAuth 2.0 multi-source ingestion &middot; Power Automate pipeline &middot; Obsidian vault output &middot; Local-first, no cloud</div>
+    </div>
 
-      <div class="showcase-card" id="project-lokker">
-        <div class="showcase-header">
-          <h3>Part Lokker</h3>
-          <span class="project-status status-progress">In Progress</span>
-        </div>
-        <div class="showcase-images">
-          <img src="gallery/technical/part-lokker-ui.png" alt="Part Lokker — document extraction to editable parts table with CMMS export" />
-          <img src="gallery/technical/limble-parts-inventory.png" alt="Limble CMMS — parts inventory destination for extracted data" />
-        </div>
-        <p class="showcase-body">
-          Drop a photo of a quote, invoice, or packing slip and get a clean, ready-to-import file for your CMMS. Eliminates the manual data entry bottleneck in parts management — technicians photograph a vendor document on the shop floor and the system extracts part numbers, descriptions, unit costs, and vendor details into a formatted spreadsheet that maps directly to Limble's import specification. Handles PDFs, scanned documents, Word files, and phone photos.
-        </p>
-        <div class="project-tech">Claude API document extraction (OCR + LLM) &middot; Multi-format input (.pdf, .doc, .jpeg, .png) &middot; Auto-formatted .csv to CMMS import spec &middot; Field mapping for vendor-specific formats &middot; Batch processing</div>
+    <div class="showcase-card" id="project-metals">
+      <div class="showcase-header">
+        <h3>Scrap Metal ID</h3>
+        <span class="project-status status-progress">In Progress</span>
       </div>
-
-      <div class="showcase-card">
-        <div class="showcase-header">
-          <h3>VRespite</h3>
-          <span class="project-status status-parked">Parked</span>
-        </div>
-        <p class="showcase-body">
-          VR applications with two focus areas: rapid-access sensory environments for students experiencing autism-related sensory overloads at school, and custom-built immersive experiences for long-term and palliative care patients. Validated ROI thesis with Peel Region special education teachers and a Toronto District School Board senior manager around SEA-eligible deployment. Three-person founding team: prototyping and production (Luke), business development (Sr. Director, Canadian division of a publicly traded company), and operations/legal.
-        </p>
-        <div class="project-tech">360&deg; video production &middot; Purpose-built VR environments &middot; Clinical + educational deployment &middot; Sensory modulation research-informed</div>
+      <div class="showcase-images">
+        <img src="gallery/technical/nyckel-dashboard.png" alt="ML dashboard — 93.8% accuracy across 10,275 samples" onclick="openLightbox(this)"/>
+        <img src="gallery/technical/nyckel-classification.png" alt="Classification results — confidence scores on real yard samples" onclick="openLightbox(this)"/>
       </div>
-    </section>
+      <p class="showcase-body">A mobile classification tool that helps yard workers identify scrap metal grades on the spot. Trained on 15,000+ images using Nyckel, achieving 98–99% accuracy on broad material categories and 78%+ on subcategories and contamination detection. The model improves continuously because the people using it are the ones training it — expert corrections on the floor feed directly back into the training pipeline.</p>
+      <div class="project-tech">Custom ML image classification (Nyckel) &middot; On-device inference &middot; Continuous learning from expert corrections &middot; Workflow-integrated capture/classify/confirm UX &middot; Ferrous + non-ferrous multi-grade taxonomy</div>
+    </div>
 
-    <section id="creative">
-      <div class="section-label">Sketchbook</div>
-      <div class="creative-grid">
-        <img src="gallery/creative/dog1.jpg" alt="Stipple portrait — Bernese mountain dog" />
-        <img src="gallery/creative/watch1.jpg" alt="Custom diver watch — hand-painted blue dial" />
-        <img src="gallery/creative/bird1.jpg" alt="Stipple drawing — small bird" />
-        <img src="gallery/creative/skyline-drawing.jpg" alt="Ink drawing — Nissan Skyline" />
-        <img src="gallery/creative/watch2.jpg" alt="Custom watch — textured dial with orange accents" />
-        <img src="gallery/creative/drums1.jpg" alt="Project studio — drum kit" />
-        <img src="gallery/creative/gti1.jpg" alt="MK7 GTI — rear quarter" />
-        <img src="gallery/creative/bass1.jpg" alt="Stipple drawing — bass guitar" />
-        <img src="gallery/creative/dog2.jpg" alt="Stipple portrait — Bernese mountain dog face" />
-        <img src="gallery/creative/gti2.jpg" alt="MK7 GTI — engine bay" />
+    <div class="showcase-card" id="project-lokker">
+      <div class="showcase-header">
+        <h3>Part Lokker</h3>
+        <span class="project-status status-progress">In Progress</span>
       </div>
-    </section>
-
-
-    <section id="connect">
-      <div class="section-label">Connect</div>
-      <h2>Say hello</h2>
-      <div class="connect-grid">
-        <div class="connect-card"><div class="label">Email</div><a href="mailto:luke@philomath.is">luke@philomath.is</a></div>
-        <div class="connect-card"><div class="label">GitHub</div><a href="https://github.com/lukemccarter-ux">lukemccarter-ux</a></div>
-        <div class="connect-card"><div class="label">LinkedIn</div><a href="https://linkedin.com/in/lukemccarter">lukemccarter</a></div>
-        <div class="connect-card"><div class="label">Instagram</div><a href="https://www.instagram.com/dotmatrixwatch/">@dotmatrixwatch</a></div>
+      <div class="showcase-images">
+        <img src="gallery/technical/part-lokker-ui.png" alt="Part Lokker — document extraction to editable parts table" onclick="openLightbox(this)"/>
+        <img src="gallery/technical/limble-parts-inventory.png" alt="CMMS parts inventory — destination for extracted data" onclick="openLightbox(this)"/>
       </div>
-    </section>
+      <p class="showcase-body">Drop a photo of a quote, invoice, or packing slip and get a clean, ready-to-import file for your CMMS. Eliminates the manual data entry bottleneck in parts management — technicians photograph a vendor document on the shop floor and the system extracts part numbers, descriptions, unit costs, and vendor details into a formatted spreadsheet that maps directly to the CMMS import specification.</p>
+      <div class="project-tech">Claude API document extraction (OCR + LLM) &middot; Multi-format input (.pdf, .doc, .jpeg, .png) &middot; Auto-formatted .csv to CMMS import spec &middot; Field mapping for vendor-specific formats &middot; Batch processing</div>
+    </div>
 
-    <footer>
-      <div class="footer-left">&phi; philomath.is</div>
-      <div class="footer-right">Toronto &middot; 2026</div>
-    </footer>
-  </div>
+    <div class="showcase-card">
+      <div class="showcase-header">
+        <h3>VRespite</h3>
+        <span class="project-status status-parked">Parked</span>
+      </div>
+      <p class="showcase-body">VR applications with two focus areas: rapid-access sensory environments for students experiencing autism-related sensory overloads at school, and custom-built immersive experiences for long-term and palliative care patients. Validated ROI thesis with Peel Region special education teachers and a Toronto District School Board senior manager. Three-person founding team: prototyping and production (Luke), business development (Sr. Director, Canadian division of a publicly traded company), and operations/legal.</p>
+      <div class="project-tech">360&deg; video production &middot; Purpose-built VR environments &middot; Clinical + educational deployment &middot; Sensory modulation research-informed</div>
+    </div>
+  </section>
+
+  <section id="creative">
+    <div class="section-label">Sketchbook</div>
+    <div class="sketch-featured">
+      <img id="sketch-main" src="gallery/creative/dog1.jpg" alt="Featured artwork"/>
+    </div>
+    <div class="sketch-thumbs">
+      <img src="gallery/creative/dog1.jpg" alt="Stipple portrait — Bernese mountain dog" class="active" onclick="selectSketch(this)"/>
+      <img src="gallery/creative/watch1.jpg" alt="Custom diver watch — hand-painted blue dial" onclick="selectSketch(this)"/>
+      <img src="gallery/creative/bird1.jpg" alt="Stipple drawing — small bird" onclick="selectSketch(this)"/>
+      <img src="gallery/creative/skyline-drawing.jpg" alt="Ink drawing — Nissan Skyline" onclick="selectSketch(this)"/>
+      <img src="gallery/creative/watch2.jpg" alt="Custom watch — textured dial with orange accents" onclick="selectSketch(this)"/>
+      <img src="gallery/creative/drums1.jpg" alt="Project studio — drum kit" onclick="selectSketch(this)"/>
+      <img src="gallery/creative/gti1.jpg" alt="MK7 GTI — rear quarter" onclick="selectSketch(this)"/>
+      <img src="gallery/creative/bass1.jpg" alt="Stipple drawing — bass guitar" onclick="selectSketch(this)"/>
+      <img src="gallery/creative/dog2.jpg" alt="Stipple portrait — Bernese mountain dog face" onclick="selectSketch(this)"/>
+      <img src="gallery/creative/gti2.jpg" alt="MK7 GTI — engine bay" onclick="selectSketch(this)"/>
+    </div>
+  </section>
+
+  <section id="connect">
+    <div class="section-label">Connect</div>
+    <h2>Say hello</h2>
+    <div class="connect-grid">
+      <div class="connect-card"><div class="label">Email</div><a href="mailto:luke@philomath.is">luke@philomath.is</a></div>
+      <div class="connect-card"><div class="label">GitHub</div><a href="https://github.com/lukemccarter-ux">lukemccarter-ux</a></div>
+      <div class="connect-card"><div class="label">LinkedIn</div><a href="https://linkedin.com/in/lukemccarter">lukemccarter</a></div>
+      <div class="connect-card"><div class="label">Instagram</div><a href="https://www.instagram.com/dotmatrixwatch/">@dotmatrixwatch</a></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">&phi; philomath.is</div>
+    <div class="footer-right">Toronto &middot; 2026</div>
+  </footer>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="Zoomed view"/>
+</div>
+
+<script>
+/* Lightbox zoom for project screenshots */
+function openLightbox(img){
+  var lb=document.getElementById('lightbox');
+  var li=document.getElementById('lightbox-img');
+  li.src=img.src;li.alt=img.alt;
+  lb.classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  var lb=document.getElementById('lightbox');
+  lb.classList.remove('active');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')closeLightbox();
+});
+
+/* Sketchbook: thumbnail select + auto-rotate */
+var sketchIdx=0;
+var sketchTimer=null;
+var thumbs=null;
+var mainImg=null;
+
+function initSketch(){
+  thumbs=document.querySelectorAll('.sketch-thumbs img');
+  mainImg=document.getElementById('sketch-main');
+  if(!thumbs.length||!mainImg)return;
+  startRotation();
+}
+
+function selectSketch(el){
+  if(!thumbs)return;
+  thumbs.forEach(function(t,i){
+    t.classList.remove('active');
+    if(t===el)sketchIdx=i;
+  });
+  el.classList.add('active');
+  mainImg.style.opacity='0';
+  setTimeout(function(){
+    mainImg.src=el.src;mainImg.alt=el.alt;
+    mainImg.style.opacity='1';
+  },250);
+  resetRotation();
+}
+
+function rotateNext(){
+  if(!thumbs||!thumbs.length)return;
+  sketchIdx=(sketchIdx+1)%thumbs.length;
+  thumbs.forEach(function(t){t.classList.remove('active')});
+  thumbs[sketchIdx].classList.add('active');
+  mainImg.style.opacity='0';
+  setTimeout(function(){
+    mainImg.src=thumbs[sketchIdx].src;
+    mainImg.alt=thumbs[sketchIdx].alt;
+    mainImg.style.opacity='1';
+  },250);
+}
+
+function startRotation(){
+  if(sketchTimer)clearInterval(sketchTimer);
+  sketchTimer=setInterval(rotateNext,6000);
+}
+
+function resetRotation(){
+  if(sketchTimer)clearInterval(sketchTimer);
+  sketchTimer=setInterval(rotateNext,6000);
+}
+
+/* Featured image click opens lightbox */
+document.addEventListener('DOMContentLoaded',function(){
+  initSketch();
+  var m=document.getElementById('sketch-main');
+  if(m)m.addEventListener('click',function(){openLightbox(m)});
+  m.style.cursor='pointer';
+});
+</script>
 </body>
 </html>
