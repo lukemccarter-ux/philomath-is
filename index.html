@@ -51,16 +51,16 @@ p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:n
 .showcase-header{display:flex;align-items:baseline;gap:.8rem;margin-bottom:.6rem;flex-wrap:wrap}
 .showcase-header h3{font-family:var(--display);font-size:1.4rem;font-weight:700;letter-spacing:-.01em;margin:0}
 .showcase-header h3 a{color:var(--fg);border-bottom:none}.showcase-header h3 a:hover{color:var(--accent)}
-.showcase-images{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin:1rem 0 1.2rem}
+.showcase-images{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin:1rem 0 1.2rem;align-items:start}
 .showcase-images.triple{grid-template-columns:repeat(3,1fr)}
 .showcase-images.single{grid-template-columns:1fr}
-.showcase-images img{max-width:100%;height:auto;max-height:400px;display:block;margin:0 auto;border-radius:6px;border:1px solid var(--rule-light);cursor:pointer;transition:border-color .2s,transform .3s,box-shadow .3s;position:relative;z-index:1}
-.showcase-images img:hover{border-color:var(--accent);transform:scale(1.85);z-index:10;box-shadow:0 12px 48px rgba(0,0,0,.35);border-radius:8px}
+.showcase-images img{max-width:100%;height:auto;max-height:400px;display:block;border-radius:6px;border:1px solid var(--rule-light);cursor:pointer;transition:border-color .2s,transform .3s,box-shadow .3s;position:relative;z-index:1}
+.showcase-images img:hover{border-color:var(--accent);transform:scale(2.4);z-index:10;box-shadow:0 12px 48px rgba(0,0,0,.35);border-radius:8px}
 .showcase-body{font-size:.95rem;color:var(--fg-mid);line-height:1.8;margin-bottom:.8rem}
 /* Lightbox */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(26,24,22,.92);z-index:100;align-items:center;justify-content:center;cursor:zoom-out}
 .lightbox.active{display:flex}
-.lightbox img{max-width:92vw;max-height:90vh;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.lightbox img{max-width:92vw;max-height:90vh;width:auto;height:auto;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
 /* Sketchbook gallery */
 .sketch-featured{width:100%;margin-bottom:1rem;border-radius:8px;overflow:hidden;position:relative;background:var(--bg-warm)}
 .sketch-featured img{width:100%;height:340px;object-fit:cover;border-radius:8px;border:1px solid var(--rule-light);transition:opacity .5s ease}
@@ -77,7 +77,7 @@ p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:n
 footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-direction:column;align-items:center;gap:.4rem;position:relative;z-index:1;text-align:center}
 .footer-left{font-family:var(--display);font-size:.88rem;font-weight:700;color:var(--fg)}.footer-right{font-family:var(--mono);font-size:.62rem;color:var(--fg-light);letter-spacing:.04em}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:680px){html{font-size:16px}.hero h1{font-size:3.4rem}.container{padding:0 1.5rem}.about-columns,.connect-grid{grid-template-columns:1fr}.showcase-images,.showcase-images.triple{grid-template-columns:1fr}.sketch-thumbs{grid-template-columns:repeat(5,1fr)}.sketch-featured img{height:240px}.pp-demo{max-height:360px}.showcase-images img:hover{transform:scale(1.4)}}
+@media(max-width:680px){html{font-size:16px}.hero h1{font-size:3.4rem}.container{padding:0 1.5rem}.about-columns,.connect-grid{grid-template-columns:1fr}.showcase-images,.showcase-images.triple{grid-template-columns:1fr}.sketch-thumbs{grid-template-columns:repeat(5,1fr)}.sketch-featured img{height:240px}.pp-demo{max-height:360px}.showcase-images img:hover{transform:scale(1.6)}}
 /* Inline triage demo */
 .pp-demo{background:#1a1816;border-radius:8px;border:1px solid var(--rule-light);padding:1.2rem 1.4rem;margin:1rem 0 1.2rem;max-height:420px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#3a342e #1a1816;font-family:var(--mono);font-size:.62rem;line-height:1.6;color:#8a8279}
 .pp-demo::-webkit-scrollbar{width:6px}.pp-demo::-webkit-scrollbar-track{background:#1a1816}.pp-demo::-webkit-scrollbar-thumb{background:#3a342e;border-radius:3px}
