@@ -55,10 +55,13 @@ p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:n
 .showcase-images.triple{grid-template-columns:repeat(3,1fr)}
 .showcase-images.single{grid-template-columns:1fr}
 .showcase-images img{width:100%;height:260px;object-fit:cover;object-position:top center;display:block;border-radius:6px;border:1px solid var(--rule-light);cursor:pointer;transition:border-color .2s,transform .3s,box-shadow .3s;position:relative;z-index:1}
-.showcase-images img:hover{border-color:var(--accent);transform:scale(1.12);z-index:10;box-shadow:0 8px 32px rgba(0,0,0,.25);border-radius:8px}
+.showcase-images img:hover{border-color:var(--accent);transform:scale(1.66);z-index:10;box-shadow:0 8px 32px rgba(0,0,0,.25);border-radius:8px}
 /* Per-card zoom overrides */
-.zoom-none img{cursor:default!important}.zoom-none img:hover{transform:none!important;box-shadow:none!important;height:auto!important;object-fit:contain!important;z-index:1!important}
-.zoom-xl img:hover{transform:scale(1.3)!important}
+.zoom-none img,.zoom-none object{cursor:default!important}.zoom-none img:hover,.zoom-none object:hover{transform:none!important;box-shadow:none!important;z-index:1!important}
+.zoom-xl img:hover{transform:scale(1.99)!important}
+/* SVG embed */
+.pp-svg-wrap{border-radius:6px;border:1px solid var(--rule-light);overflow:hidden;line-height:0}
+.pp-svg-wrap object{width:100%;height:auto;display:block;pointer-events:none}
 .showcase-body{font-size:.95rem;color:var(--fg-mid);line-height:1.8;margin-bottom:.8rem}
 /* Lightbox */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(26,24,22,.92);z-index:100;align-items:center;justify-content:center;cursor:zoom-out}
@@ -155,8 +158,8 @@ footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-directi
         <h3><a href="https://github.com/lukemccarter-ux/priority-pulse">Priority Pulse</a></h3>
         <span class="project-status status-oss">Open Source</span>
       </div>
-      <div class="showcase-images single zoom-none">
-        <img src="gallery/technical/priority-pulse-pipeline.svg" alt="Priority Pulse — 9-source pipeline architecture with orchestration layer" style="height:auto;object-fit:contain" onclick="openLightbox(this)"/>
+      <div class="pp-svg-wrap">
+        <object type="image/svg+xml" data="gallery/technical/priority-pulse-pipeline.svg" aria-label="Priority Pulse — 9-source pipeline architecture with orchestration layer">Pipeline diagram</object>
       </div>
       <div class="pp-demo">
         <div class="pp-title">Priority Pulse <span class="pp-sub">v1.6 &middot; Daily Triage &middot; 2026-03-08 (Saturday) &middot; Sources: <span style="color:#5a9a6a">9/9 active</span></span></div>
