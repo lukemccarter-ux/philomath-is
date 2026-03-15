@@ -56,14 +56,18 @@ p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:n
 .showcase-images.single{grid-template-columns:1fr}
 .showcase-images img{width:100%;height:260px;object-fit:cover;object-position:top center;display:block;border-radius:6px;border:1px solid var(--rule-light);cursor:pointer;transition:border-color .2s,transform .3s,box-shadow .3s,height .3s,object-fit .3s;position:relative;z-index:1}
 .showcase-images img:hover{border-color:var(--accent);transform:scale(1.95);z-index:10;box-shadow:0 12px 48px rgba(0,0,0,.35);border-radius:8px;height:auto;max-height:600px;object-fit:contain}
+/* Per-card zoom overrides */
+.zoom-none img{cursor:default!important}.zoom-none img:hover{transform:none!important;box-shadow:none!important;height:auto!important;object-fit:contain!important;z-index:1!important}
+.zoom-lg img:hover{transform:scale(2.44)!important}
+.zoom-xl img:hover{transform:scale(2.34)!important}
 .showcase-body{font-size:.95rem;color:var(--fg-mid);line-height:1.8;margin-bottom:.8rem}
 /* Lightbox */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(26,24,22,.92);z-index:100;align-items:center;justify-content:center;cursor:zoom-out}
 .lightbox.active{display:flex}
 .lightbox img{max-width:92vw;max-height:90vh;width:auto;height:auto;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
 /* Sketchbook gallery */
-.sketch-featured{width:100%;margin-bottom:1rem;border-radius:8px;overflow:hidden;position:relative;background:var(--bg-warm)}
-.sketch-featured img{width:100%;height:340px;object-fit:cover;border-radius:8px;border:1px solid var(--rule-light);transition:opacity .5s ease}
+.sketch-featured{width:100%;margin-bottom:1rem;border-radius:8px;overflow:hidden;position:relative;background:var(--bg-warm);cursor:crosshair}
+.sketch-featured img{width:100%;height:340px;object-fit:cover;border-radius:8px;border:1px solid var(--rule-light);transition:opacity .5s ease,transform .1s ease;transform-origin:center center}
 .sketch-thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem}
 .sketch-thumbs img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px;border:2px solid transparent;opacity:.6;cursor:pointer;transition:opacity .2s,border-color .2s}
 .sketch-thumbs img:hover,.sketch-thumbs img.active{opacity:1;border-color:var(--accent)}
@@ -152,8 +156,8 @@ footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-directi
         <h3><a href="https://github.com/lukemccarter-ux/priority-pulse">Priority Pulse</a></h3>
         <span class="project-status status-oss">Open Source</span>
       </div>
-      <div class="showcase-images single">
-        <img src="gallery/technical/priority-pulse.png" alt="Priority Pulse — pipeline architecture overview" onclick="openLightbox(this)"/>
+      <div class="showcase-images single zoom-none">
+        <img src="gallery/technical/priority-pulse.png" alt="Priority Pulse — pipeline architecture overview" style="height:auto;object-fit:contain" onclick="openLightbox(this)"/>
       </div>
       <div class="pp-demo">
         <div class="pp-title">Priority Pulse <span class="pp-sub">v1.6 &middot; Daily Triage &middot; 2026-03-08 (Saturday) &middot; Sources: <span style="color:#5a9a6a">9/9 active</span></span></div>
@@ -190,7 +194,7 @@ footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-directi
         <h3>Scrap Metal ID</h3>
         <span class="project-status status-progress">In Progress</span>
       </div>
-      <div class="showcase-images triple">
+      <div class="showcase-images triple zoom-lg">
         <img src="gallery/technical/nyckel-dashboard.png" alt="ML dashboard — 93.8% accuracy across 10,275 samples" onclick="openLightbox(this)"/>
         <img src="gallery/technical/metal-capture.png" alt="Capture interface — camera or upload for on-the-spot classification" onclick="openLightbox(this)"/>
         <img src="gallery/technical/metal-verify.png" alt="AI prediction with expert verification — correct or reclassify to retrain" onclick="openLightbox(this)"/>
@@ -204,7 +208,7 @@ footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-directi
         <h3>Part Lokker</h3>
         <span class="project-status status-progress">In Progress</span>
       </div>
-      <div class="showcase-images">
+      <div class="showcase-images zoom-xl">
         <img src="gallery/technical/part-lokker-ui.png" alt="Part Lokker — document extraction to editable parts table" onclick="openLightbox(this)"/>
         <img src="gallery/technical/limble-parts-inventory.png" alt="CMMS parts inventory — destination for extracted data" onclick="openLightbox(this)"/>
       </div>
@@ -332,12 +336,30 @@ function resetRotation(){
   sketchTimer=setInterval(rotateNext,6000);
 }
 
-/* Featured image click opens lightbox */
+/* Featured image click opens lightbox + pan on hover */
 document.addEventListener('DOMContentLoaded',function(){
   initSketch();
   var m=document.getElementById('sketch-main');
-  if(m)m.addEventListener('click',function(){openLightbox(m)});
-  m.style.cursor='pointer';
+  if(m){
+    m.addEventListener('click',function(){openLightbox(m)});
+    m.style.cursor='crosshair';
+    var container=m.parentElement;
+    container.addEventListener('mouseenter',function(){
+      m.style.transform='scale(1.8)';
+      m.style.transition='opacity .5s ease,transform .3s ease';
+    });
+    container.addEventListener('mouseleave',function(){
+      m.style.transform='scale(1)';
+      m.style.transformOrigin='center center';
+    });
+    container.addEventListener('mousemove',function(e){
+      var rect=container.getBoundingClientRect();
+      var x=((e.clientX-rect.left)/rect.width)*100;
+      var y=((e.clientY-rect.top)/rect.height)*100;
+      m.style.transformOrigin=x+'% '+y+'%';
+      m.style.transition='opacity .5s ease,transform .05s ease';
+    });
+  }
 });
 </script>
 </body>
