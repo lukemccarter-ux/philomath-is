@@ -54,14 +54,14 @@ p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:n
 .showcase-images{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin:1rem 0 1.2rem;align-items:start}
 .showcase-images.triple{grid-template-columns:repeat(3,1fr)}
 .showcase-images.single{grid-template-columns:1fr}
-.showcase-images img{width:100%;height:340px;object-fit:cover;object-position:top center;display:block;border-radius:6px;border:1px solid var(--rule-light);cursor:pointer;transition:border-color .2s,transform .3s,box-shadow .3s;position:relative;z-index:1}
-.showcase-images.triple img{height:auto;max-height:440px;object-fit:contain;background:var(--bg-warm)}
+.showcase-images img{width:100%;height:auto;max-height:440px;object-fit:contain;display:block;border-radius:6px;border:1px solid var(--rule-light);cursor:pointer;transition:border-color .2s,transform .3s,box-shadow .3s;position:relative;z-index:1;background:var(--bg-warm);image-rendering:-webkit-optimize-contrast}
 .showcase-images img:hover{border-color:var(--accent);transform:scale(1.66);z-index:10;box-shadow:0 8px 32px rgba(0,0,0,.25);border-radius:8px}
 /* Per-card zoom overrides */
 .zoom-none img,.zoom-none object{cursor:default!important}.zoom-none img:hover,.zoom-none object:hover{transform:none!important;box-shadow:none!important;z-index:1!important}
 .zoom-xl img:hover{transform:scale(1.99)!important}
 /* SVG embed */
-.pp-svg-wrap{border-radius:6px;border:1px solid var(--rule-light);overflow:hidden;line-height:0}
+.pp-svg-wrap{border-radius:6px;border:1px solid var(--rule-light);overflow:hidden;line-height:0;cursor:pointer;transition:transform .3s,box-shadow .3s;position:relative;z-index:1}
+.pp-svg-wrap:hover{transform:scale(1.35);z-index:10;box-shadow:0 8px 32px rgba(0,0,0,.25);border-radius:8px}
 .pp-svg-wrap object{width:100%;height:auto;display:block;pointer-events:none}
 .showcase-body{font-size:.95rem;color:var(--fg-mid);line-height:1.8;margin-bottom:.8rem}
 /* Lightbox */
@@ -105,6 +105,7 @@ footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-directi
 .pp-demo .pp-note{background:#221f1c;padding:.5rem .7rem;border-radius:4px;margin:.3rem 0;color:#8a8279}
 .pp-demo .pp-note em{color:#d4cfc8;font-style:normal;font-weight:400}
 .pp-demo .pp-footer{border-top:1px solid #2a2623;margin-top:.8rem;padding-top:.6rem;color:#5c554d;font-size:.5rem;display:flex;justify-content:space-between}
+@media(max-width:680px){html{font-size:16px}.hero h1{font-size:3.4rem}.container{padding:0 1.5rem}.about-columns,.connect-grid{grid-template-columns:1fr}.showcase-images,.showcase-images.triple{grid-template-columns:1fr}.showcase-images img{max-height:320px}.showcase-images img:hover{transform:scale(1.0)}.sketch-thumbs{grid-template-columns:repeat(5,1fr)}.sketch-featured img{height:240px}.pp-demo{max-height:360px}.pp-svg-wrap:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -344,6 +345,9 @@ document.addEventListener('DOMContentLoaded',function(){
   initSketch();
   var m=document.getElementById('sketch-main');
   if(m) m.addEventListener('click',function(){openLightbox(m)});
+  /* SVG diagram click opens in new tab for full-res viewing */
+  var svgWrap=document.querySelector('.pp-svg-wrap');
+  if(svgWrap){svgWrap.addEventListener('click',function(){window.open('gallery/technical/priority-pulse-pipeline.svg','_blank')});}
 });
 </script>
 </body>
