@@ -27,8 +27,8 @@ body{background:var(--bg);background-image:linear-gradient(rgba(193,156,112,.18)
 .hero h1{font-family:var(--display);font-size:5rem;font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:.6rem;color:var(--fg);opacity:0;animation:fadeUp 1s ease .15s forwards}
 .hero h1 .trailing{font-weight:300;color:var(--fg-light)}
 .hero-definition{font-family:var(--body);font-size:1.15rem;color:var(--fg-mid);margin-bottom:2.5rem;max-width:540px;opacity:0;animation:fadeUp 1s ease .3s forwards}
-.hero-definition .subtext{font-size:.82rem;color:var(--fg-light);display:block;text-align:center}
-.hero-definition .greek{font-style:normal;color:var(--accent);display:block;text-align:center;font-size:.72rem;opacity:.65;letter-spacing:.04em;margin-top:.3rem}
+.hero-definition .subtext{font-size:.82rem;color:var(--fg-light);display:block}
+.hero-definition .greek{font-style:normal;color:var(--accent);display:block;font-size:.72rem;opacity:.65;letter-spacing:.04em;margin-top:.3rem}
 .hero-bar{width:48px;height:3px;background:var(--accent);margin-bottom:2rem;opacity:0;animation:fadeUp 1s ease .45s forwards}
 .hero-intro{font-size:1.05rem;color:var(--fg-mid);max-width:520px;opacity:0;animation:fadeUp 1s ease .6s forwards}
 /* Sections */
@@ -76,7 +76,27 @@ p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:n
 footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-direction:column;align-items:center;gap:.4rem;position:relative;z-index:1;text-align:center}
 .footer-left{font-family:var(--display);font-size:.88rem;font-weight:700;color:var(--fg)}.footer-right{font-family:var(--mono);font-size:.62rem;color:var(--fg-light);letter-spacing:.04em}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:680px){html{font-size:16px}.hero h1{font-size:3.4rem}.container{padding:0 1.5rem}.about-columns,.connect-grid{grid-template-columns:1fr}.showcase-images{grid-template-columns:1fr}.sketch-thumbs{grid-template-columns:repeat(5,1fr)}.sketch-featured img{height:240px}}
+@media(max-width:680px){html{font-size:16px}.hero h1{font-size:3.4rem}.container{padding:0 1.5rem}.about-columns,.connect-grid{grid-template-columns:1fr}.showcase-images{grid-template-columns:1fr}.sketch-thumbs{grid-template-columns:repeat(5,1fr)}.sketch-featured img{height:240px}.pp-demo{max-height:360px}}
+/* Inline triage demo */
+.pp-demo{background:#1a1816;border-radius:8px;border:1px solid var(--rule-light);padding:1.2rem 1.4rem;margin:1rem 0 1.2rem;max-height:420px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#3a342e #1a1816;font-family:var(--mono);font-size:.62rem;line-height:1.6;color:#8a8279}
+.pp-demo::-webkit-scrollbar{width:6px}.pp-demo::-webkit-scrollbar-track{background:#1a1816}.pp-demo::-webkit-scrollbar-thumb{background:#3a342e;border-radius:3px}
+.pp-demo .pp-h{color:#c05e2f;font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin:1rem 0 .4rem;display:flex;align-items:center;gap:.4rem}.pp-demo .pp-h::after{content:'';flex:1;height:1px;background:#2a2623}
+.pp-demo .pp-h:first-child{margin-top:0}
+.pp-demo .pp-title{color:#d4cfc8;font-size:.72rem;font-weight:700;font-family:'Outfit',sans-serif;margin-bottom:.2rem;letter-spacing:-.01em}
+.pp-demo .pp-sub{color:#5c554d;font-size:.56rem}
+.pp-demo .pp-stat{display:inline-block;background:#221f1c;border-radius:4px;padding:.25rem .5rem;margin:.15rem .2rem .15rem 0}
+.pp-demo .pp-stat b{color:#d4cfc8;font-size:.68rem;display:block;font-family:'Outfit',sans-serif}
+.pp-demo .pp-stat small{color:#5c554d;font-size:.5rem;text-transform:uppercase;letter-spacing:.08em}
+.pp-demo .pp-bar{background:#2a2623;border-radius:2px;height:10px;margin:.2rem 0;overflow:hidden;position:relative}
+.pp-demo .pp-bar span{display:block;height:100%;border-radius:2px}
+.pp-demo .pp-flag{display:inline-block;font-size:.5rem;padding:.1rem .3rem;border-radius:2px;margin-left:.3rem;font-weight:700;letter-spacing:.06em}
+.pp-demo .flag-r{background:rgba(184,84,80,.15);color:#b85450}.pp-demo .flag-y{background:rgba(196,162,78,.15);color:#c4a24e}
+.pp-demo .pp-item{background:#221f1c;border-left:2px solid #b85450;padding:.4rem .6rem;border-radius:0 4px 4px 0;margin:.3rem 0}
+.pp-demo .pp-item.y{border-left-color:#c4a24e}.pp-demo .pp-item.g{border-left-color:#5c554d}
+.pp-demo .pp-item strong{color:#d4cfc8;font-size:.62rem;display:block;font-weight:400}
+.pp-demo .pp-note{background:#221f1c;padding:.5rem .7rem;border-radius:4px;margin:.3rem 0;color:#8a8279}
+.pp-demo .pp-note em{color:#d4cfc8;font-style:normal;font-weight:400}
+.pp-demo .pp-footer{border-top:1px solid #2a2623;margin-top:.8rem;padding-top:.6rem;color:#5c554d;font-size:.5rem;display:flex;justify-content:space-between}
 </style>
 </head>
 <body>
@@ -130,9 +150,34 @@ footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-directi
         <h3><a href="https://github.com/lukemccarter-ux/priority-pulse">Priority Pulse</a></h3>
         <span class="project-status status-oss">Open Source</span>
       </div>
-      <div class="showcase-images">
+      <div class="showcase-images single">
         <img src="gallery/technical/priority-pulse.png" alt="Priority Pulse — pipeline architecture overview" onclick="openLightbox(this)"/>
-        <a href="priority-pulse-demo.html" target="_blank" style="display:flex;align-items:center;justify-content:center;border-radius:6px;border:1px solid var(--rule-light);background:var(--bg-warm);text-decoration:none;padding:1.5rem;min-height:200px;transition:border-color .2s"><span style="text-align:center"><span style="display:block;font-family:var(--display);font-size:.9rem;color:var(--fg);margin-bottom:.4rem">Sample Triage Output</span><span style="display:block;font-family:var(--mono);font-size:.65rem;color:var(--accent)">▸ View styled demo →</span></span></a>
+      </div>
+      <div class="pp-demo">
+        <div class="pp-title">Priority Pulse <span class="pp-sub">v1.6 &middot; Daily Triage &middot; 2026-03-08 (Saturday) &middot; Sources: <span style="color:#5a9a6a">9/9 active</span></span></div>
+        <div class="pp-h">&#9656; Quick Stats</div>
+        <div><span class="pp-stat"><small>Active Time</small><b>7h 12m</b></span><span class="pp-stat"><small>Switches</small><b>412</b><span class="pp-flag flag-r">FRAG</span></span><span class="pp-stat"><small>Mode</small><b>Reactive 68%</b></span><span class="pp-stat"><small>Deep Work</small><b>2 blocks</b></span><span class="pp-stat"><small>Best Focus</small><b>38m (CMMS)</b></span><span class="pp-stat"><small>Fragmentation</small><b>94/100</b></span></div>
+        <div class="pp-h">&#9656; Time Allocation</div>
+        <div style="display:grid;grid-template-columns:90px 1fr 42px 40px;gap:2px 6px;align-items:center">
+          <span>Email / Comms</span><div class="pp-bar"><span style="width:35.7%;background:#b85450"></span></div><span>2h 34m</span><span class="pp-flag flag-r">COMMS</span>
+          <span>CMMS (UpKeep)</span><div class="pp-bar"><span style="width:15.5%;background:#c4a24e"></span></div><span>1h 07m</span><span class="pp-flag flag-y">DRIFT</span>
+          <span>Vendor Coord.</span><div class="pp-bar"><span style="width:12%;background:#c05e2f"></span></div><span>52m</span><span></span>
+          <span>Fleet / MTO</span><div class="pp-bar"><span style="width:9.5%;background:#5a9aaa"></span></div><span>41m</span><span></span>
+          <span>Environmental</span><div class="pp-bar"><span style="width:6.5%;background:#5a9a6a"></span></div><span>28m</span><span></span>
+          <span>Team / Sched.</span><div class="pp-bar"><span style="width:8.1%;background:#5c554d"></span></div><span>35m</span><span></span>
+          <span>Admin / Other</span><div class="pp-bar"><span style="width:12.7%;background:#3a342e"></span></div><span>55m</span><span></span>
+        </div>
+        <div class="pp-h">&#9656; Triage</div>
+        <div class="pp-item"><strong>Respond to conveyor pricing request</strong>VP Ops waiting 10 days. Apex Industrial quoted $14,200 — needs sign-off.</div>
+        <div class="pp-item"><strong>Process 4 overdue Google Tasks</strong>"Update UpKeep PM templates," "Confirm delivery schedule," "Submit Q1 safety report," "Send PO-4481"</div>
+        <div class="pp-item y"><strong>Block 2-hour CMMS window</strong>UpKeep PM schedule development needs protected time. Two short bursts instead of deep work.</div>
+        <div class="pp-item y"><strong>ClearWater SWM inspection prep</strong>Thursday inspection confirmed. Weather station API linked, pre-inspection checklist not started.</div>
+        <div class="pp-item g"><strong>Apex Industrial compressor belt install</strong>Awaiting OEM belt dimensions (6 days, no response). Ref: WO-7823.</div>
+        <div class="pp-h">&#9656; ADHD Support</div>
+        <div class="pp-note"><em>Email as Default Mode</em> — 35.7% email time correlates with unplanned gaps. Pre-load a "default task" for gaps to redirect energy toward CMMS.</div>
+        <div class="pp-note"><em>CMMS Avoidance Signal</em> — Two short sessions (38m, 29m) suggests task initiation friction. Open UpKeep first thing before Outlook.</div>
+        <div class="pp-note"><em>Fragmentation is Structural</em> — 58 switches/hr is driven by the role. Protect the two daily deep-work blocks rather than reducing switches.</div>
+        <div class="pp-footer"><span>Priority Pulse v1.6 — Local-first. Your data never leaves your machine.</span><span>Analysis by Claude AI</span></div>
       </div>
       <p class="showcase-body">A local-first productivity intelligence system built for ADHD brains in high-interrupt operational roles. Passively collects data from nine sources throughout the workday — UI activity, email, calendar, meeting transcripts, phone calls, browser history — packages it into a consolidated daily analysis file, and delivers AI-triaged feedback via the Claude API. Surfaces dropped tasks, flags strategic drift, and provides honest time-allocation analysis. No cloud, no telemetry.</p>
       <div class="project-tech">Python &middot; Claude API (Haiku for classification, Sonnet for analysis) &middot; OAuth 2.0 multi-source ingestion &middot; Power Automate pipeline &middot; Obsidian vault output &middot; Local-first, no cloud</div>
