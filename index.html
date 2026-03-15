@@ -55,11 +55,11 @@ p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:n
 .showcase-images.triple{grid-template-columns:repeat(3,1fr)}
 .showcase-images.single{grid-template-columns:1fr}
 .showcase-images img{width:100%;height:260px;object-fit:cover;object-position:top center;display:block;border-radius:6px;border:1px solid var(--rule-light);cursor:pointer;transition:border-color .2s,transform .3s,box-shadow .3s,height .3s,object-fit .3s;position:relative;z-index:1}
-.showcase-images img:hover{border-color:var(--accent);transform:scale(1.66);z-index:10;box-shadow:0 12px 48px rgba(0,0,0,.35);border-radius:8px;height:auto;max-height:600px;object-fit:contain}
+.showcase-images img:hover{border-color:var(--accent);transform:scale(1.41);z-index:10;box-shadow:0 12px 48px rgba(0,0,0,.35);border-radius:8px;height:auto;max-height:600px;object-fit:contain}
 /* Per-card zoom overrides */
 .zoom-none img{cursor:default!important}.zoom-none img:hover{transform:none!important;box-shadow:none!important;height:auto!important;object-fit:contain!important;z-index:1!important}
-.zoom-lg img:hover{transform:scale(2.07)!important}
-.zoom-xl img:hover{transform:scale(1.99)!important}
+.zoom-lg img:hover{transform:scale(1.76)!important}
+.zoom-xl img:hover{transform:scale(1.69)!important}
 .showcase-body{font-size:.95rem;color:var(--fg-mid);line-height:1.8;margin-bottom:.8rem}
 /* Lightbox */
 .lightbox{display:none;position:fixed;inset:0;background:rgba(26,24,22,.92);z-index:100;align-items:center;justify-content:center;cursor:zoom-out}
@@ -81,7 +81,7 @@ p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:n
 footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-direction:column;align-items:center;gap:.4rem;position:relative;z-index:1;text-align:center}
 .footer-left{font-family:var(--display);font-size:.88rem;font-weight:700;color:var(--fg)}.footer-right{font-family:var(--mono);font-size:.62rem;color:var(--fg-light);letter-spacing:.04em}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:680px){html{font-size:16px}.hero h1{font-size:3.4rem}.container{padding:0 1.5rem}.about-columns,.connect-grid{grid-template-columns:1fr}.showcase-images,.showcase-images.triple{grid-template-columns:1fr}.showcase-images img{height:200px}.sketch-thumbs{grid-template-columns:repeat(5,1fr)}.sketch-featured img{height:240px}.pp-demo{max-height:360px}.showcase-images img:hover{transform:scale(1.15)}}
+@media(max-width:680px){html{font-size:16px}.hero h1{font-size:3.4rem}.container{padding:0 1.5rem}.about-columns,.connect-grid{grid-template-columns:1fr}.showcase-images,.showcase-images.triple{grid-template-columns:1fr}.showcase-images img{height:200px}.sketch-thumbs{grid-template-columns:repeat(5,1fr)}.sketch-featured img{height:240px}.pp-demo{max-height:360px}.showcase-images img:hover{transform:scale(1.0)}}
 /* Inline triage demo */
 .pp-demo{background:#1a1816;border-radius:8px;border:1px solid var(--rule-light);padding:1.2rem 1.4rem;margin:1rem 0 1.2rem;max-height:420px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#3a342e #1a1816;font-family:var(--mono);font-size:.62rem;line-height:1.6;color:#8a8279}
 .pp-demo::-webkit-scrollbar{width:6px}.pp-demo::-webkit-scrollbar-track{background:#1a1816}.pp-demo::-webkit-scrollbar-thumb{background:#3a342e;border-radius:3px}
@@ -157,7 +157,7 @@ footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-directi
         <span class="project-status status-oss">Open Source</span>
       </div>
       <div class="showcase-images single zoom-none">
-        <img src="gallery/technical/priority-pulse.png" alt="Priority Pulse — pipeline architecture overview" style="height:auto;object-fit:contain" onclick="openLightbox(this)"/>
+        <img src="gallery/technical/priority-pulse-pipeline.svg" alt="Priority Pulse — 9-source pipeline architecture with orchestration layer" style="height:auto;object-fit:contain" onclick="openLightbox(this)"/>
       </div>
       <div class="pp-demo">
         <div class="pp-title">Priority Pulse <span class="pp-sub">v1.6 &middot; Daily Triage &middot; 2026-03-08 (Saturday) &middot; Sources: <span style="color:#5a9a6a">9/9 active</span></span></div>
