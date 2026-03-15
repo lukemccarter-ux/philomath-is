@@ -66,8 +66,8 @@ p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:n
 .lightbox.active{display:flex}
 .lightbox img{max-width:92vw;max-height:90vh;width:auto;height:auto;border-radius:8px;box-shadow:0 8px 40px rgba(0,0,0,.5)}
 /* Sketchbook gallery */
-.sketch-featured{width:100%;margin-bottom:1rem;border-radius:8px;overflow:hidden;position:relative;background:var(--bg-warm);cursor:crosshair}
-.sketch-featured img{width:100%;height:340px;object-fit:cover;border-radius:8px;border:1px solid var(--rule-light);transition:opacity .5s ease,transform .1s ease;transform-origin:center center}
+.sketch-featured{width:100%;margin-bottom:1rem;border-radius:8px;overflow:hidden;position:relative;background:var(--bg-warm)}
+.sketch-featured img{width:100%;height:340px;object-fit:cover;border-radius:8px;border:1px solid var(--rule-light);transition:opacity .5s ease;cursor:pointer}
 .sketch-thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem}
 .sketch-thumbs img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:4px;border:2px solid transparent;opacity:.6;cursor:pointer;transition:opacity .2s,border-color .2s}
 .sketch-thumbs img:hover,.sketch-thumbs img.active{opacity:1;border-color:var(--accent)}
@@ -336,30 +336,11 @@ function resetRotation(){
   sketchTimer=setInterval(rotateNext,6000);
 }
 
-/* Featured image click opens lightbox + pan on hover */
+/* Featured image click opens lightbox */
 document.addEventListener('DOMContentLoaded',function(){
   initSketch();
   var m=document.getElementById('sketch-main');
-  if(m){
-    m.addEventListener('click',function(){openLightbox(m)});
-    m.style.cursor='crosshair';
-    var container=m.parentElement;
-    container.addEventListener('mouseenter',function(){
-      m.style.transform='scale(1.8)';
-      m.style.transition='opacity .5s ease,transform .3s ease';
-    });
-    container.addEventListener('mouseleave',function(){
-      m.style.transform='scale(1)';
-      m.style.transformOrigin='center center';
-    });
-    container.addEventListener('mousemove',function(e){
-      var rect=container.getBoundingClientRect();
-      var x=((e.clientX-rect.left)/rect.width)*100;
-      var y=((e.clientY-rect.top)/rect.height)*100;
-      m.style.transformOrigin=x+'% '+y+'%';
-      m.style.transition='opacity .5s ease,transform .05s ease';
-    });
-  }
+  if(m) m.addEventListener('click',function(){openLightbox(m)});
 });
 </script>
 </body>
