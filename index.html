@@ -54,7 +54,7 @@ p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:n
 .showcase-images{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin:1rem 0 1.2rem}
 .showcase-images.triple{grid-template-columns:repeat(3,1fr)}
 .showcase-images.single{grid-template-columns:1fr}
-.showcase-images img{width:100%;height:auto;max-height:320px;object-fit:contain;object-position:top left;border-radius:6px;border:1px solid var(--rule-light);cursor:pointer;transition:border-color .2s,transform .3s,box-shadow .3s;background:var(--bg-warm);position:relative;z-index:1}
+.showcase-images img{max-width:100%;height:auto;max-height:400px;display:block;margin:0 auto;border-radius:6px;border:1px solid var(--rule-light);cursor:pointer;transition:border-color .2s,transform .3s,box-shadow .3s;position:relative;z-index:1}
 .showcase-images img:hover{border-color:var(--accent);transform:scale(1.85);z-index:10;box-shadow:0 12px 48px rgba(0,0,0,.35);border-radius:8px}
 .showcase-body{font-size:.95rem;color:var(--fg-mid);line-height:1.8;margin-bottom:.8rem}
 /* Lightbox */
@@ -192,8 +192,8 @@ footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-directi
       </div>
       <div class="showcase-images triple">
         <img src="gallery/technical/nyckel-dashboard.png" alt="ML dashboard — 93.8% accuracy across 10,275 samples" onclick="openLightbox(this)"/>
-        <img src="gallery/technical/metal-predict.png" alt="AI prediction — Primarily Ferrous Material at 100% confidence with verification prompt" onclick="openLightbox(this)"/>
-        <img src="gallery/technical/metal-verify.png" alt="Expert correction — verify or reclassify prediction to retrain the model" onclick="openLightbox(this)"/>
+        <img src="gallery/technical/metal-capture.png" alt="Capture interface — camera or upload for on-the-spot classification" onclick="openLightbox(this)"/>
+        <img src="gallery/technical/metal-verify.png" alt="AI prediction with expert verification — correct or reclassify to retrain" onclick="openLightbox(this)"/>
       </div>
       <p class="showcase-body">A mobile classification tool that helps yard workers identify scrap metal grades on the spot. Trained on 15,000+ images using Nyckel, achieving 98–99% accuracy on broad material categories and 78%+ on subcategories and contamination detection. The model improves continuously because the people using it are the ones training it — expert corrections on the floor feed directly back into the training pipeline.</p>
       <div class="project-tech">Custom ML image classification (Nyckel) &middot; On-device inference &middot; Continuous learning from expert corrections &middot; Workflow-integrated capture/classify/confirm UX &middot; Ferrous + non-ferrous multi-grade taxonomy</div>
