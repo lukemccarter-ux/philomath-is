@@ -59,6 +59,7 @@ p{margin-bottom:1rem;color:var(--fg-mid)}a{color:var(--accent);text-decoration:n
 /* Per-card zoom overrides */
 .zoom-none img,.zoom-none object{cursor:default!important}.zoom-none img:hover,.zoom-none object:hover{transform:none!important;box-shadow:none!important;z-index:1!important}
 .zoom-xl img:hover{transform:scale(1.99)!important}
+.zoom-sm img:hover{transform:scale(1.33)!important}
 /* SVG embed */
 .pp-svg-wrap{border-radius:6px;border:1px solid var(--rule-light);overflow:hidden;line-height:0;cursor:pointer;transition:transform .3s,box-shadow .3s;position:relative;z-index:1}
 .pp-svg-wrap:hover{transform:scale(1.35);z-index:10;box-shadow:0 8px 32px rgba(0,0,0,.25);border-radius:8px}
@@ -198,11 +199,11 @@ footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-directi
         <h3>Scrap Metal ID</h3>
         <span class="project-status status-progress">In Progress</span>
       </div>
-      <div class="showcase-images">
+      <div class="showcase-images zoom-sm">
         <img src="gallery/technical/metal-capture.png" alt="Capture interface — camera or upload for on-the-spot classification" onclick="openLightbox(this)"/>
         <img src="gallery/technical/metal-verify.png" alt="AI prediction with expert verification — correct or reclassify to retrain" onclick="openLightbox(this)"/>
       </div>
-      <div class="showcase-images single" style="margin-top:0">
+      <div class="showcase-images single zoom-sm" style="margin-top:0">
         <img src="gallery/technical/nyckel-dashboard.png" alt="ML dashboard — 94% accuracy across multiple material categories" onclick="openLightbox(this)"/>
       </div>
       <p class="showcase-body">A mobile classification tool that helps yard workers identify scrap metal grades on the spot. Trained on 15,000+ images using Nyckel, achieving 98–99% accuracy on broad material categories and 78%+ on subcategories and contamination detection. The model improves continuously because the people using it are the ones training it; expert corrections on the floor feed directly back into the training pipeline.</p>
