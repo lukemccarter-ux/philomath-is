@@ -148,8 +148,8 @@ footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-directi
       </div>
       <div class="showcase-images triple">
         <img src="gallery/technical/da-welcome.png" alt="First-run onboarding — user guide walkthrough and diagnostic setup" onclick="openLightbox(this)"/>
-        <img src="gallery/technical/da-chat.png" alt="Main diagnostic interface — describe the issue or attach a photo" onclick="openLightbox(this)"/>
         <img src="gallery/technical/da-coach.png" alt="AI diagnostic in action — photo submitted, visual guide with manual reference returned" onclick="openLightbox(this)"/>
+        <img src="gallery/technical/da-resources.png" alt="Resources — manuals, troubleshooting guides, remediation history with verified resolutions" onclick="openLightbox(this)"/>
       </div>
       <p class="showcase-body">An AI diagnostic coach that walks maintenance technicians through fault identification and repair on niche industrial equipment. Built around manufacturer service manuals for an industrial wire strapping system; the kind of machine where institutional knowledge lives in one person's head until they retire. The interface guides rather than guesses: asking for specific photos mid-conversation, presenting conditional decision trees, and citing exact manual references.</p>
       <div class="project-tech">RAG over manufacturer service manuals &middot; Multi-turn conversational UI &middot; In-context image analysis &middot; Guided decision trees with conditional branching &middot; Per-equipment knowledge base</div>
@@ -161,7 +161,7 @@ footer{padding:3rem 0;border-top:2px solid var(--rule);display:flex;flex-directi
         <span class="project-status status-oss">Open Source</span>
       </div>
       <div class="pp-svg-wrap">
-        <object type="image/svg+xml" data="gallery/technical/priority-pulse-pipeline.svg?v=4" aria-label="Priority Pulse — 9-source pipeline architecture with orchestration layer">Pipeline diagram</object>
+        <object type="image/svg+xml" data="gallery/technical/priority-pulse-pipeline.svg?v=5" aria-label="Priority Pulse — 9-source pipeline architecture with orchestration layer">Pipeline diagram</object>
       </div>
       <div class="pp-demo">
         <div class="pp-title">Priority Pulse <span class="pp-sub">v1.6 &middot; Daily Triage &middot; 2026-03-08 (Saturday) &middot; Sources: <span style="color:#5a9a6a">9/9 active</span></span></div>
@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded',function(){
   if(m) m.addEventListener('click',function(){openLightbox(m)});
   /* SVG diagram click opens in new tab for full-res viewing */
   var svgWrap=document.querySelector('.pp-svg-wrap');
-  if(svgWrap){svgWrap.addEventListener('click',function(){window.open('gallery/technical/priority-pulse-pipeline.svg?v=4','_blank')});}
+  if(svgWrap){svgWrap.addEventListener('click',function(){window.open('gallery/technical/priority-pulse-pipeline.svg?v=5','_blank')});}
 });
 </script>
 </body>
