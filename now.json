@@ -1,0 +1,47 @@
+{
+  "updated": "2026-09-04",
+  "completions": [
+    "…a lover of learning",
+    "…a weekend watchmaker",
+    "…a sketch and stipple artist",
+    "…a violinist and a drummer",
+    "…a gearhead who hears music in exhaust notes",
+    "…a history buff",
+    "…an insatiable reader",
+    "…always practicing photography and videography",
+    "…going to ask you ALL the questions about your unique know-how",
+    "…twenty years in heavy industry",
+    "…always curious"
+  ],
+  "now": [
+    {
+      "k": "On the bench",
+      "w": 2,
+      "v": "(latest watch build: what it is, done or in progress)"
+    },
+    {
+      "k": "Guitar",
+      "w": 2,
+      "v": "(latest guitar build or mod)"
+    },
+    {
+      "k": "Drawing",
+      "w": 2,
+      "v": "(the piece under the pen right now)"
+    },
+    {
+      "k": "Reading",
+      "w": 3,
+      "title": "Casey",
+      "cover": "https://covers.openlibrary.org/b/isbn/9781771088039-M.jpg",
+      "v": "Casey, John Langley’s life of Frederick “Casey” Baldwin: Alexander Graham Bell’s protégé at Baddeck, aerodromes and hydrofoils, and a world tour with the Bells. Halfway through."
+    },
+    {
+      "k": "Last read",
+      "w": 3,
+      "title": "Castaway on Cape Breton",
+      "cover": "https://covers.openlibrary.org/b/isbn/9781895415001-M.jpg",
+      "v": "Castaway on Cape Breton: two shipwreck narratives, Ensign Prenties in 1780 and Samuel Burrows in 1823. Found in Cape Breton, and fantastic."
+    }
+  ]
+}

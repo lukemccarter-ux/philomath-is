@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Diagram: inbox sources feed scheduled n8n lanes through a model gateway, writing briefs, summaries and registers back to Drive, with alerts and a health lane watching">
+  <defs>
+    <style>
+      .t{font-family:'DM Mono','Consolas','Menlo',monospace;font-size:9.6px;fill:#5a534c;letter-spacing:.04em}
+      .h{font-family:'Outfit','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:12.5px;fill:#2c2825;letter-spacing:-.01em}
+      .k{font-family:'DM Mono','Consolas','Menlo',monospace;font-size:8.5px;fill:#9e4a22;letter-spacing:.14em;text-transform:uppercase}
+      .box{fill:#f4f1eb;stroke:#b8b0a6;stroke-width:1;rx:5}
+      .dark{fill:#1a1816;stroke:#1a1816;rx:5}
+      .w{fill:#e2ddd5}
+      .wd{fill:#8a8279}
+      .flow{fill:none;stroke:#8a7d6f;stroke-width:1.2}
+      .acc{fill:none;stroke:#c05e2f;stroke-width:1.4}
+      .dot{fill:#c05e2f}
+    </style>
+    <marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0.5 L7.5 4 L0 7.5 z" fill="#8a7d6f"/></marker>
+    <marker id="b" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0.5 L7.5 4 L0 7.5 z" fill="#c05e2f"/></marker>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#c19c70" stroke-opacity=".18"/></pattern>
+  </defs>
+  <rect width="640" height="360" fill="#f4f1eb"/>
+  <rect width="640" height="360" fill="url(#grid)"/>
+
+  <!-- sources -->
+  <text x="28" y="44" class="k">SOURCES</text>
+  <g>
+    <rect x="28" y="56" width="120" height="30" class="box"/><text x="40" y="75" class="h">Mail + calendar</text>
+    <rect x="28" y="96" width="120" height="30" class="box"/><text x="40" y="115" class="h">Intake folders</text>
+    <rect x="28" y="136" width="120" height="30" class="box"/><text x="40" y="155" class="h">PDFs, quotes</text>
+    <rect x="28" y="176" width="120" height="30" class="box"/><text x="40" y="195" class="h">CMMS</text>
+    <rect x="28" y="216" width="120" height="30" class="box"/><text x="40" y="235" class="h">Meeting notes</text>
+  </g>
+
+  <!-- dispatcher -->
+  <text x="200" y="44" class="k">SCHEDULED LANES</text>
+  <rect x="200" y="56" width="228" height="190" class="dark"/>
+  <text x="214" y="80" class="t" style="fill:#c05e2f">n8n · one lane per job</text>
+  <g class="t">
+    <text x="214" y="104" style="fill:#e2ddd5">003  daily brief, 4x a day</text>
+    <text x="214" y="122" style="fill:#e2ddd5">011  attachment reader, OCR</text>
+    <text x="214" y="140" style="fill:#e2ddd5">001  WO data-quality scan</text>
+    <text x="214" y="158" style="fill:#e2ddd5">006  inbox digest to vault</text>
+    <text x="214" y="176" style="fill:#e2ddd5">007  weekly wins</text>
+    <text x="214" y="194" style="fill:#e2ddd5">009  stack health and spend</text>
+    <text x="214" y="220" style="fill:#8a8279">a model gateway picks the model</text>
+    <text x="214" y="234" style="fill:#8a8279">that fits each step</text>
+  </g>
+
+  <!-- outputs -->
+  <text x="468" y="44" class="k">WRITTEN BACK</text>
+  <g>
+    <rect x="468" y="56" width="144" height="30" class="box"/><text x="480" y="75" class="h">Brief, 4x daily</text>
+    <rect x="468" y="96" width="144" height="30" class="box"/><text x="480" y="115" class="h">Summary sidecars</text>
+    <rect x="468" y="136" width="144" height="30" class="box"/><text x="480" y="155" class="h">Quotes register</text>
+    <rect x="468" y="176" width="144" height="30" class="box"/><text x="480" y="195" class="h">Story ledger</text>
+    <rect x="468" y="216" width="144" height="30" class="box"/><text x="480" y="235" class="h">Telegram + mail</text>
+  </g>
+
+  <!-- flows -->
+  <g class="flow" marker-end="url(#a)">
+    <path d="M148 71 C174 71, 174 100, 200 100"/>
+    <path d="M148 111 C174 111, 174 118, 200 118"/>
+    <path d="M148 151 C174 151, 174 136, 200 136"/>
+    <path d="M148 191 C174 191, 174 154, 200 154"/>
+    <path d="M148 231 C174 231, 174 172, 200 172"/>
+    <path d="M428 100 C448 100, 448 71, 468 71"/>
+    <path d="M428 118 C448 118, 448 111, 468 111"/>
+    <path d="M428 136 C448 136, 448 151, 468 151"/>
+    <path d="M428 154 C448 154, 448 191, 468 191"/>
+  </g>
+  <!-- feedback: the vault feeds the next brief -->
+  <path class="acc" marker-end="url(#b)" d="M540 246 C540 292, 330 292, 330 246" stroke-dasharray="3 4"/>
+  <text x="352" y="300" class="k" style="fill:#9e4a22">STATE ON DRIVE FEEDS THE NEXT RUN</text>
+  <!-- watchdog -->
+  <path class="acc" marker-end="url(#b)" d="M214 246 C214 324, 214 324, 246 324"/>
+  <circle cx="214" cy="246" r="3" class="dot"/>
+  <text x="254" y="327" class="t">009 checks that every other lane ran, and what it cost</text>
+  <!-- footer -->
+  <text x="28" y="352" class="t">one error handler shared by every lane · a written spec, a change receipt and a canary per lane</text>
+</svg>

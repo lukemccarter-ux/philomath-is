@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225" role="img" aria-label="Ink drawing of a VR headset">
+  <defs>
+    <pattern id="stipD" width="4.5" height="4.5" patternUnits="userSpaceOnUse"><circle cx="2.25" cy="2.25" r="1.05" fill="#3f3630"/></pattern>
+    <pattern id="stipL" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r=".85" fill="#5a534c"/></pattern>
+    <linearGradient id="fadeV" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".3"/><stop offset="1" stop-color="#fff" stop-opacity="1"/>
+    </linearGradient>
+    <mask id="mBody"><rect width="400" height="225" fill="url(#fadeV)"/></mask>
+    <path id="front" d="M52 84 C52 66 64 58 82 57 L226 50 C248 49 254 60 255 78 L259 164 C260 182 250 190 232 190 L150 194 C140 188 130 188 120 194 L74 196 C56 197 50 186 50 168 Z"/>
+    <path id="side" d="M226 50 L262 58 C280 62 286 74 287 90 L291 158 C292 176 282 184 266 186 L232 190 C250 190 260 182 259 164 L255 78 C254 60 248 49 226 50 Z"/>
+    <clipPath id="cFront"><use href="#front"/></clipPath>
+    <clipPath id="cSide"><use href="#side"/></clipPath>
+  </defs>
+
+  <!-- head band, drawn first so the visor covers its front -->
+  <ellipse cx="228" cy="118" rx="140" ry="64" fill="none" stroke="#2c2825" stroke-width="16"/>
+  <ellipse cx="228" cy="118" rx="140" ry="64" fill="none" stroke="#ebe6dc" stroke-width="11"/>
+  <ellipse cx="228" cy="118" rx="140" ry="64" fill="none" stroke="#2c2825" stroke-width="1" opacity=".35"/>
+  <!-- rear cradle on the band -->
+  <path d="M338 92 C356 100 366 118 362 142" fill="none" stroke="#2c2825" stroke-width="2.2" stroke-linecap="round"/>
+  <rect x="352" y="106" width="12" height="26" rx="4" fill="#ebe6dc" stroke="#2c2825" stroke-width="1.8"/>
+
+  <!-- top strap -->
+  <path d="M138 60 C148 18 246 10 268 46" fill="none" stroke="#2c2825" stroke-width="9" stroke-linecap="round"/>
+  <path d="M138 60 C148 18 246 10 268 46" fill="none" stroke="#ebe6dc" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- side face, in shadow -->
+  <use href="#side" fill="#ebe6dc" stroke="#2c2825" stroke-width="2.2" stroke-linejoin="round"/>
+  <g clip-path="url(#cSide)"><rect width="400" height="225" fill="url(#stipD)"/></g>
+
+  <!-- front face, lit -->
+  <use href="#front" fill="#f4f1eb" stroke="#2c2825" stroke-width="2.4" stroke-linejoin="round"/>
+  <g clip-path="url(#cFront)" mask="url(#mBody)"><rect width="400" height="225" fill="url(#stipL)"/></g>
+  <!-- seam and tracking pips -->
+  <path d="M74 128 C130 122 190 118 246 112" fill="none" stroke="#2c2825" stroke-width="1" opacity=".3"/>
+  <circle cx="96" cy="92" r="3.4" fill="none" stroke="#2c2825" stroke-width="1.4"/><circle cx="96" cy="92" r="1.1" fill="#c05e2f"/>
+  <circle cx="214" cy="82" r="3.4" fill="none" stroke="#2c2825" stroke-width="1.4"/><circle cx="214" cy="82" r="1.1" fill="#c05e2f"/>
+  <circle cx="106" cy="164" r="3.4" fill="none" stroke="#2c2825" stroke-width="1.4"/><circle cx="106" cy="164" r="1.1" fill="#c05e2f"/>
+  <circle cx="224" cy="158" r="3.4" fill="none" stroke="#2c2825" stroke-width="1.4"/><circle cx="224" cy="158" r="1.1" fill="#c05e2f"/>
+
+  <!-- a few dots of ground shadow -->
+  <g fill="#8a7d6f" opacity=".5">
+    <circle cx="90" cy="208" r="1.3"/><circle cx="118" cy="211" r="1"/><circle cx="150" cy="209" r="1.5"/><circle cx="184" cy="212" r="1"/>
+    <circle cx="214" cy="209" r="1.4"/><circle cx="246" cy="211" r="1.1"/><circle cx="276" cy="208" r="1.4"/><circle cx="304" cy="206" r="1"/>
+    <circle cx="70" cy="204" r=".9"/><circle cx="330" cy="203" r="1"/><circle cx="168" cy="216" r=".9"/><circle cx="230" cy="216" r=".9"/>
+  </g>
+</svg>
