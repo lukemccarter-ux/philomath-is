@@ -14,6 +14,7 @@ or two.
 | `gallery/` | Sketchbook images (WebP, 1600 px long edge) and clips (mp4 + WebP poster) | Via the importer |
 | `img/` | Project screenshots, marks, diagrams used by the Projects cards | Rarely |
 | `tools/import_media.py` | Inbox importer: resize, convert, caption, append to `gallery.json` | No |
+| `tools/reconcile_gallery.py` | Run after editing `gallery/` by hand: swaps in edited files, drops entries whose file is gone, imports loose files | No |
 | `build.py` | Validates the JSON files; writes self-contained previews to `dist/` | No |
 | `import.bat`, `preview.bat` | One-click wrappers for the two scripts (Windows) | No |
 
@@ -71,7 +72,14 @@ Rules that keep it safe:
 - Broken JSON (a stray comma) makes the page fall back to the first completion and hide the Now strip.
   `python build.py --check` tells you the line and column. The importer runs the same check before every push.
 
-### 3. Anything else (copy, a new project card, design)
+### 3. Editing the gallery folder by hand
+
+Delete a file in `gallery\` to drop it from the site; drop an edited `.jpg` with the same name to replace one;
+drop a new file to add one. Then run `python tools\reconcile_gallery.py --write` (the daily task runs it too).
+Replaced sources move to `gallery\_replaced\` (ignored by git). New files get a caption from their filename;
+fix it in `gallery.json`.
+
+### 4. Anything else (copy, a new project card, design)
 
 Edit `index.html` directly, run `python build.py` and open `dist\philomath-standalone.html` to eyeball it,
 then commit and push. `dist\philomath-artifact.html` is the same page trimmed for the Claude Artifact tool

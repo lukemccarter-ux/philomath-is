@@ -10,6 +10,17 @@
     "h": 960
   },
   {
+    "src": "gallery/2026-telecaster-build-finished-green-body-pearloid-gu.webp",
+    "cap": "Telecaster build, finished: teal body, pearloid guard",
+    "tags": [
+      "guitars"
+    ],
+    "date": "2026",
+    "w": 1597,
+    "h": 959,
+    "note": "Started life as a Squier Custom. Everything except the body is now Fender or Seymour Duncan. Great blues and metal tones."
+  },
+  {
     "src": "gallery/2026-violin-bridge-coloured-windings.webp",
     "cap": "Gus: violin bridge, coloured windings",
     "tags": [
@@ -17,23 +28,12 @@
     ],
     "date": "2026",
     "w": 1067,
-    "h": 1600,
+    "h": 1456,
     "note": "Gus. Mine since I was twelve."
   },
   {
-    "src": "gallery/2026-telecaster-build-finished-green-body-pearloid-gu.webp",
-    "cap": "Telecaster build, finished: teal body, pearloid guard",
-    "tags": [
-      "guitars"
-    ],
-    "date": "2026",
-    "w": 1600,
-    "h": 1067,
-    "note": "Started life as a Squier Custom. Everything except the body is now Fender or Seymour Duncan. Great blues and metal tones."
-  },
-  {
-    "src": "gallery/2026-mk7-gti-bronze-wheels-barn-light.webp",
-    "cap": "MK7 GTI, bronze wheels, barn light",
+    "src": "gallery/2026-a-911-on-a-spring-evening.webp",
+    "cap": "A 911 on a spring evening",
     "tags": [
       "cars"
     ],
@@ -52,25 +52,14 @@
     "h": 1200
   },
   {
-    "src": "gallery/2026-custom-build-textured-bronze-dial-orange-numeral.webp",
-    "cap": "Custom build, textured bronze dial, orange numerals",
+    "src": "gallery/2026-watch-textured-dial.webp",
+    "cap": "Custom build, dot-matrix dial, orange numerals",
     "tags": [
       "watches"
     ],
     "date": "2026",
-    "w": 1080,
-    "h": 1080
-  },
-  {
-    "src": "gallery/2026-violin-f-hole-and-bridge.webp",
-    "cap": "Gus: f-hole and bridge",
-    "tags": [
-      "music"
-    ],
-    "date": "2026",
-    "w": 1600,
-    "h": 1067,
-    "note": "Gus, the violin I have had since I was twelve."
+    "w": 1200,
+    "h": 1200
   },
   {
     "src": "gallery/2026-bass-emg-pickups-up-close.webp",
@@ -85,34 +74,15 @@
     "note": "Bought on a fun afternoon with the kids at Paul's Boutique, a small independent shop in Toronto. Not an expensive instrument. Sounds great."
   },
   {
-    "src": "gallery/2026-watch-textured-dial.webp",
-    "cap": "Custom build, dot-matrix dial, orange numerals",
-    "tags": [
-      "watches"
-    ],
-    "date": "2026",
-    "w": 1200,
-    "h": 1200
-  },
-  {
-    "src": "gallery/2026-a-911-on-a-spring-evening.webp",
-    "cap": "A 911 on a spring evening",
-    "tags": [
-      "cars"
-    ],
-    "date": "2026",
-    "w": 1600,
-    "h": 1600
-  },
-  {
-    "src": "gallery/2026-kit-on-stage-tapestry-backdrop.webp",
-    "cap": "Kit on stage, tapestry backdrop",
+    "src": "gallery/2026-violin-f-hole-and-bridge.webp",
+    "cap": "Gus: f-hole and bridge",
     "tags": [
       "music"
     ],
     "date": "2026",
     "w": 1600,
-    "h": 1067
+    "h": 1067,
+    "note": "Gus, the violin I have had since I was twelve."
   },
   {
     "src": "gallery/2025-watch-diver-blue.webp",
@@ -131,9 +101,19 @@
       "guitars"
     ],
     "date": "2026",
-    "w": 1600,
-    "h": 1600,
+    "w": 1443,
+    "h": 1443,
     "note": "The teal Tele: Squier body, Fender and Seymour Duncan for the rest."
+  },
+  {
+    "src": "gallery/2026-mk7-gti-at-the-thrift-store.webp",
+    "cap": "MK7 GTI at the thrift store",
+    "tags": [
+      "cars"
+    ],
+    "date": "2026",
+    "w": 1565,
+    "h": 1078
   },
   {
     "src": "gallery/2025-stipple-bernese-portrait.webp",
@@ -146,24 +126,14 @@
     "h": 1200
   },
   {
-    "src": "gallery/2026-mk7-gti-at-the-thrift-store.webp",
-    "cap": "MK7 GTI at the thrift store",
-    "tags": [
-      "cars"
-    ],
-    "date": "2026",
-    "w": 1600,
-    "h": 1600
-  },
-  {
-    "src": "gallery/2026-sabian-hhx-stack-from-the-throne.webp",
-    "cap": "Sabian HHX stack, from the throne",
+    "src": "gallery/2026-kit-on-stage-tapestry-backdrop.webp",
+    "cap": "Kit on stage, tapestry backdrop",
     "tags": [
       "music"
     ],
     "date": "2026",
-    "w": 1600,
-    "h": 739
+    "w": 1157,
+    "h": 676
   },
   {
     "src": "gallery/2024-seiko-6309-turtle-150-m-honest-wear.webp",
@@ -198,16 +168,6 @@
     "h": 1600
   },
   {
-    "src": "gallery/2026-bass-and-the-studio-cat.webp",
-    "cap": "Bass and the studio cat",
-    "tags": [
-      "music"
-    ],
-    "date": "2026",
-    "w": 1600,
-    "h": 1067
-  },
-  {
     "src": "gallery/2026-gti-engine-bay.webp",
     "cap": "MK7 GTI, engine bay",
     "tags": [
@@ -216,6 +176,16 @@
     "date": "2026",
     "w": 1200,
     "h": 1200
+  },
+  {
+    "src": "gallery/2026-bass-and-the-studio-cat.webp",
+    "cap": "Bass and the studio cat",
+    "tags": [
+      "music"
+    ],
+    "date": "2026",
+    "w": 1356,
+    "h": 833
   },
   {
     "src": "gallery/2026-bass-bridge-and-saddles.webp",
@@ -229,24 +199,14 @@
     "h": 1600
   },
   {
-    "src": "gallery/2024-casio-digital-on-the-wrist-plaid-thursday.webp",
-    "cap": "Casio digital on the wrist, plaid Thursday",
+    "src": "gallery/2024-casio-on-the-wrist-bernese-supervising.webp",
+    "cap": "Casio on the wrist, Bernese supervising",
     "tags": [
       "watches"
     ],
     "date": "2024",
     "w": 747,
-    "h": 1600
-  },
-  {
-    "src": "gallery/2026-the-rehearsal-room.webp",
-    "cap": "The rehearsal room",
-    "tags": [
-      "music"
-    ],
-    "date": "2026",
-    "w": 1600,
-    "h": 739
+    "h": 747
   },
   {
     "src": "gallery/2025-stipple-bass-guitar.webp",
@@ -260,24 +220,24 @@
     "h": 1200
   },
   {
-    "src": "gallery/2024-casio-on-the-wrist-bernese-supervising.webp",
-    "cap": "Casio on the wrist, Bernese supervising",
-    "tags": [
-      "watches"
-    ],
-    "date": "2024",
-    "w": 747,
-    "h": 1600
-  },
-  {
     "src": "gallery/2026-telecaster-build-wiring-harness-on-the-bench.webp",
     "cap": "Telecaster build: wiring harness on the bench",
     "tags": [
       "guitars"
     ],
     "date": "2026",
-    "w": 1600,
-    "h": 739
+    "w": 513,
+    "h": 513
+  },
+  {
+    "src": "gallery/2026-the-rehearsal-room.webp",
+    "cap": "The rehearsal room",
+    "tags": [
+      "music"
+    ],
+    "date": "2026",
+    "w": 939,
+    "h": 501
   },
   {
     "src": "gallery/2025-radical-sports-prototype-orange-wrap.webp",
@@ -286,38 +246,8 @@
       "cars"
     ],
     "date": "2025",
-    "w": 1600,
-    "h": 1600
-  },
-  {
-    "src": "gallery/2026-sm58-up-front-kit-behind.webp",
-    "cap": "SM58 up front, kit behind",
-    "tags": [
-      "music"
-    ],
-    "date": "2026",
-    "w": 1600,
-    "h": 739
-  },
-  {
-    "src": "gallery/2024-nomos-metro-the-date-ring-up-close.webp",
-    "cap": "Nomos Metro, the date ring up close",
-    "tags": [
-      "watches"
-    ],
-    "date": "2024",
-    "w": 1600,
-    "h": 747
-  },
-  {
-    "src": "gallery/2026-telecaster-build-fender-licensed-necks-on-tweed.webp",
-    "cap": "Telecaster build: Fender-licensed necks on tweed",
-    "tags": [
-      "guitars"
-    ],
-    "date": "2026",
-    "w": 849,
-    "h": 849
+    "w": 1348,
+    "h": 1348
   },
   {
     "src": "gallery/2024-casio-duro-concept-render-four-colour-stipple-di.webp",
@@ -331,35 +261,14 @@
     "note": "From the same Duro concept series: a stipple dial in four colours on the affordable diver."
   },
   {
-    "src": "gallery/2026-djembe-up-close.webp",
-    "cap": "Djembe, up close",
+    "src": "gallery/2026-telecaster-build-fender-licensed-necks-on-tweed.webp",
+    "cap": "Telecaster build: Fender-licensed necks on tweed",
     "tags": [
-      "music"
+      "guitars"
     ],
     "date": "2026",
-    "w": 1600,
-    "h": 1067
-  },
-  {
-    "src": "gallery/2025-gti-headlight-led-signature.webp",
-    "cap": "GTI headlight, LED signature",
-    "tags": [
-      "cars"
-    ],
-    "date": "2025",
-    "w": 1600,
-    "h": 1597
-  },
-  {
-    "src": "gallery/2024-ink-nissan-skyline.webp",
-    "cap": "Ink: Nissan Skyline",
-    "tags": [
-      "art",
-      "cars"
-    ],
-    "date": "2024",
-    "w": 360,
-    "h": 360
+    "w": 849,
+    "h": 849
   },
   {
     "src": "gallery/2024-casio-duro-concept-render-black-dial-gold-stippl.webp",
@@ -373,6 +282,27 @@
     "note": "From the same Duro concept series: black dial, a loop of gold stipple, and a grid the eighties would recognise."
   },
   {
+    "src": "gallery/2026-djembe-up-close.webp",
+    "cap": "Djembe, up close",
+    "tags": [
+      "music"
+    ],
+    "date": "2026",
+    "w": 1067,
+    "h": 1067
+  },
+  {
+    "src": "gallery/2024-ink-nissan-skyline.webp",
+    "cap": "Ink: Nissan Skyline",
+    "tags": [
+      "art",
+      "cars"
+    ],
+    "date": "2024",
+    "w": 360,
+    "h": 360
+  },
+  {
     "src": "gallery/2026-telecaster-build-neck-pocket-freshly-routed.webp",
     "cap": "Telecaster build: neck pocket, freshly routed",
     "tags": [
@@ -381,16 +311,6 @@
     "date": "2026",
     "w": 1131,
     "h": 1131
-  },
-  {
-    "src": "gallery/2025-stage-kit-hammered-cymbals-mic-d-up.webp",
-    "cap": "Stage kit, hammered cymbals, mic'd up",
-    "tags": [
-      "music"
-    ],
-    "date": "2025",
-    "w": 1600,
-    "h": 747
   },
   {
     "src": "gallery/2025-gti-rear-quarter.webp",
@@ -413,25 +333,24 @@
     "h": 1600
   },
   {
+    "src": "gallery/2025-stage-kit-hammered-cymbals-mic-d-up.webp",
+    "cap": "Stage kit, hammered cymbals, mic'd up",
+    "tags": [
+      "music"
+    ],
+    "date": "2025",
+    "w": 1442,
+    "h": 673
+  },
+  {
     "src": "gallery/2026-telecaster-build-pearloid-guard-on-a-bare-body.webp",
     "cap": "Telecaster build: pearloid guard on a bare body",
     "tags": [
       "guitars"
     ],
     "date": "2026",
-    "w": 1295,
-    "h": 1295
-  },
-  {
-    "src": "gallery/2025-ayotte-custom-drums-natural-maple.webp",
-    "cap": "Ayotte Custom Drums, Ray-era maple",
-    "tags": [
-      "music"
-    ],
-    "date": "2025",
-    "w": 1599,
-    "h": 1600,
-    "note": "Ray-era Ayotte, maple."
+    "w": 1052,
+    "h": 1044
   },
   {
     "src": "gallery/2024-casio-duro-concept-green-stipple-dial.webp",
@@ -465,24 +384,25 @@
     "h": 1001
   },
   {
+    "src": "gallery/2025-ayotte-custom-drums-natural-maple.webp",
+    "cap": "Ayotte Custom Drums, Ray-era maple",
+    "tags": [
+      "music"
+    ],
+    "date": "2025",
+    "w": 852,
+    "h": 852,
+    "note": "Ray-era Ayotte, maple."
+  },
+  {
     "src": "gallery/2026-bench-day-solder-wick-and-a-neck.webp",
     "cap": "Bench day: solder wick and a neck",
     "tags": [
       "guitars"
     ],
     "date": "2026",
-    "w": 1600,
-    "h": 739
-  },
-  {
-    "src": "gallery/2025-project-studio.webp",
-    "cap": "The project studio",
-    "tags": [
-      "music"
-    ],
-    "date": "2025",
-    "w": 1200,
-    "h": 560
+    "w": 569,
+    "h": 569
   },
   {
     "src": "gallery/2024-casio-duro-concept-blue-and-red-bezel-midnight-s.webp",
