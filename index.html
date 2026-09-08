@@ -638,21 +638,30 @@ var GAL = [];
 function esc(x){ return String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function strip(){
   var tr=$('#track'), chips=$('#chips'), count=$('#skCount'); if(!tr) return;
-  var TAGS=[['all','All'],['art','Art'],['watches','Watches'],['guitars','Guitars'],['music','Music'],['cars','Cars'],['projects','Projects']];
+  var TAGS=[['all','All'],['art','Art'],['watches','Watches'],['guitars','Guitars'],['music','Music'],['cars','Cars']];
   var present = {}; GAL.forEach(function(g){ (g.tags||[]).forEach(function(t){ present[t]=1; }); });
   var cur='all';
   function isVid(g){ return g.type==='video' || /\.(mp4|webm|mov)$/i.test(g.src||''); }
   function thumb(g){ return isVid(g) ? (g.poster||'') : g.src; }
   function items(){ return cur==='all'? GAL : GAL.filter(function(g){ return (g.tags||[]).indexOf(cur)>=0; }); }
   function render(){
-    var list=items(), n=list.length, copies = RM? 1 : Math.max(2, Math.ceil(14/Math.max(1,n))), html='';
+    /* copies is always even so translateX(-50%) lands on a whole copy and the loop is seamless */
+    var list=items(), n=list.length, copies = RM? 1 : 2*Math.max(1, Math.ceil(7/Math.max(1,n))), html='';
     for(var c=0;c<copies;c++) list.forEach(function(g,i){
-      html += '<button class="sk'+(isVid(g)?' vid':'')+'" type="button" data-i="'+GAL.indexOf(g)+'"'+(c>0?' tabindex="-1" aria-hidden="true"':'')+'><img src="'+esc(thumb(g))+'" alt="'+esc(g.cap)+'" loading="'+(i<4?'eager':'lazy')+'"><span class="cap">'+esc(g.cap)+'</span></button>';
+      var dim = (g.w && g.h) ? ' width="'+(+g.w)+'" height="'+(+g.h)+'"' : '';
+      html += '<button class="sk'+(isVid(g)?' vid':'')+'" type="button" data-i="'+GAL.indexOf(g)+'"'+(c>0?' tabindex="-1" aria-hidden="true"':'')+'><img src="'+esc(thumb(g))+'" alt="'+esc(g.cap)+'"'+dim+' loading="'+(i<4?'eager':'lazy')+'"><span class="cap">'+esc(g.cap)+'</span></button>';
     });
     tr.innerHTML = html;
     if(count) count.textContent = n+' of '+GAL.length;
-    /* constant drift speed whatever the track length */
-    requestAnimationFrame(function(){ var w = tr.scrollWidth/ copies; tr.style.animationDuration = Math.max(24, w/48)+'s'; tr.style.animation='none'; void tr.offsetWidth; tr.style.animation=''; });
+    /* constant drift speed (px per second) whatever the filter: the loop travels half the track, so duration = (track/2)/SPEED.
+       The duration must be set AFTER the animation restart; the shorthand reset would wipe it otherwise. */
+    var SPEED = 44;
+    function pace(){ if(RM) return; tr.style.animationDuration = Math.max(20, (tr.scrollWidth/2)/SPEED)+'s'; }
+    requestAnimationFrame(function(){ if(RM) return; tr.style.animation='none'; void tr.offsetWidth; tr.style.animation=''; pace();
+      /* width/height attributes make the layout right before the images arrive; re-pace once they have, for entries without them */
+      var imgs=$$('img',tr), left=imgs.length; if(!left) return;
+      imgs.forEach(function(im){ function done(){ if(--left===0) pace(); } if(im.complete) done(); else { im.addEventListener('load',done,{once:true}); im.addEventListener('error',done,{once:true}); } });
+    });
   }
   if(chips){ chips.innerHTML=''; TAGS.forEach(function(t){ if(t[0]!=='all' && !present[t[0]]) return;
     var b=document.createElement('button'); b.type='button'; b.textContent=t[1]; b.dataset.t=t[0]; if(t[0]===cur) b.className='on';

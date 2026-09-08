@@ -12,7 +12,7 @@ Khub Dev/philomath-site-assets/inbox syncs to the laptop), then run:
 Filename convention (optional, any name works):
     tags - caption.jpg          e.g.  "watches - Custom diver, hand-painted blue dial.jpg"
     tag1+tag2 - caption.jpg     e.g.  "art+music - Stipple, bass guitar.jpg"
-Known tags: art, watches, guitars, music, cars, projects. Anything else is kept but gets no filter chip.
+Known tags: art, watches, guitars, music, cars. Project photos go under watches. Renders must say so in the caption.
 No " - " in the name: the whole stem becomes the caption, tags empty (fix the caption later in gallery.json).
 
 Images:  resized to 1600 px on the long edge, saved as WebP q82 into gallery/YYYY-slug.webp.
@@ -52,9 +52,10 @@ VID_EXT = {".mp4", ".mov", ".m4v", ".webm", ".mkv", ".avi"}
 DOC_EXT = {".md", ".txt", ".docx", ".pdf", ".rtf"}
 LONG_EDGE = 1600
 WEBP_Q = 82
-KNOWN_TAGS = ["art", "watches", "guitars", "music", "cars", "projects"]
+KNOWN_TAGS = ["art", "watches", "guitars", "music", "cars"]
 TAG_ALIASES = {"watch": "watches", "guitar": "guitars", "car": "cars", "band": "music", "bands": "music",
-               "drawing": "art", "stipple": "art", "ink": "art", "project": "projects", "gti": "cars"}
+               "drawing": "art", "stipple": "art", "ink": "art", "project": "watches", "projects": "watches", "gti": "cars",
+               "bass": "guitars", "violin": "music", "drums": "music", "render": "watches"}
 
 
 def slugify(text, limit=48):
@@ -147,7 +148,7 @@ def process_image(src, tags, cap, write, year=None, note=None):
     if write:
         img.save(out, "WEBP", quality=WEBP_Q, method=6)
     print("  IMAGE %s -> %s (%dx%d, %s)" % (os.path.basename(src), rel, img.size[0], img.size[1], year))
-    e = {"src": rel, "cap": cap, "tags": tags, "date": year}
+    e = {"src": rel, "cap": cap, "tags": tags, "date": year, "w": img.size[0], "h": img.size[1]}
     if note: e["note"] = note
     return e
 
@@ -172,6 +173,12 @@ def process_video(src, tags, cap, write, year=None, note=None):
             print("  WARN ffmpeg not found: copied %s as-is; add a poster image at %s by hand" % (os.path.basename(src), prel))
     print("  VIDEO %s -> %s (+ poster %s)%s" % (os.path.basename(src), rel, prel, "" if has_ffmpeg else " [no ffmpeg]"))
     e = {"type": "video", "src": rel, "poster": prel, "cap": cap, "tags": tags, "date": year}
+    if write and os.path.exists(poster):
+        try:
+            from PIL import Image
+            e["w"], e["h"] = Image.open(poster).size
+        except Exception:
+            pass
     if note: e["note"] = note
     return e
 

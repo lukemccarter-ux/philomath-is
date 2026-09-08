@@ -32,7 +32,7 @@ or two.
    note: Optional longer blurb. Shows under the caption when the image is opened. Use it for the story.
    ```
 
-   Tags with filter chips: `art`, `watches`, `guitars`, `music`, `cars`, `projects`. Comma-separate several.
+   Tags with filter chips: `art`, `watches`, `guitars`, `music`, `cars`. Comma-separate several. Project photos go under `watches`; anything that is a render says so in the caption.
    Or skip the sidecar and name the file `tags - caption.jpg`, e.g. `art+music - Stipple, bass guitar.jpg`.
    No caption anywhere: the filename becomes the caption and Claude tidies it on the next daily pass.
 2. A scheduled Claude task checks the folder each weekday morning, imports what is new, writes captions
