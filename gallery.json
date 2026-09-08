@@ -39,7 +39,8 @@
     ],
     "date": "2026",
     "w": 1600,
-    "h": 1600
+    "h": 1600,
+    "note": "Not mine. An opportunity shot."
   },
   {
     "src": "gallery/2026-stipple-bernese-face.webp",
@@ -116,6 +117,17 @@
     "h": 1078
   },
   {
+    "src": "gallery/2024-casio-duro-concept-board-the-frames-reference.webp",
+    "cap": "Casio Duro concept board: the frames reference",
+    "tags": [
+      "watches"
+    ],
+    "date": "2024",
+    "w": 964,
+    "h": 964,
+    "note": "The reference board for the Duro concept series. The gold outline on the black dial traces his exact frames; this is where that came from."
+  },
+  {
     "src": "gallery/2025-stipple-bernese-portrait.webp",
     "cap": "Stipple portrait: Bernese mountain dog",
     "tags": [
@@ -136,16 +148,6 @@
     "h": 676
   },
   {
-    "src": "gallery/2024-seiko-6309-turtle-150-m-honest-wear.webp",
-    "cap": "Seiko 6309 turtle, 150 m, honest wear",
-    "tags": [
-      "watches"
-    ],
-    "date": "2024",
-    "w": 994,
-    "h": 1070
-  },
-  {
     "src": "gallery/2026-acoustic-bridge-pins.webp",
     "cap": "Acoustic bass, bridge pins",
     "tags": [
@@ -158,14 +160,15 @@
     "note": "Recent pawn-shop find in Moncton."
   },
   {
-    "src": "gallery/2024-casio-digital-square-case-ten-year-battery.webp",
-    "cap": "Casio digital, square case, ten-year battery",
+    "src": "gallery/2024-seiko-6309-turtle-150-m-honest-wear.webp",
+    "cap": "Seiko 150 m diver, on his wrist since the seventies",
     "tags": [
       "watches"
     ],
     "date": "2024",
-    "w": 747,
-    "h": 1600
+    "w": 994,
+    "h": 1070,
+    "note": "My adoptive father's watch, worn since the 1970s as far as I know. He is a master diver, and in his eighties he still wears it diving with sharks."
   },
   {
     "src": "gallery/2026-gti-engine-bay.webp",
@@ -199,14 +202,14 @@
     "h": 1600
   },
   {
-    "src": "gallery/2024-casio-on-the-wrist-bernese-supervising.webp",
-    "cap": "Casio on the wrist, Bernese supervising",
+    "src": "gallery/2024-casio-digital-square-case-ten-year-battery.webp",
+    "cap": "Casio digital, square case, ten-year battery",
     "tags": [
       "watches"
     ],
     "date": "2024",
     "w": 747,
-    "h": 747
+    "h": 1600
   },
   {
     "src": "gallery/2025-stipple-bass-guitar.webp",
@@ -218,6 +221,16 @@
     "date": "2025",
     "w": 1183,
     "h": 1200
+  },
+  {
+    "src": "gallery/2024-casio-on-the-wrist-bernese-supervising.webp",
+    "cap": "Casio on the wrist, Bernese supervising",
+    "tags": [
+      "watches"
+    ],
+    "date": "2024",
+    "w": 747,
+    "h": 747
   },
   {
     "src": "gallery/2026-telecaster-build-wiring-harness-on-the-bench.webp",
@@ -247,7 +260,8 @@
     ],
     "date": "2025",
     "w": 1348,
-    "h": 1348
+    "h": 1348,
+    "note": "These sit outside a shop across the street from the office, so I get to look them over now and then."
   },
   {
     "src": "gallery/2024-casio-duro-concept-render-four-colour-stipple-di.webp",
@@ -271,17 +285,6 @@
     "h": 849
   },
   {
-    "src": "gallery/2024-casio-duro-concept-render-black-dial-gold-stippl.webp",
-    "cap": "Casio Duro concept render, black dial, gold stipple",
-    "tags": [
-      "watches"
-    ],
-    "date": "2024",
-    "w": 1038,
-    "h": 1397,
-    "note": "From the same Duro concept series: black dial, a loop of gold stipple, and a grid the eighties would recognise."
-  },
-  {
     "src": "gallery/2026-djembe-up-close.webp",
     "cap": "Djembe, up close",
     "tags": [
@@ -301,6 +304,17 @@
     "date": "2024",
     "w": 360,
     "h": 360
+  },
+  {
+    "src": "gallery/2024-casio-duro-concept-render-black-dial-gold-stippl.webp",
+    "cap": "Casio Duro concept render, black dial, gold stipple frames",
+    "tags": [
+      "watches"
+    ],
+    "date": "2024",
+    "w": 1038,
+    "h": 1397,
+    "note": "From the Duro concept series. The gold outline is a pair of glasses: his exact frames."
   },
   {
     "src": "gallery/2026-telecaster-build-neck-pocket-freshly-routed.webp",
@@ -381,7 +395,8 @@
     ],
     "date": "2024",
     "w": 1600,
-    "h": 1001
+    "h": 1001,
+    "note": "Same shop across the street from the office. I get to check them out a bit."
   },
   {
     "src": "gallery/2025-ayotte-custom-drums-natural-maple.webp",
