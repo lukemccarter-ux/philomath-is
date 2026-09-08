@@ -10,7 +10,7 @@ or two.
 |---|---|---|
 | `index.html` | The whole page: markup, CSS, JS. The master file. | Yes, for design or copy changes |
 | `now.json` | The Now strip and the rotating hero completions | Yes, by hand, any time |
-| `gallery.json` | The Sketchbook strip, newest first (`note` = longer blurb shown in the lightbox) | Usually via the importer; by hand to fix a caption or reorder |
+| `gallery.json` | The Sketchbook strip; the importer mixes subjects evenly, newest first within each (`note` = longer blurb shown in the lightbox) | Usually via the importer; by hand to fix a caption |
 | `gallery/` | Sketchbook images (WebP, 1600 px long edge) and clips (mp4 + WebP poster) | Via the importer |
 | `img/` | Project screenshots, marks, diagrams used by the Projects cards | Rarely |
 | `tools/import_media.py` | Inbox importer: resize, convert, caption, append to `gallery.json` | No |

@@ -30,8 +30,8 @@ Date: EXIF capture year, else a YYYYMMDD in the original filename, else the file
       a sidecar "date:" wins over all three.
 Docs:    other .md .txt .docx .pdf files are listed and left alone; hand them to Claude for the Now strip.
 
-Every processed original is MOVED to inbox/_imported/ (never deleted). Entries are added to the
-top of gallery.json, newest first. Existing entries are never touched.
+Every processed original is MOVED to inbox/_imported/ (never deleted). gallery.json is re-ordered newest
+year first with subjects interleaved (no two of a kind in a row where avoidable). Captions are never touched.
 """
 import argparse
 import datetime as dt
@@ -183,6 +183,24 @@ def process_video(src, tags, cap, write, year=None, note=None):
     return e
 
 
+def spread(entries):
+    """Mix the subjects evenly across the whole strip so two of a kind rarely sit together.
+    Each subject keeps its own newest-first order; the subjects are then laid out at evenly spaced
+    positions (a subject with n of N items lands near every N/n-th slot). Deterministic. Subject = first tag."""
+    def year(e): return str(e.get("date", ""))
+    def subj(e): return (e.get("tags") or ["misc"])[0]
+    groups = {}
+    for e in sorted(entries, key=year, reverse=True):   # stable: keeps hand order within a year
+        groups.setdefault(subj(e), []).append(e)
+    N = len(entries)
+    slots = []
+    for gi, (name, items) in enumerate(sorted(groups.items(), key=lambda kv: -len(kv[1]))):
+        n = len(items)
+        for k, e in enumerate(items):
+            slots.append(((k + 0.5) * N / n + gi * 0.01, e))   # tiny offset per subject breaks ties
+    return [e for _, e in sorted(slots, key=lambda t: t[0])]
+
+
 def git(*args):
     return subprocess.run(["git", *args], cwd=ROOT, check=True, capture_output=True, text=True).stdout.strip()
 
@@ -245,8 +263,7 @@ def main():
         print("nothing to add")
         return
     if args.write:
-        gal = new_entries + gal
-        gal.sort(key=lambda e: str(e.get("date", "")), reverse=True)   # newest year first; stable, so a batch keeps its order within a year
+        gal = spread(new_entries + gal)
         json.dump(gal, open(GALLERY_JSON, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
         open(GALLERY_JSON, "a", encoding="utf-8").write("\n")
         os.makedirs(done_dir, exist_ok=True)
