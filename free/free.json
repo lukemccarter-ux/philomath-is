@@ -25,14 +25,23 @@
         ]
       },
       "links": [
-        {"label": "Plugin folder", "url": "https://github.com/lukemccarter-ux/share-the-crayons/tree/main/plugins/context-vault"},
-        {"label": "Read the starter skill", "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/plugins/context-vault/skills/context-vault-starter/SKILL.md"},
-        {"label": "Read the boot skill", "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/plugins/context-vault/skills/context-vault-boot/SKILL.md"}
+        {
+          "label": "Plugin folder",
+          "url": "https://github.com/lukemccarter-ux/share-the-crayons/tree/main/plugins/context-vault"
+        },
+        {
+          "label": "Read the starter skill",
+          "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/plugins/context-vault/skills/context-vault-starter/SKILL.md"
+        },
+        {
+          "label": "Read the boot skill",
+          "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/plugins/context-vault/skills/context-vault-boot/SKILL.md"
+        }
       ]
     },
     {
       "id": "setup-coach",
-      "state": "coming",
+      "state": "live",
       "kind": "Paste-in prompt, no install",
       "title": "Setup Coach",
       "for": "People who use the Claude app on the web, desktop or phone, and would not call themselves technical.",
@@ -49,12 +58,15 @@
         "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/start-here/setup-coach.md"
       },
       "links": [
-        {"label": "Open setup-coach.md", "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/start-here/setup-coach.md"}
+        {
+          "label": "Open setup-coach.md",
+          "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/start-here/setup-coach.md"
+        }
       ]
     },
     {
       "id": "check-up",
-      "state": "coming",
+      "state": "live",
       "kind": "Paste-in prompt, no install",
       "title": "Check-up",
       "for": "Anyone who ran Setup Coach a few weeks ago.",
@@ -70,7 +82,10 @@
         "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/start-here/check-up.md"
       },
       "links": [
-        {"label": "Open check-up.md", "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/start-here/check-up.md"}
+        {
+          "label": "Open check-up.md",
+          "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/start-here/check-up.md"
+        }
       ]
     },
     {
@@ -91,13 +106,25 @@
         "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/NEVER-PUBLISH.md"
       },
       "links": [
-        {"label": "Open NEVER-PUBLISH.md", "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/NEVER-PUBLISH.md"}
+        {
+          "label": "Open NEVER-PUBLISH.md",
+          "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/NEVER-PUBLISH.md"
+        }
       ]
     }
   ],
   "ideas": [
-    {"t": "Decide which copy is canonical, and write it down.", "d": "Notes in two places disagree silently."},
-    {"t": "Check freshness before you trust your notes.", "d": "Sync clients fail quietly, and a note about you that nobody has reviewed in months is quietly wrong."},
-    {"t": "Label anything that is not real yet.", "d": "built, designed, idea. Only the first is evidence."}
+    {
+      "t": "Decide which copy is canonical, and write it down.",
+      "d": "Notes in two places disagree silently."
+    },
+    {
+      "t": "Check freshness before you trust your notes.",
+      "d": "Sync clients fail quietly, and a note about you that nobody has reviewed in months is quietly wrong."
+    },
+    {
+      "t": "Label anything that is not real yet.",
+      "d": "built, designed, idea. Only the first is evidence."
+    }
   ]
 }
