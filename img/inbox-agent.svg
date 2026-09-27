@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Diagram: a shared invoice inbox is read four times a day by an agent that reads every document, looks up the purchase order and bill in the CMMS, and routes each file to the queue, an archive, duplicates or review, writing an append-only audit log, a punch list and control flags">
+  <defs>
+    <style>
+      .t{font-family:'DM Mono','Consolas','Menlo',monospace;font-size:9.6px;fill:#5a534c;letter-spacing:.04em}
+      .h{font-family:'Outfit','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:12.5px;fill:#2c2825;letter-spacing:-.01em}
+      .k{font-family:'DM Mono','Consolas','Menlo',monospace;font-size:8.5px;fill:#9e4a22;letter-spacing:.14em;text-transform:uppercase}
+      .box{fill:#f4f1eb;stroke:#b8b0a6;stroke-width:1;rx:5}
+      .dark{fill:#1a1816;stroke:#1a1816;rx:5}
+      .flow{fill:none;stroke:#8a7d6f;stroke-width:1.2}
+      .acc{fill:none;stroke:#c05e2f;stroke-width:1.4}
+      .dot{fill:#c05e2f}
+    </style>
+    <marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0.5 L7.5 4 L0 7.5 z" fill="#8a7d6f"/></marker>
+    <marker id="b" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0.5 L7.5 4 L0 7.5 z" fill="#c05e2f"/></marker>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#c19c70" stroke-opacity=".18"/></pattern>
+  </defs>
+  <rect width="640" height="360" fill="#f4f1eb"/>
+  <rect width="640" height="360" fill="url(#grid)"/>
+
+  <!-- in -->
+  <text x="28" y="44" class="k">SHARED FOLDER</text>
+  <g>
+    <rect x="28" y="56" width="140" height="42" class="box"/><text x="40" y="74" class="h">Inbox</text><text x="40" y="90" class="t">intake + the AP queue</text>
+    <rect x="28" y="108" width="140" height="42" class="box"/><text x="40" y="126" class="h">Packing slips</text><text x="40" y="142" class="t">waiting for a match</text>
+    <rect x="28" y="160" width="140" height="42" class="box"/><text x="40" y="178" class="h">Cleared drop</text><text x="40" y="194" class="t">finished paperwork</text>
+  </g>
+
+  <!-- agent -->
+  <text x="196" y="44" class="k">AGENT, FOUR TIMES A DAY</text>
+  <rect x="196" y="56" width="248" height="190" class="dark"/>
+  <g class="t">
+    <text x="210" y="80" style="fill:#c05e2f">every file, every run</text>
+    <text x="210" y="102" style="fill:#e2ddd5">read it: text, OCR, or a look</text>
+    <text x="210" y="120" style="fill:#e2ddd5">hash it: a twin is a duplicate</text>
+    <text x="210" y="138" style="fill:#e2ddd5">look up the PO, bill, attachments</text>
+    <text x="210" y="156" style="fill:#e2ddd5">route it, or hold it for review</text>
+    <text x="210" y="174" style="fill:#e2ddd5">one rename per move, hash checked</text>
+    <text x="210" y="196" style="fill:#8a8279">bridge down: read-only run, moves</text>
+    <text x="210" y="210" style="fill:#8a8279">deferred to the next healthy one</text>
+    <text x="210" y="234" style="fill:#8a8279">never deletes; never writes back</text>
+  </g>
+
+  <!-- out -->
+  <text x="480" y="44" class="k">WRITTEN BACK</text>
+  <g>
+    <rect x="480" y="56" width="132" height="30" class="box"/><text x="492" y="75" class="h">Queue, by PO</text>
+    <rect x="480" y="96" width="132" height="30" class="box"/><text x="492" y="115" class="h">Archives, by kind</text>
+    <rect x="480" y="136" width="132" height="30" class="box"/><text x="492" y="155" class="h">Duplicates, kept</text>
+    <rect x="480" y="176" width="132" height="30" class="box"/><text x="492" y="195" class="h">Audit log</text>
+    <rect x="480" y="216" width="132" height="30" class="box"/><text x="492" y="235" class="h">Punch list + flags</text>
+  </g>
+
+  <!-- flows -->
+  <g class="flow" marker-end="url(#a)">
+    <path d="M168 77 C182 77, 182 102, 196 102"/>
+    <path d="M168 129 C182 129, 182 120, 196 120"/>
+    <path d="M168 181 C182 181, 182 138, 196 138"/>
+    <path d="M444 102 C462 102, 462 71, 480 71"/>
+    <path d="M444 120 C462 120, 462 111, 480 111"/>
+    <path d="M444 138 C462 138, 462 151, 480 151"/>
+    <path d="M444 174 C462 174, 462 191, 480 191"/>
+  </g>
+  <!-- the CMMS, read only -->
+  <rect x="196" y="262" width="272" height="30" class="box"/><text x="210" y="281" class="h">CMMS</text><text x="258" y="281" class="t">POs, bills, attachments · read only</text>
+  <path class="acc" marker-end="url(#b)" d="M320 262 C320 254, 320 254, 320 246"/>
+  <circle cx="320" cy="262" r="3" class="dot"/>
+  <!-- flags -->
+  <path class="acc" marker-end="url(#b)" d="M600 246 C600 312, 600 312, 590 312"/>
+  <text x="28" y="312" class="k" style="fill:#9e4a22">FLAGS</text>
+  <text x="76" y="312" class="t">a bill about to be paid on a quote · a closed PO whose invoice does not add up</text>
+  <text x="28" y="338" class="t">every change, by the agent or by a person, is one row in an append-only log:</text>
+  <text x="28" y="352" class="t">what moved, from where to where, when, and who did it</text>
+</svg>

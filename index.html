@@ -152,7 +152,7 @@ p{color:var(--ink-2)}
   transition:transform .35s var(--ease),border-color .35s,box-shadow .35s var(--ease);min-height:100%}
 .card:hover,.card:focus-visible{transform:translateY(-4px);border-color:var(--terra);box-shadow:0 18px 34px -20px rgba(44,40,37,.45)}
 .card.wide{grid-column:1/-1;display:grid;grid-template-columns:1.25fr 1fr;grid-template-areas:'head head' 'term side';gap:.8rem 1.6rem;align-items:start}
-.card.wide .head{grid-area:head}.card.wide .term{grid-area:term}.card.wide .side{grid-area:side;display:flex;flex-direction:column;gap:.7rem;height:100%}.card.wide .side .tech{margin-top:auto}
+.card.wide .head{grid-area:head}.card.wide .term,.card.wide .thumb{grid-area:term}.card.wide .thumb{align-self:start}.card.wide .side{grid-area:side;display:flex;flex-direction:column;gap:.7rem;height:100%}.card.wide .side .tech{margin-top:auto}
 .card .thumb.art{padding:0;align-items:center;background:var(--paper-2)}.card .thumb.art img{width:100%;height:100%;border:0;border-radius:0;box-shadow:none;object-fit:cover}
 .card .thumb.mark{padding:0;align-items:center;justify-content:center;background:var(--paper-2)}
 .card .thumb.mark img{width:auto;height:58%;border:0;border-radius:0;box-shadow:none;object-fit:contain}
@@ -354,7 +354,18 @@ footer{overflow:hidden;padding:1.6rem 0 2rem;border-top:1px solid rgba(138,125,1
           <div class="tech">n8n &middot; model gateway &middot; Drive as the state store &middot; OCR for scanned PDFs &middot; Telegram + Gmail alerts &middot; one shared error handler</div>
         </article>
 
-        <article class="card wide" tabindex="0" role="button" data-p="pulse" style="--i:5" aria-haspopup="dialog">
+        <article class="card wide" tabindex="0" role="button" data-p="inbox" style="--i:5" aria-haspopup="dialog">
+          <span class="open">open &rarr;</span>
+          <div class="head"><h3>Shared inbox agent</h3><span class="chip live">Deployed</span></div>
+          <div class="thumb art"><img src="img/inbox-agent.svg" alt="" loading="lazy" width="640" height="360"></div>
+          <div class="side">
+            <p>An agent that works a finance team's shared invoice inbox four times a day: reads every document, names it by purchase order, files it, sets duplicates aside, and archives what the CMMS shows as already processed.</p>
+            <p>Everything it does lands in an append-only audit log, and two control flags catch what a person would want to know: a bill about to be paid against a quote, and a closed purchase order whose invoice does not add up.</p>
+            <div class="tech">OCR + vision read &middot; CMMS lookups, read only &middot; hash-based dedup &middot; one rename per move, verified &middot; append-only audit log &middot; payment-control flags &middot; read-only mode when the bridge is down</div>
+          </div>
+        </article>
+
+        <article class="card wide" tabindex="0" role="button" data-p="pulse" style="--i:6" aria-haspopup="dialog">
           <span class="open">open &rarr;</span>
           <div class="head"><h3>Priority Pulse</h3><span class="chip oss">Local-first</span></div>
           <div class="term" id="term" aria-label="Sample daily triage output">
@@ -686,6 +697,10 @@ var P = {
   diag: {t:'Diagnostic Assistant', c:'', s:'In progress', shots:[['img/da-welcome.webp','First-run onboarding: user guide walkthrough and diagnostic setup',1],['img/da-coach.webp','AI diagnostic in action: photo submitted, visual guide with manual reference returned',1],['img/da-resources.webp','Resources: manuals, troubleshooting guides, remediation history with verified resolutions',1]],
     body:['An AI diagnostic coach that walks maintenance technicians through fault identification and repair on niche industrial equipment. Built around manufacturer service manuals for an industrial wire strapping system; the kind of machine where institutional knowledge lives in one person’s head until they retire. The interface guides rather than guesses: asking for specific photos mid-conversation, presenting conditional decision trees, and citing exact manual references.'],
     tech:'RAG over manufacturer service manuals · Multi-turn conversational UI · In-context image analysis · Guided decision trees with conditional branching · Per-equipment knowledge base'},
+  inbox: {t:'Shared inbox agent', c:'live', s:'Deployed', shots:[['img/inbox-agent.svg','Shared inbox agent: folder in, agent in the middle, queue, archives, audit log and flags out',0]],
+    body:['One shared folder is both the intake for vendor paperwork and the accounts-payable queue. Four times a day an agent reviews it: reads every file (text extraction, OCR, and a look at the image when that is what it takes), hashes it so a byte-identical twin is set aside as a duplicate, looks up the purchase order and the bill in the CMMS, and routes it. Invoices stay in the queue named by their PO; receiving paperwork goes to a matching inbox; anything the CMMS shows as already attached and processed goes to the archive; anything unclear is held for a person. Each move is one rename, hash-checked before and after, and written to the ledger immediately.',
+          'The part that earns trust is the audit: every change to the folder, whether the agent made it or a person did, becomes one row in an append-only log (what moved, from where to where, when, and by whom), so \u201cdid that get done\u201d has an answer. Two flags watch the money: a bill about to be paid with only a quote or order confirmation attached, and a closed purchase order whose queued invoice does not match its lines and total. When the file bridge is down the run goes read-only and defers its moves to the next healthy run rather than guessing. It never deletes, never writes to the CMMS, and never touches the folders people manage by hand. Built for a four-site industrial operator; running since September 2026.'],
+    tech:'Text extraction + OCR + vision read \u00b7 CMMS API lookups, read only \u00b7 MD5 dedup \u00b7 one rename per move, verified \u00b7 append-only audit log with actor and time \u00b7 payment-control flags \u00b7 degraded read-only mode with deferred moves \u00b7 daily punch-list workbook'},
   pulse: {t:'Priority Pulse', c:'oss', s:'Local-first', shots:[['img/priority-pulse-pipeline.svg','Priority Pulse pipeline: sources, packager, triage, Obsidian',0]],
     body:['Priority Pulse watches a workday the way a maintenance controller wants it watched: what was actually on screen, what the calendar demanded, what email and the CMMS threw in. A packager consolidates the sources into one daily context file; Claude triages it into a ranked read-out of where the time went, what got dropped, and what to protect tomorrow. It started with nine sources; version two trimmed it to the four that mattered.',
           'Obsidian is the interface, not just the output. The daily note and the triage note land in a vault, and the schedule and \u201ctomorrow\u201d sections you edit there are read back into the next run, so a correction made by hand steers the next day\u2019s triage. A scheduler with a watchdog keeps the tracker alive, and every triage is snapshotted for review. Built for a neurodivergent brain in an interrupt-driven role, and kept entirely on the machine: no cloud, no telemetry.'],
