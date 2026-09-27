@@ -18,6 +18,15 @@ or two.
 | `build.py` | Validates the JSON files; writes self-contained previews to `dist/` | No |
 | `import.bat`, `preview.bat` | One-click wrappers for the two scripts (Windows) | No |
 
+## Working copies
+
+Two clones exist. Always `git pull --ff-only origin main` before committing in either one (`import.bat` does this for you).
+
+| Machine | Path | Notes |
+|---|---|---|
+| laptop12 (work) | `C:\Users\lmccarter.RAMIRON\Desktop\PM cowork\Overlord\GitHub\philomath-is` | the weekday inbox check runs here; the inbox folder syncs here |
+| musicbox (home) | `C:\Users\Lukem\Documents\GitHub\philomath-is` | GitHub credentials present; fine for pushes |
+
 ## Update recipe
 
 ### 1. New images or clips (the Sketchbook)
