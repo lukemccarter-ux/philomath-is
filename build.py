@@ -126,10 +126,36 @@ def inline_gallery(gal):
     return out
 
 
+def validate_free():
+    """free/free.json: the Free to take page. Fails on bad JSON, missing keys, or an em-dash."""
+    path = os.path.join(ROOT, "free", "free.json")
+    if not os.path.exists(path):
+        return
+    try:
+        with open(path, encoding="utf-8") as f:
+            raw = f.read()
+        d = json.loads(raw)
+    except Exception as e:
+        fail("free/free.json: %s" % e)
+    if "\u2014" in raw or "\u2013" in raw:
+        fail("free/free.json: contains an em-dash or en-dash")
+    if not isinstance(d, dict) or not isinstance(d.get("items"), list):
+        fail("free/free.json must be an object with an 'items' list")
+    for i, it in enumerate(d["items"]):
+        for k in ("id", "title", "kind", "state", "what", "take"):
+            if not it.get(k):
+                fail("free/free.json item %d is missing '%s'" % (i, k))
+        if it["state"] not in ("live", "coming"):
+            fail("free/free.json item %s: state must be 'live' or 'coming'" % it["id"])
+    live = sum(1 for it in d["items"] if it["state"] == "live")
+    print("free/free.json OK: %d items, %d live" % (len(d["items"]), live))
+
+
 def main():
     check_only = "--check" in sys.argv
     now = load_json("now.json")
     gal = load_json("gallery.json")
+    validate_free()
     validate(now, gal)
     print("now.json OK: %d completions, %d Now items, updated %s" % (len(now.get("completions", [])), len(now.get("now", [])), now.get("updated")))
     print("gallery.json OK: %d entries" % len(gal))
@@ -154,6 +180,8 @@ def main():
     head, body = m.group(1), m.group(2)
     keep = re.findall(r"<title>.*?</title>|<link[^>]+(?:fonts\.googleapis|fonts\.gstatic)[^>]*>|<style>.*?</style>", head, re.S)
     artifact = "\n".join(keep) + "\n" + body
+    # The artifact host serves supporting files by exact path, so point the Free link at the file.
+    artifact = artifact.replace('href="free/"', 'href="free/index.html"')
     art_path = os.path.join(DIST, "philomath-artifact.html")
     open(art_path, "w", encoding="utf-8").write(artifact)
 

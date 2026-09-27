@@ -1,0 +1,103 @@
+{
+  "updated": "2026-09-27",
+  "repo": "https://github.com/lukemccarter-ux/share-the-crayons",
+  "intro": "Practical Claude skills, given away. Built by a maintenance controller who got tired of re-explaining his job to a model every morning. Everything here is MIT licensed, free, and does not ask for your email.",
+  "items": [
+    {
+      "id": "context-vault",
+      "state": "live",
+      "kind": "Claude Code plugin",
+      "title": "context-vault",
+      "for": "Anyone who uses Claude Code and keeps rebuilding the same context every session.",
+      "what": "Two skills that pair. The starter interviews you, one question at a time, and writes four plain markdown files you own: which copy of your notes is canonical, how you want to be worked with, who you are and who is around you, and an index. The boot skill is the loading ritual for every later session: it finds the folder, runs a freshness check, loads only what the question needs, and says in one line what it loaded.",
+      "get": [
+        "context-vault-starter: a seven-question interview, about twenty minutes",
+        "context-vault-boot: freshness check and minimum load, every session",
+        "Four templates: _precedence.md, how-i-work.md, who-i-am.md, index.md",
+        "Plain markdown throughout; readable without installing anything"
+      ],
+      "take": {
+        "type": "commands",
+        "note": "In a terminal with Claude Code installed. Inside a Claude Code session the same two commands work with a leading slash. Then, in a fresh session, say \"set up my context vault\".",
+        "commands": [
+          "claude plugin marketplace add lukemccarter-ux/share-the-crayons",
+          "claude plugin install context-vault@share-the-crayons"
+        ]
+      },
+      "links": [
+        {"label": "Plugin folder", "url": "https://github.com/lukemccarter-ux/share-the-crayons/tree/main/plugins/context-vault"},
+        {"label": "Read the starter skill", "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/plugins/context-vault/skills/context-vault-starter/SKILL.md"},
+        {"label": "Read the boot skill", "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/plugins/context-vault/skills/context-vault-boot/SKILL.md"}
+      ]
+    },
+    {
+      "id": "setup-coach",
+      "state": "coming",
+      "kind": "Paste-in prompt, no install",
+      "title": "Setup Coach",
+      "for": "People who use the Claude app on the web, desktop or phone, and would not call themselves technical.",
+      "what": "One prompt. Paste it into a new chat and it interviews you one question at a time, then helps you set up three layers: always-on rules in Claude's settings, one hub for your notes (a Google Drive folder, a Notion page, or a Claude project), and a three-line door sign on each project pointing back to the hub. About an hour, in two parts, and you can stop and pick it up later. Nothing is saved without you seeing it first.",
+      "get": [
+        "A settings text that carries how you want to be worked with into every chat",
+        "A hub with Who I am, How I work, and an Inbox for things worth keeping",
+        "A door sign for each project, three lines long",
+        "A weekly habit: say \"sort my inbox\" and approve what goes where"
+      ],
+      "take": {
+        "type": "copy",
+        "note": "Open the file, use the copy button at the top, paste the whole thing into a new chat in the Claude app, and send.",
+        "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/start-here/setup-coach.md"
+      },
+      "links": [
+        {"label": "Open setup-coach.md", "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/start-here/setup-coach.md"}
+      ]
+    },
+    {
+      "id": "check-up",
+      "state": "coming",
+      "kind": "Paste-in prompt, no install",
+      "title": "Check-up",
+      "for": "Anyone who ran Setup Coach a few weeks ago.",
+      "what": "Paste it into a new chat inside one of your everyday projects. It tests that the three layers still work, fixes what does not, one step at a time, and only when everything passes offers exactly one next step: first the weekly habit, then a first Skill for something you ask Claude to do the same way every week, then one more connection if you need it. It keeps a short log in your hub so the next check-up knows where you are.",
+      "get": [
+        "A pass or fix for each of the three layers",
+        "One next step, never a list",
+        "A check-up log in your hub"
+      ],
+      "take": {
+        "type": "copy",
+        "note": "A few weeks after Setup Coach, then about monthly. Open the file, copy it, paste it into a new chat inside an everyday project.",
+        "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/start-here/check-up.md"
+      },
+      "links": [
+        {"label": "Open check-up.md", "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/start-here/check-up.md"}
+      ]
+    },
+    {
+      "id": "never-publish",
+      "state": "live",
+      "kind": "Checklist",
+      "title": "The never-publish checklist",
+      "for": "Anyone about to share a skill, prompt or repo that grew out of their day job.",
+      "what": "Five checks that take a minute and are the difference between a generic skill and an employer's internals with the names filed off: the proper-noun test, a grep against a private term list, the categories that list must cover, the story test, and a punctuation and provenance pass.",
+      "get": [
+        "The proper-noun test: delete every proper noun; is it still useful?",
+        "A one-line grep for PowerShell and for bash",
+        "The categories your private term list has to cover"
+      ],
+      "take": {
+        "type": "link",
+        "note": "Read it once, keep a private term list beside your repo, run the grep before every push.",
+        "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/NEVER-PUBLISH.md"
+      },
+      "links": [
+        {"label": "Open NEVER-PUBLISH.md", "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/NEVER-PUBLISH.md"}
+      ]
+    }
+  ],
+  "ideas": [
+    {"t": "Decide which copy is canonical, and write it down.", "d": "Notes in two places disagree silently."},
+    {"t": "Check freshness before you trust your notes.", "d": "Sync clients fail quietly, and a note about you that nobody has reviewed in months is quietly wrong."},
+    {"t": "Label anything that is not real yet.", "d": "built, designed, idea. Only the first is evidence."}
+  ]
+}

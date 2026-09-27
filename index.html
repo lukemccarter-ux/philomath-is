@@ -211,6 +211,14 @@ dialog[open]{display:grid;place-items:center}
 #lb .x{position:fixed;right:1.2rem;top:1.2rem;background:rgba(244,241,235,.9)}
 
 /* connect */
+/* free to take band */
+.free-band{display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:'k t go' 'k d go';gap:.15rem 1.6rem;align-items:center;margin-top:1.4rem;padding:1.1rem 1.3rem;background:var(--paper-2);border-radius:6px;border:1px solid transparent;border-left:3px solid var(--terra);color:var(--ink);transition:transform .3s var(--ease),border-color .3s}
+.free-band:hover{transform:translateY(-3px);border-color:var(--rule-2);border-left-color:var(--terra);border-bottom-color:var(--rule-2)}
+.free-band .fb-k{grid-area:k;font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra-deep);align-self:center}
+.free-band .fb-t{grid-area:t;font-family:var(--display);font-weight:700;font-size:1.1rem;letter-spacing:-.015em;line-height:1.25}
+.free-band .fb-dot{color:var(--terra)}
+.free-band .fb-d{grid-area:d;font-size:.88rem;color:var(--ink-2);line-height:1.55;max-width:60ch}
+.free-band .fb-go{grid-area:go;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--terra-deep);white-space:nowrap;align-self:center}
 .cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.8rem}
 .cc{display:block;padding:1.1rem 1.2rem;background:var(--paper-2);border-radius:6px;border:1px solid transparent;border-top:2px solid var(--rule);transition:transform .3s var(--ease),border-color .3s}
 .cc:hover{transform:translateY(-3px);border-top-color:var(--terra)}
@@ -230,10 +238,11 @@ footer{overflow:hidden;padding:1.6rem 0 2rem;border-top:1px solid rgba(138,125,1
   html{font-size:16px}
   .pgrid{grid-template-columns:1fr}.card.wide{grid-template-columns:1fr;grid-template-areas:'head' 'term' 'side'}
   .about-cols,.now-grid{grid-template-columns:1fr}.now-item.w2,.now-item.w3{grid-column:span 1}
-  .hnav ul{gap:.8rem}.hnav li a{font-size:.62rem}.hnav .pd{display:none}
+  .hnav{gap:1rem}.hnav ul{gap:.6rem}.hnav li a{font-size:.58rem;letter-spacing:.1em}.hnav .pd{display:none}
   .term{grid-template-columns:1fr}
   .hero{min-height:0;padding-top:4.5rem}
   .foot{flex-direction:column;align-items:flex-start}
+  .free-band{grid-template-columns:1fr;grid-template-areas:'k' 't' 'd' 'go';gap:.35rem}
 }
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -259,6 +268,7 @@ footer{overflow:hidden;padding:1.6rem 0 2rem;border-top:1px solid rgba(138,125,1
     <li><a href="#sketchbook" data-s="sketchbook">Sketchbook</a></li>
     <li><a href="#projects" data-s="projects">Projects</a></li>
     <li><a href="#now" data-s="now">Now</a></li>
+    <li><a href="free/">Free</a></li>
     <li><a href="#connect" data-s="connect">Connect</a></li>
   </ul>
   <div class="pd" id="pdots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
@@ -395,6 +405,13 @@ footer{overflow:hidden;padding:1.6rem 0 2rem;border-top:1px solid rgba(138,125,1
 
 
       </div>
+
+      <a class="free-band rv" href="free/" id="freeBand" style="--i:7">
+        <div class="fb-k">Free to take</div>
+        <div class="fb-t">Practical Claude skills, given away<span class="fb-dot">.</span></div>
+        <div class="fb-d">A plugin that gives Claude durable memory of your job, a paste-in setup coach for the Claude app, and the checklist that keeps my employer out of both. MIT, no email.</div>
+        <div class="fb-go">see what is in the box &rarr;</div>
+      </a>
     </div>
   </section>
 
@@ -618,7 +635,7 @@ loadJSON('now-data', 'now.json', NOW).then(function(data){
 
 /* ---------- nav: show after hero, active section, progress ---------- */
 (function nav(){
-  var nav=$('#hnav'), bar=$('#pbar'), links=$$('.hnav li a'), pd=$$('#pdots i'), hero=$('#top');
+  var nav=$('#hnav'), bar=$('#pbar'), links=$$('.hnav li a[data-s]'), pd=$$('#pdots i'), hero=$('#top');
   var secs = links.map(function(a){return $('#'+a.dataset.s)});
   new IntersectionObserver(function(en){ nav.classList.toggle('show', !en[0].isIntersecting && window.scrollY>200); },{threshold:0, rootMargin:'-60px 0px 0px 0px'}).observe(hero);
   var io = new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ var id=e.target.id; links.forEach(function(a){a.classList.toggle('on', a.dataset.s===id)}); } }); },{rootMargin:'-45% 0px -50% 0px'});
