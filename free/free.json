@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-27",
+  "updated": "2026-10-07",
   "repo": "https://github.com/lukemccarter-ux/share-the-crayons",
   "intro": "Practical Claude skills, given away. Built by a maintenance controller who got tired of re-explaining his job to a model every morning. Everything here is MIT licensed, free, and does not ask for your email.",
   "items": [
@@ -85,6 +85,36 @@
         {
           "label": "Open check-up.md",
           "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/start-here/check-up.md"
+        }
+      ]
+    },
+    {
+      "id": "limble-mcp-first-hour",
+      "state": "live",
+      "kind": "Guide plus paste-in prompt, no install",
+      "title": "Limble MCP: the first hour",
+      "for": "Maintenance people who run Limble CMMS and keep hearing about AI tools without anyone showing them where to start.",
+      "what": "A plain-words explainer of Limble's hosted MCP server (a read-only window your AI assistant can look through), the connection in five steps, four calls that prove it works, five first questions that pay for themselves the same afternoon, and the traps that quietly give wrong numbers. Ends with a paste-in Coach prompt that walks you through all of it one question at a time and never asks for your key.",
+      "get": [
+        "What the MCP is and is not, in plain words",
+        "The connection, with Limble's own config block and the gotchas around it",
+        "Five first wins, each with its trap",
+        "A dated table of behaviours that bite, with a Still true? column",
+        "The Limble MCP Coach prompt: one question at a time, read-only, key never enters the chat"
+      ],
+      "take": {
+        "type": "copy",
+        "note": "Read the guide once. Then open the Coach prompt at the bottom, copy it, paste it into a new chat in Claude Desktop, Cursor, Claude Code or Copilot, and send.",
+        "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/start-here/limble-mcp-first-hour.md"
+      },
+      "links": [
+        {
+          "label": "Open limble-mcp-first-hour.md",
+          "url": "https://github.com/lukemccarter-ux/share-the-crayons/blob/main/start-here/limble-mcp-first-hour.md"
+        },
+        {
+          "label": "Limble's official MCP setup guide",
+          "url": "https://help.limblecmms.com/en/articles/12902567-limble-mcp-user-setup-guide"
         }
       ]
     },
