@@ -34,6 +34,9 @@ html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{background:var(--paper);
   background-image:linear-gradient(rgba(193,156,112,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(193,156,112,.16) 1px,transparent 1px);
   background-size:24px 24px;color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.grid-deep{position:fixed;inset:-20vh 0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(138,125,111,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(138,125,111,.14) 1px,transparent 1px);
+  background-size:96px 96px;will-change:transform}
 a{color:var(--terra-deep);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
 a:hover{border-bottom-color:currentColor}
 :focus-visible{outline:2px solid var(--terra);outline-offset:3px;border-radius:2px}
@@ -127,6 +130,7 @@ footer{padding:2.2rem 0 2.6rem}
 </head>
 <body>
 
+<div class="grid-deep" id="gridDeep" aria-hidden="true"></div>
 <a class="skip" href="#items">Skip to content</a>
 
 <nav class="hnav" aria-label="Sections">
@@ -220,6 +224,13 @@ footer{padding:2.2rem 0 2.6rem}
   var inline=document.getElementById('freeData');
   if(inline){ try{ render(JSON.parse(inline.textContent)); return; }catch(e){} }
   fetch('free.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(render).catch(function(){ $('#grid').innerHTML='<div class="empty">Could not load the list. The source is on <a href="https://github.com/lukemccarter-ux/share-the-crayons">GitHub</a>.</div>'; });
+})();
+
+/* ---------- grid depth (parallax on the coarse grid), same as the home page ---------- */
+(function depth(){
+  var g=document.getElementById('gridDeep'), RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches; if(!g||RM) return; var last=-1;
+  function tick(){ var y=window.scrollY; if(y!==last){ g.style.transform='translateY('+(-y*.12)+'px)'; last=y; } requestAnimationFrame(tick); }
+  requestAnimationFrame(tick);
 })();
 </script>
 </body>
