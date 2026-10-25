@@ -51,6 +51,43 @@ a:hover{border-bottom-color:currentColor}
   background-image:linear-gradient(rgba(138,125,111,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(138,125,111,.14) 1px,transparent 1px);
   background-size:96px 96px;will-change:transform}
 main,header,footer{position:relative;z-index:1}
+.paper{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .5 0 0 0 0 .44 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-size:300px 300px}
+
+
+/* the workshop: one drawing, every object a door */
+.ws{position:relative}
+.ws-track{height:calc(var(--stops,8) * 85vh);min-height:100vh}
+.ws-stage{position:sticky;top:0;height:100vh;overflow:hidden;background:transparent}
+.ws-art{position:absolute;left:0;top:0;width:2400px;height:1350px;transform-origin:0 0;will-change:transform}
+.ws-art svg{display:block;width:2400px;height:1350px;overflow:visible}
+.ws-art g[id^="st-"]{transition:opacity .35s linear}
+.ws-art .hot{fill:transparent;stroke:none;pointer-events:all;cursor:pointer}
+.ws-art g.lit .hot:hover ~ path{opacity:1}
+.ws-copy{position:absolute;max-width:min(34ch,calc(100% - 2*var(--gutter)));padding:.2rem .4rem;pointer-events:none;transition:opacity .25s linear;background:rgba(244,241,235,.88);box-shadow:0 0 34px 26px rgba(244,241,235,.88);border-radius:2px}
+.ws-copy .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-deep);margin-bottom:.5rem;display:flex;align-items:center;gap:.6rem}
+.ws-copy .k::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--terra)}
+.ws-copy h2{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,3.2vw,2.3rem);letter-spacing:-.03em;line-height:1.05;margin:0 0 .5rem}
+.ws-copy p{font-size:clamp(.92rem,1.3vw,1.05rem);line-height:1.55;color:var(--ink-3);margin:0 0 .7rem}
+.ws-copy a{pointer-events:auto;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-deep);border-bottom:1px solid var(--terra)}
+.ws-copy.l{left:var(--gutter);top:50%;transform:translateY(-50%)}
+.ws-copy.r{right:var(--gutter);top:50%;transform:translateY(-50%);text-align:right}.ws-copy.r .k{justify-content:flex-end}
+.ws-copy.b{left:var(--gutter);bottom:calc(var(--gutter) + 2.6rem)}
+.ws-copy.t{left:var(--gutter);top:calc(var(--gutter) + 3.4rem)}
+.ws-dots{position:absolute;right:var(--gutter);bottom:var(--gutter);display:flex;gap:8px;list-style:none;margin:0;padding:0}
+.ws-dots button{width:22px;height:22px;border:0;background:transparent;padding:0;cursor:pointer;display:grid;place-items:center}
+.ws-dots button i{width:7px;height:7px;border-radius:50%;border:1px solid var(--rule-2);background:transparent;transition:background .25s,transform .25s;display:block}
+.ws-dots button.on i{background:var(--terra);border-color:var(--terra);transform:scale(1.25)}
+.ws-hint{position:absolute;left:50%;bottom:var(--gutter);transform:translateX(-50%);font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-4);transition:opacity .4s;white-space:nowrap}
+.ws-hint span{display:inline-block;animation:nudge 2.2s var(--ease) infinite}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+.ws.still .ws-track{height:auto}.ws.still .ws-stage{position:static;height:auto;overflow:visible}
+.ws.still .ws-art{position:static;width:100%;height:auto;transform:none!important}.ws.still .ws-art svg{width:100%;height:auto}
+.ws.still .ws-copy,.ws.still .ws-dots,.ws.still .ws-hint{display:none}
+.ws.still .ws-list{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;padding:1rem var(--gutter) 2rem;list-style:none;margin:0}
+.ws-list{display:none}
+.ws-list a{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-deep)}
+@media(max-width:640px){.ws-copy{max-width:calc(100% - 2*var(--gutter))}.ws-copy.l,.ws-copy.r{top:auto;bottom:calc(var(--gutter) + 2.6rem);transform:none;text-align:left}.ws-copy.r .k{justify-content:flex-start}.ws-dots{right:auto;left:var(--gutter);bottom:.6rem}.ws-hint{display:none}}
 
 /* dotted rule: the site's unit is the dot */
 .rule{height:3px;background:radial-gradient(circle,var(--rule) 0 1px,transparent 1.3px) 0 50%/9px 3px repeat-x;transform-origin:left;transform:scaleX(1)}
@@ -80,12 +117,14 @@ main,header,footer{position:relative;z-index:1}
 
 /* hero */
 .hero{position:relative;min-height:min(68vh,660px);display:flex;align-items:center;padding:clamp(4.5rem,10vh,7rem) 0 2rem;overflow:hidden}
-.hero canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .hero-inner{position:relative;width:100%}
 .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:1.6rem;animation:fadeUp .9s var(--ease) both}
 .hero h1{font-family:var(--display);font-weight:800;line-height:.95;letter-spacing:-.045em;color:var(--ink);text-wrap:balance}
 .hero .word{display:block;font-size:clamp(3rem,8.4vw,6.2rem);transition:color .5s}
-.hero.dots .word{color:transparent}
+/* the title: pre-rendered stipple (vector, crisp at any density); the real word stays for screen readers and phones */
+.hero .stipple{display:none;height:clamp(3rem,8.4vw,6.2rem);width:auto;max-width:100%;margin:0 0 .1rem -.02em;transition:opacity .2s;animation:settle 1.1s var(--ease) both}
+@media(min-width:641px){.hero.stip .stipple{display:block}.hero.stip .word{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
+@keyframes settle{from{opacity:0;filter:blur(2px);transform:translateY(6px)}to{opacity:1;filter:none;transform:none}}
 .hero .trail{display:block;position:relative;font-weight:300;font-size:clamp(1.2rem,2.6vw,1.95rem);letter-spacing:-.02em;color:var(--ink-3);margin-top:.55rem;line-height:1.3;animation:fadeUp .9s var(--ease) .15s both}
 .hero .trail .sizer{display:block;visibility:hidden}
 .hero .trail .live{position:absolute;left:0;top:0;right:0}
@@ -249,7 +288,7 @@ footer{overflow:hidden;padding:1.6rem 0 2rem;border-top:1px solid rgba(138,125,1
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .track{animation:none;width:auto;overflow-x:auto}
   .strip{mask-image:none;-webkit-mask-image:none;overflow-x:auto}
-  .hero canvas{display:none}.hero.dots .word{color:var(--ink)}
+  .hero .stipple{animation:none}
   .rv .rule{transform:none}
 }
 </style>
@@ -259,11 +298,13 @@ footer{overflow:hidden;padding:1.6rem 0 2rem;border-top:1px solid rgba(138,125,1
 
 <a class="skip" href="#about">Skip to content</a>
 <div class="grid-deep" id="gridDeep" aria-hidden="true"></div>
+<div class="paper" aria-hidden="true"></div>
 
 <nav class="hnav" id="hnav" aria-label="Sections">
   <div class="bar" id="pbar"></div>
   <a class="mark" href="#top" aria-label="Top of page">&phi;</a>
   <ul>
+    <li><a href="#workshop" data-s="workshop">Workshop</a></li>
     <li><a href="#about" data-s="about">About</a></li>
     <li><a href="#sketchbook" data-s="sketchbook">Sketchbook</a></li>
     <li><a href="#projects" data-s="projects">Projects</a></li>
@@ -271,20 +312,30 @@ footer{overflow:hidden;padding:1.6rem 0 2rem;border-top:1px solid rgba(138,125,1
     <li><a href="free/">Free</a></li>
     <li><a href="#connect" data-s="connect">Connect</a></li>
   </ul>
-  <div class="pd" id="pdots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="pd" id="pdots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
 </nav>
 
-<header class="hero" id="top">
-  <canvas id="stipple" aria-hidden="true"></canvas>
+<header class="hero stip" id="top">
   <div class="container wide hero-inner">
     <p class="eyebrow">Luke McCarter &middot; Toronto</p>
-    <h1><span class="word" id="word">philomath</span><span class="trail"><span class="sizer" id="twSizer" aria-hidden="true">is &hellip;a lover of learning</span><span class="live">is <span class="tw" id="tw">&hellip;a lover of learning</span><span class="caret" aria-hidden="true"></span></span></span></h1>
+    <h1><img class="stipple" src="img/philomath-stipple.svg" alt="" width="1761" height="400" decoding="async" fetchpriority="high"><span class="word" id="word">philomath</span><span class="trail"><span class="sizer" id="twSizer" aria-hidden="true">is &hellip;a lover of learning</span><span class="live">is <span class="tw" id="tw">&hellip;a lover of learning</span><span class="caret" aria-hidden="true"></span></span></span></h1>
     <p class="greek" lang="el">&phi;&iota;&#769;&lambda;&omicron;&sigmaf; &mu;&alpha;&nu;&theta;&alpha;&#769;&nu;&epsilon;&iota;&nu;</p>
     <p class="lede">Twenty years in heavy industry, now empowered to build the tools I always imagined, surrounded by instruments, cameras, a pen full of dots, and a workbench of half-finished watches. This is the sentence I keep adding to&hellip;</p>
   </div>
 </header>
 
 <main>
+<section class="ws" id="workshop" aria-label="The workshop">
+  <div class="ws-track" id="wsTrack">
+    <div class="ws-stage" id="wsStage">
+      <div class="ws-art" id="wsArt"></div>
+      <div class="ws-copy" id="wsCopy" aria-live="polite"></div>
+      <ol class="ws-dots" id="wsDots" aria-label="Stations"></ol>
+      <div class="ws-hint" id="wsHint"><span>scroll to walk the room</span></div>
+    </div>
+  </div>
+  <noscript><img src="img/workshop.svg" alt="A sketch of the workshop" style="width:100%"></noscript>
+</section>
   <section id="about">
     <div class="container wide rv">
       <div class="label">About</div>
@@ -513,117 +564,91 @@ loadJSON('now-data', 'now.json', NOW).then(function(data){
   renderNow(); typewriter();
 });
 
-/* ---------- stipple hero: the word is drawn in dots, lit from the upper left ---------- */
-(function stipple(){
-  var hero = $('#top'), cv = $('#stipple'), word = $('#word');
-  if(RM || !cv.getContext) return;
-  var ctx = cv.getContext('2d'), dots=[], buckets=[], warm=[], amb=[], W=0, H=0, dpr=1, mx=-1e4, my=-1e4, raf=0, t0=performance.now(), alive=true;
-  var RULE='138,125,111', TERRA='192,94,47';
-  /* six tones from shadow to light; the stipple reads mostly through dot size, the tone shift stays quiet */
-  /* two ramps, dark brown and warm grey, so the word reads as ink wash rather than black */
-  var RAMPS=[[[74,58,46],[150,138,124]],[[72,68,64],[146,140,132]]], NB=6, TONES=[];
-  for(var rp=0;rp<RAMPS.length;rp++){ for(var b=0;b<NB;b++){ var q=b/(NB-1), D=RAMPS[rp][0], L=RAMPS[rp][1];
-    TONES.push('rgb('+Math.round(D[0]+(L[0]-D[0])*q)+','+Math.round(D[1]+(L[1]-D[1])*q)+','+Math.round(D[2]+(L[2]-D[2])*q)+')'); } }
-  var LX=-0.55, LY=-0.835; /* light direction (unit vector, from upper left) */
-  function rnd(a,b){return a+Math.random()*(b-a)}
-  function layout(){
-    var r = hero.getBoundingClientRect(); W=r.width; H=r.height; dpr=Math.min(2, window.devicePixelRatio||1);
-    cv.width=W*dpr; cv.height=H*dpr; cv.style.width=W+'px'; cv.style.height=H+'px';
-    var wr = word.getBoundingClientRect(), cs = getComputedStyle(word);
-    var fs = parseFloat(cs.fontSize);
-    if(fs < 60){ /* too small to read as stipple: keep the real word on phones */ dots=[]; buckets=[]; warm=[]; amb=[]; hero.classList.remove('dots'); return; }
-    /* mask rendered at 2x for clean edges */
-    var S=2, pad=6, mw=Math.ceil(wr.width)+pad*2, mh=Math.ceil(fs*1.25)+pad*2;
-    var oc = document.createElement('canvas'); oc.width=mw*S; oc.height=mh*S;
-    var o = oc.getContext('2d'); o.scale(S,S);
-    o.font = cs.fontWeight+' '+cs.fontSize+' '+cs.fontFamily; o.textBaseline='top'; o.fillStyle='#000';
-    if('letterSpacing' in o) o.letterSpacing = cs.letterSpacing;
-    o.fillText(word.textContent, pad, pad);
-    var data = o.getImageData(0,0,oc.width,oc.height).data, OW=oc.width, OH=oc.height;
-    function A(x,y){ var px=Math.round(x*S), py=Math.round(y*S); if(px<0||py<0||px>=OW||py>=OH) return 0; return data[(py*OW+px)*4+3]; }
-    function inside(x,y){ return A(x,y)>128 }
-    var fine = Math.max(1.5, fs/68), coarse = fine*1.32;
-    var ox = wr.left - r.left - pad, oy = wr.top - r.top - pad;
-    var next=[], k=0, x, y, d, shade, rad, bk;
-    function push(tx,ty,rad,bk,jit){
-      d = dots[k];
-      if(d){ d.tx=tx; d.ty=ty; d.x=tx; d.y=ty; d.r=rad; d.b=bk; }
-      else d = {tx:tx,ty:ty,x:tx+rnd(-22,22),y:ty+rnd(-22,22),sx:0,sy:0,r:rad,b:bk,ph:rnd(0,6.28),f:rnd(.35,.75),dl:rnd(0,480),ox:0,oy:0,j:jit};
-      d.sx=d.x; d.sy=d.y; next.push(d); k++;
-    }
-    /* 1. contour: every edge sample on the fine grid, no jitter, so the outline reads clean */
-    for(y=0;y<mh;y+=fine){ for(x=0;x<mw;x+=fine){
-      if(!inside(x,y)) continue;
-      if(inside(x-fine,y) && inside(x+fine,y) && inside(x,y-fine) && inside(x,y+fine)) continue;
-      var gx = A(x+1.5,y)-A(x-1.5,y), gy = A(x,y+1.5)-A(x,y-1.5), gl = Math.sqrt(gx*gx+gy*gy)||1;
-      var nx = -gx/gl, ny = -gy/gl;               /* outward normal */
-      var lit = nx*LX + ny*LY;                     /* +1 facing the light, -1 in shadow */
-      shade = Math.max(0, Math.min(1, .5 + .5*lit));
-      rad = fine*.62*(1.18 - .42*shade);
-      bk = Math.min(NB-1, Math.floor(shade*NB)) + (Math.random()<.6? 0 : NB);
-      push(ox+x, oy+y, rad, bk, 0);
-    }}
-    /* 2. interior: coarser grid, light jitter, tone falls from the top of the letter to its base */
-    var top=mh, bot=0; for(y=0;y<mh;y+=fine){ for(x=0;x<mw;x+=fine){ if(inside(x,y)){ if(y<top)top=y; if(y>bot)bot=y; } } }
-    for(y=top;y<=bot;y+=coarse){ for(x=0;x<mw;x+=coarse){
-      if(!inside(x,y)) continue;
-      if(!(inside(x-fine,y) && inside(x+fine,y) && inside(x,y-fine) && inside(x,y+fine))) continue;
-      var v = (y-top)/Math.max(1,(bot-top));         /* 0 at the top of the word, 1 at the base */
-      if(Math.random() > .68 + .32*v) continue;       /* stipple density climbs toward the base, away from the light */
-      shade = .2 + .6*(1-v) + .08*(1-x/mw);
-      shade = Math.max(0, Math.min(1, shade + rnd(-.06,.06)));
-      rad = coarse*.5*(1.16 - .46*shade)*rnd(.9,1.1);
-      bk = Math.min(NB-1, Math.floor(shade*NB)) + (Math.random()<.6? 0 : NB);
-      push(ox+x+rnd(-.3,.3)*coarse, oy+y+rnd(-.3,.3)*coarse, rad, bk, 1);
-    }}
-    dots = next;
-    buckets=[]; for(b=0;b<TONES.length;b++) buckets.push([]);
-    warm=[];
-    for(var i=0;i<dots.length;i++){ buckets[dots[i].b].push(dots[i]); if((dots[i].b%NB)===NB-1 && dots[i].j===0 && (i%23)===0) warm.push(dots[i]); }
-    amb = []; var n = Math.round(W*H/9000);
-    for(i=0;i<n;i++) amb.push({x:rnd(0,W),y:rnd(0,H),r:rnd(.8,1.9),vx:rnd(-.06,.06),vy:rnd(-.04,.04),a:rnd(.18,.5),ph:rnd(0,6.28)});
-    hero.classList.add('dots');
+/* ---------- title fade: the stipple lets go as you scroll into the room ---------- */
+(function titleFade(){ var im=$('.hero .stipple'), h=$('#top'); if(!im||RM) return; var last=-1;
+  function tick(){ var y=window.scrollY; if(y!==last){ var H=h.offsetHeight||600; im.style.opacity=Math.max(0,1-y/(H*.85)); last=y; } requestAnimationFrame(tick); }
+  requestAnimationFrame(tick);
+})();
+
+
+/* ---------- the workshop: scroll walks the camera from station to station ---------- */
+(function workshop(){
+  var sec=$('#workshop'), track=$('#wsTrack'), stage=$('#wsStage'), art=$('#wsArt'), copy=$('#wsCopy'), dots=$('#wsDots'), hint=$('#wsHint');
+  if(!sec) return;
+  var STOPS=[
+    {id:'shell',      k:'The workshop',  h:'Everything in one room.',            t:'Not a real room: a composite of the places the work actually happens. Each object is a door. Scroll to walk it, or click what you want.', pos:'t', href:null, cover:true},
+    {id:'st-monitors',k:'Projects',      h:'What is on the screens.',             t:'CMMS pipelines, sensor feeds, automation lanes. The practical builds, in a compact grid.', pos:'r', href:'#projects'},
+    {id:'st-guitars', k:'Music',         h:'Hung up between sessions.',           t:'Violin, drums, guitar. Symphony on one night, an indie-rock room on another.', pos:'r', href:'#about'},
+    {id:'st-bench',   k:'Builds',        h:'Opened up on the bench.',             t:'A guitar body on its blueprint, a meter on the control cavity. The half-finished things are the honest ones.', pos:'l', href:'#projects'},
+    {id:'st-watch',   k:'Watches',       h:'The small corner.',                   t:'A loupe, a few oilers, a palette of mixed oils and two brushes. Dials painted a dot at a time.', pos:'l', href:'#now'},
+    {id:'st-door',    k:'The studio',    h:'Next door, the loud room.',           t:'Drums under black drapes, a mic on a stand, the recording rig on a folding table.', pos:'l', href:'#about'},
+    {id:'st-books',   k:'Reading',       h:'The shelf.',                          t:'What is open right now, and the crate underneath. There is also a box of things free to take.', pos:'l', href:'#now', extra:'<a href="free/">free to take &rarr;</a>'},
+    {id:'st-gallery', k:'Sketchbook',    h:'The wall.',                           t:'Stipple, pencil, the occasional watch dial. The frames fill from the sketchbook.', pos:'l', href:'#sketchbook'}
+  ];
+  sec.style.setProperty('--stops', STOPS.length);
+  var cams=[], cur=-1, svg=null, groups={}, SW=0, SH=0, raf=0, lastP=-1;
+  function smooth(t){ return t*t*(3-2*t); }
+  function fit(){
+    SW=stage.clientWidth; SH=stage.clientHeight; cams=[];
+    STOPS.forEach(function(st){
+      var g=groups[st.id], bb; try{ bb=g.getBBox(); }catch(e){ bb={x:0,y:0,width:2400,height:1350}; }
+      var pad = st.cover? 1 : (SW<700? 1.25 : 1.45), sc;
+      if(st.cover){ sc=Math.max(SW/2400, SH/1350); }
+      else { sc=Math.min(SW/(bb.width*pad), SH/(bb.height*pad)); sc=Math.min(sc, SW<700? 2.4 : 2.8); sc=Math.max(sc, Math.max(SW/2400, SH/1350)); }
+      var cx=bb.x+bb.width/2, cy=bb.y+bb.height/2;
+      /* leave room for the copy on the side it sits on */
+      var shift = st.pos==='l'? SW*.14 : st.pos==='r'? -SW*.14 : 0; if(SW<700) shift=0;
+      var tx=SW/2-cx*sc+shift, ty=SH/2-cy*sc;
+      if(st.cover){ tx=Math.min(0,Math.max(SW-2400*sc,tx)); ty=Math.min(0,Math.max(SH-1350*sc,ty)); }
+      cams.push({s:sc,x:tx,y:ty});
+    });
+    lastP=-1; render();
   }
-  function ease(t){return 1-Math.pow(1-t,3)}
-  function place(d,t,sc){
-    var p = Math.min(1, Math.max(0,(t-d.dl)/950)), e = ease(p);
-    var bx = d.sx+(d.tx-d.sx)*e, by = d.sy+(d.ty-d.sy)*e;
-    if(d.j){ bx += Math.sin(t*.0011*d.f+d.ph)*.4; by += Math.cos(t*.0009*d.f+d.ph)*.4; }
-    var dx = bx-mx, dy = by-my, dist = dx*dx+dy*dy;
-    if(dist<6400){ var q=(80-Math.sqrt(dist))/80, l=Math.sqrt(dist+.01); d.ox += (dx/l)*q*9 - d.ox*.4; d.oy += (dy/l)*q*9 - d.oy*.4; }
-    else { d.ox*=.86; d.oy*=.86; }
-    d.cx = bx+d.ox; d.cy = by+d.oy - sc*d.f*.9; d.cr = d.r*(p<1? .6+.4*e : 1);
+  function setCopy(i){
+    if(i===cur) return; cur=i; var st=STOPS[i];
+    copy.className='ws-copy '+st.pos;
+    copy.innerHTML='<div class="k">'+st.k+'</div><h2>'+st.h+'</h2><p>'+st.t+'</p>'+(st.href? '<a href="'+st.href+'">enter &rarr;</a>':'')+(st.extra? ' &nbsp; '+st.extra:'');
+    $$('button',dots).forEach(function(b,k){ b.classList.toggle('on',k===i); b.setAttribute('aria-current', k===i? 'true':'false'); });
+    hint.style.opacity = i===0? 1 : 0;
   }
-  function frame(now){
-    if(!alive) return;
-    var t = now-t0, sc = window.scrollY, fade = Math.max(0, 1 - sc/(H*.85));
-    if(fade<=0){ ctx.clearRect(0,0,cv.width,cv.height); raf=requestAnimationFrame(frame); return; }
-    ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
-    ctx.globalAlpha = fade;
-    var i, b, d, arr;
-    /* ambient field */
-    for(i=0;i<amb.length;i++){ d=amb[i]; d.x+=d.vx; d.y+=d.vy; if(d.x<0)d.x=W; if(d.x>W)d.x=0; if(d.y<0)d.y=H; if(d.y>H)d.y=0;
-      ctx.fillStyle='rgba('+RULE+','+(d.a*(0.7+0.3*Math.sin(t*.0008+d.ph)))+')'; ctx.beginPath(); ctx.arc(d.x,d.y,d.r,0,6.283); ctx.fill(); }
-    /* the word, one fill per tone */
-    for(b=0;b<buckets.length;b++){ arr=buckets[b]; if(!arr.length) continue;
-      ctx.fillStyle=TONES[b]; ctx.beginPath();
-      for(i=0;i<arr.length;i++){ d=arr[i]; place(d,t,sc); ctx.moveTo(d.cx+d.cr, d.cy); ctx.arc(d.cx, d.cy, d.cr, 0, 6.283); }
-      ctx.fill();
-    }
-    /* a whisper of terracotta where the light lands */
-    ctx.fillStyle='rgba('+TERRA+',.7)'; ctx.beginPath();
-    for(i=0;i<warm.length;i++){ d=warm[i]; ctx.moveTo(d.cx+d.cr*1.05, d.cy); ctx.arc(d.cx, d.cy, d.cr*1.05, 0, 6.283); }
-    ctx.fill();
-    ctx.globalAlpha = 1;
-    raf=requestAnimationFrame(frame);
+  function render(){
+    raf=0; if(!cams.length) return;
+    var r=track.getBoundingClientRect(), span=r.height-SH, p=span>0? Math.min(1,Math.max(0,-r.top/span)):0;
+    p*= (STOPS.length-1); if(p===lastP) return; lastP=p;
+    var i=Math.min(STOPS.length-2, Math.floor(p)), t=smooth(p-i), a=cams[i], b=cams[i+1];
+    var s=a.s+(b.s-a.s)*t, x=a.x+(b.x-a.x)*t, y=a.y+(b.y-a.y)*t;
+    art.style.transform='translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,0) scale('+s.toFixed(4)+')';
+    STOPS.forEach(function(st,k){
+      var g=groups[st.id]; if(!g||st.id==='shell') return;
+      var w=Math.max(0,1-Math.abs(p-k));            /* 1 when the camera is on this station */
+      g.style.opacity=(.38+.62*w).toFixed(3);
+      g.classList.toggle('lit', w>.5);
+      var d=parseFloat(g.getAttribute('data-depth')||'1')-1;   /* paper depth: nearer sheets slide a touch more */
+      g.style.transform='translate('+(d*-x*.06).toFixed(1)+'px,'+(d*-y*.06).toFixed(1)+'px)';
+    });
+    var near=Math.round(p); copy.style.opacity=Math.max(0,1-Math.abs(p-near)*2.2).toFixed(2); setCopy(near);
   }
-  hero.addEventListener('pointermove', function(e){ var r=hero.getBoundingClientRect(); mx=e.clientX-r.left; my=e.clientY-r.top; });
-  hero.addEventListener('pointerleave', function(){ mx=-1e4; my=-1e4; });
-  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt=setTimeout(function(){ t0=performance.now()-2000; layout(); }, 160); });
-  function start(){ layout(); t0=performance.now(); raf=requestAnimationFrame(frame); }
-  var started=false; function once(){ if(started) return; started=true; start(); }
-  if(document.fonts && document.fonts.load){ document.fonts.load('800 80px Outfit').then(once, once); setTimeout(once, 1800); } else once();
-  document.addEventListener('visibilitychange', function(){ alive = !document.hidden; if(alive){ t0=performance.now()-3000; raf=requestAnimationFrame(frame);} });
+  function go(i){ var top=track.getBoundingClientRect().top+scrollY, span=track.offsetHeight-SH; scrollTo({top: top+span*i/(STOPS.length-1), behavior: RM? 'auto':'smooth'}); }
+  function ready(txt){
+    art.innerHTML=txt; svg=art.querySelector('svg'); if(!svg) return;
+    STOPS.forEach(function(st){ groups[st.id]=svg.getElementById(st.id); });
+    /* a hit area over every station, so the whole object is a door */
+    STOPS.forEach(function(st,i){ var g=groups[st.id]; if(!g||!st.href) return; var bb=g.getBBox();
+      var hot=document.createElementNS('http://www.w3.org/2000/svg','rect'); hot.setAttribute('class','hot');
+      hot.setAttribute('x',bb.x-20); hot.setAttribute('y',bb.y-20); hot.setAttribute('width',bb.width+40); hot.setAttribute('height',bb.height+40);
+      var title=document.createElementNS('http://www.w3.org/2000/svg','title'); title.textContent=st.k; hot.appendChild(title);
+      hot.addEventListener('click',function(){ if(cur===i){ location.hash=st.href; } else go(i); });
+      g.insertBefore(hot,g.firstChild); });
+    if(RM || !('IntersectionObserver' in window)){ sec.classList.add('still');
+      var ul=document.createElement('ul'); ul.className='ws-list'; ul.innerHTML=STOPS.filter(function(s){return s.href}).map(function(s){return '<li><a href="'+s.href+'">'+s.k+'</a></li>'}).join(''); sec.appendChild(ul); ul.style.display='flex'; return; }
+    dots.innerHTML=STOPS.map(function(st,i){ return '<li><button type="button" aria-label="'+st.k+'"><i></i></button></li>'; }).join('');
+    $$('button',dots).forEach(function(b,i){ b.addEventListener('click',function(){ go(i); }); });
+    fit(); addEventListener('resize',function(){ clearTimeout(fit._t); fit._t=setTimeout(fit,120); });
+    addEventListener('scroll',function(){ if(!raf) raf=requestAnimationFrame(render); },{passive:true});
+  }
+  var inline=$('#wsSvg');
+  if(inline){ ready(inline.textContent); }
+  else fetch('img/workshop.svg',{cache:'no-cache'}).then(function(r){return r.text()}).then(ready).catch(function(){ sec.classList.add('still'); art.innerHTML='<img src="img/workshop.svg" alt="A sketch of the workshop" style="width:100%">'; });
 })();
 
 /* ---------- grid depth (parallax on the coarse grid) ---------- */

@@ -44,6 +44,10 @@ a:hover{border-bottom-color:currentColor}
 .skip:focus{top:1rem}
 .container{max-width:var(--wide);margin:0 auto;padding:0 var(--gutter)}
 main,header,footer{position:relative;z-index:1}
+.paper{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .5 0 0 0 0 .44 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-size:300px 300px}
+.hero .crate{display:block;margin:0 0 .6rem -4px;animation:settle 1s var(--ease) both}
+@keyframes settle{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .rule{height:3px;background:radial-gradient(circle,var(--rule) 0 1px,transparent 1.3px) 0 50%/9px 3px repeat-x}
 .label{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-deep);display:flex;align-items:center;gap:.7rem;margin-bottom:1.6rem}
 .label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--terra);flex:none}
@@ -131,11 +135,13 @@ footer{padding:2.2rem 0 2.6rem}
 <body>
 
 <div class="grid-deep" id="gridDeep" aria-hidden="true"></div>
+<div class="paper" aria-hidden="true"></div>
 <a class="skip" href="#items">Skip to content</a>
 
 <nav class="hnav" aria-label="Sections">
   <a class="mark" href="../" aria-label="philomath.is home">&phi;</a>
   <ul>
+    <li><a href="../#workshop">Workshop</a></li>
     <li><a href="../#about">About</a></li>
     <li><a href="../#sketchbook">Sketchbook</a></li>
     <li><a href="../#projects">Projects</a></li>
@@ -146,6 +152,7 @@ footer{padding:2.2rem 0 2.6rem}
 
 <header class="hero">
   <div class="container">
+    <svg class="crate" viewBox="0 0 120 84" width="120" height="84" aria-hidden="true" fill="none" stroke="#5a5248" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8.0 30.0 L34.1 35.4 L60.0 42.0 L60.0 42.0 L86.0 36.1 L112.0 30.0 L112.0 30.0 L112.0 62.0 L112.0 62.0 L86.1 69.3 L60.0 76.0 L60.0 76.0 L34.1 68.8 L8.0 62.0 L8.0 62.0 L8.0 30.0"/><path d="M60.0 42.0 L60.0 76.0"/><path d="M8.0 30.0 L28.0 14.0 L28.0 14.0 L54.0 18.3 L80.0 22.0 L80.0 22.0 L60.0 42.0" opacity=".7"/><path d="M112.0 30.0 L96.0 12.0 L96.0 12.0 L73.4 13.5 L50.7 14.3 L28.0 14.0" opacity=".55"/></svg>
     <p class="eyebrow">share the crayons</p>
     <h1>Free to take<span class="dot">.</span></h1>
     <p class="lede" id="intro">Practical Claude skills, given away.</p>
