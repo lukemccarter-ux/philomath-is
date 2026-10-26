@@ -17,6 +17,7 @@ W, H = 2400, 1350                        # picture plane in viewBox units (2 mm 
 VP = (1200, 560)                         # eye level, a touch high so the bench tops read
 F = 1800                                 # focal length
 D = 2600                                 # back wall depth
+CEIL = -260                              # ceiling plane; above the picture frame at the near end, so the room reads tall
 INK = '#4a4139' if PRINT else '#5a5248'
 
 def P(x, y, z):
@@ -95,9 +96,9 @@ layers = []
 
 # ---- room shell ----
 sh = Layer('shell', depth=1.0)
-c = [P(0, 0, D), P(W, 0, D), P(W, H, D), P(0, H, D)]          # back wall
+c = [P(0, CEIL, D), P(W, CEIL, D), P(W, H, D), P(0, H, D)]    # back wall
 sh.line(c, 2.2, closed=True)
-for (x, y) in [(0, 0), (W, 0), (W, H), (0, H)]:                   # the four receding edges
+for (x, y) in [(0, CEIL), (W, CEIL), (W, H), (0, H)]:             # the four receding edges
     sh.line([P(x, y, 0), P(x, y, D)], 2.2)
 for z in range(400, D, 400):                                     # floor boards, faint
     sh.line([P(0, H, z), P(W, H, z)], 1.0, op=.25, double=False)
@@ -105,24 +106,32 @@ for x in range(300, W, 300):
     sh.line([P(x, H, 0), P(x, H, D)], 1.0, op=.18, double=False)
 # baseboard shadow hatch along the left and right floor edges
 sh.hatch([P(0, H, 0), P(0, H, D), P(0, H - 60, D), P(0, H - 60, 0)], angle=60, gap=22, op=.18)
-wall_rect(sh, 'B', 850, 1550, 230, 700, w=2.2)                          # window, part of the shell
-sh.line([P(1200, 230, D), P(1200, 700, D)], 1.6)
-sh.line([P(850, 465, D), P(1550, 465, D)], 1.6)
-sh.line([P(820, 700, D), P(1580, 700, D), P(1580, 730, D), P(820, 730, D)], 1.6, closed=True)  # sill
+# rugs: a big one mid-room, a small one by the reading chair; fringe on the short ends
+def rug(x0, x1, z0, z1, fringe=True):
+    sh.line([P(x0, H, z0), P(x1, H, z0), P(x1, H, z1), P(x0, H, z1)], 1.6, closed=True)
+    sh.line([P(x0 + 40, H, z0 + 40), P(x1 - 40, H, z0 + 40), P(x1 - 40, H, z1 - 40), P(x0 + 40, H, z1 - 40)], 1.0, op=.45, closed=True, double=False)
+    if fringe:
+        x = x0 + 20
+        while x < x1:
+            sh.line([P(x, H, z0), P(x, H, z0 - 28)], .9, op=.45, double=False)
+            sh.line([P(x, H, z1), P(x, H, z1 + 28)], .9, op=.45, double=False)
+            x += 34
+rug(520, 1700, 700, 1900)
+rug(1740, 2360, 720, 1300, fringe=False)
 layers.append(sh)
 
 # ---- 1. desk and monitors (left wall, near) ----
 st = Layer('st-monitors', 'Projects', '#projects', depth=1.08)
-box(st, 0, 330, 975, 1350, 330, 1330)                                   # desk
-box(st, 60, 300, 1000, 1350, 1080, 1300, w=1.2)                        # tower under the desk, at the far end
-st.line([P(110, 1070, 1100), P(250, 1070, 1100), P(250, 1210, 1100), P(110, 1210, 1100)], 1.2, closed=True)  # fan grille
-wall_rect(st, 'L', 480, 1180, 640, 940, w=2.2)                          # wide monitor, faces into the room
-st.line([P(0, 930, 820), P(0, 985, 820)], 1.6)                          # stand
-st.line([P(0, 985, 700), P(0, 985, 940)], 1.6)
-wall_rect(st, 'L', 1220, 1320, 760, 940, w=1.4)                         # small second screen
-st.line([P(40, 985, 520), P(300, 985, 520), P(300, 985, 640), P(40, 985, 640)], 1.4, closed=True)   # keyboard
-st.line([P(230, 985, 700), P(290, 985, 700), P(290, 985, 760), P(230, 985, 760)], 1.2, closed=True) # mouse
-st.hatch([P(0, 640, 480), P(0, 640, 1180), P(0, 940, 1180), P(0, 940, 480)], angle=20, gap=30, op=.12)  # screen tone
+box(st, 0, 330, 975, 1350, 150, 1150)                                   # desk, pulled toward the viewer
+box(st, 60, 300, 1000, 1350, 900, 1120, w=1.2)                         # tower under the desk, at the far end
+st.line([P(110, 1070, 920), P(250, 1070, 920), P(250, 1210, 920), P(110, 1210, 920)], 1.2, closed=True)  # fan grille
+wall_rect(st, 'L', 300, 1000, 640, 940, w=2.2)                          # wide monitor, faces into the room
+st.line([P(0, 930, 640), P(0, 985, 640)], 1.6)                          # stand
+st.line([P(0, 985, 520), P(0, 985, 760)], 1.6)
+wall_rect(st, 'L', 1040, 1140, 760, 940, w=1.4)                         # small second screen
+st.line([P(40, 985, 340), P(300, 985, 340), P(300, 985, 460), P(40, 985, 460)], 1.4, closed=True)   # keyboard
+st.line([P(230, 985, 520), P(290, 985, 520), P(290, 985, 580), P(230, 985, 580)], 1.2, closed=True) # mouse
+st.hatch([P(0, 640, 300), P(0, 640, 1000), P(0, 940, 1000), P(0, 940, 300)], angle=20, gap=30, op=.12)  # screen tone
 layers.append(st)
 
 # ---- 2. guitar wall (left wall, far) ----
@@ -140,53 +149,53 @@ def guitar_on_left_wall(zc, yc, scale=1.0):
     st.line([P(0, yc - 560 * scale, zc - 10), P(0, yc - 640 * scale, zc - 10), P(0, yc - 640 * scale, zc + 44), P(0, yc - 560 * scale, zc + 44)], 1.4, closed=True)
     st.line([P(0, yc - 20, zc - 30), P(0, yc - 20, zc + 70)], 1.2)      # bridge
     st.line([P(0, yc + 6, zc - 8), P(0, yc + 6, zc + 6)], 1.2)
-for zc, yc, s in ((1560, 760, .95), (1900, 740, 1.0), (2260, 770, .9)):
+for zc, yc, s in ((1380, 760, .95), (1720, 740, 1.0), (2060, 770, .9)):
     guitar_on_left_wall(zc, yc, s)
     st.line([P(0, yc - 700 * s, zc + 17), P(0, yc - 740 * s, zc + 17)], 1.6)   # hanger
-box(st, 0, 260, 1120, 1350, 1700, 2100, w=1.6)                            # small amp under the guitars
-st.hatch([P(0, 1150, 1720), P(0, 1150, 2080), P(0, 1320, 2080), P(0, 1320, 1720)], angle=90, gap=18, op=.2)
+box(st, 0, 260, 1120, 1350, 1520, 1920, w=1.6)                            # small amp under the guitars
+st.hatch([P(0, 1150, 1540), P(0, 1150, 1900), P(0, 1320, 1900), P(0, 1320, 1540)], angle=90, gap=18, op=.2)
 layers.append(st)
 
 # ---- 3. workbench with the open guitar (back wall, centre), and 4. watch corner ----
 bench = Layer('st-bench', 'Builds', '#projects', depth=1.05)
-box(bench, 560, 1840, 975, 1350, 2240, D)                               # bench
-for x in (600, 1800):                                                   # legs
+box(bench, 365, 1565, 975, 1350, 2240, D)                               # bench, centred between the corner and the door
+for x in (405, 1525):                                                   # legs
     bench.line([P(x, 1000, 2250), P(x, 1350, 2250)], 1.6)
 # blueprint sheet on the bench, then the guitar body on top of it
-bench.line([P(760, 975, 2290), P(1420, 975, 2270), P(1440, 975, 2560), P(780, 975, 2580)], 1.3, closed=True)
+bench.line([P(565, 975, 2290), P(1225, 975, 2270), P(1245, 975, 2560), P(585, 975, 2580)], 1.3, closed=True)
 for k in range(5):
-    bench.line([P(800 + k * 120, 975, 2300), P(805 + k * 120, 975, 2540)], .9, op=.3, double=False)
+    bench.line([P(605 + k * 120, 975, 2300), P(610 + k * 120, 975, 2540)], .9, op=.3, double=False)
 gpts = []
 for t in range(0, 360, 10):
     a = math.radians(t); r = 185 * (1 + .2 * math.cos(2 * a) - .1 * math.cos(a))
-    gpts.append(P(1050 + r * math.cos(a) * 1.25, 975, 2420 + r * math.sin(a) * .62))
+    gpts.append(P(855 + r * math.cos(a) * 1.25, 975, 2420 + r * math.sin(a) * .62))
 bench.line(gpts, 2.0, closed=True)
-bench.line([P(1230, 975, 2400), P(1700, 975, 2385), P(1700, 975, 2425), P(1230, 975, 2440)], 1.6, closed=True)  # neck
-bench.line([P(990, 975, 2440), P(1110, 975, 2440), P(1110, 975, 2500), P(990, 975, 2500)], 1.3, closed=True)   # control cavity
-bench.line([P(1000, 975, 2360), P(1080, 975, 2360)], 1.3)                                                       # pickup rout
-bench.line([P(700, 975, 2300), P(760, 975, 2300), P(760, 975, 2360), P(700, 975, 2360)], 1.3, closed=True)     # meter
-bench.line([P(760, 975, 2330), P(1000, 975, 2460)], 1.0, op=.5)                                                 # probe lead
+bench.line([P(1035, 975, 2400), P(1505, 975, 2385), P(1505, 975, 2425), P(1035, 975, 2440)], 1.6, closed=True)  # neck
+bench.line([P(795, 975, 2440), P(915, 975, 2440), P(915, 975, 2500), P(795, 975, 2500)], 1.3, closed=True)   # control cavity
+bench.line([P(805, 975, 2360), P(885, 975, 2360)], 1.3)                                                       # pickup rout
+bench.line([P(505, 975, 2300), P(565, 975, 2300), P(565, 975, 2360), P(505, 975, 2360)], 1.3, closed=True)     # meter
+bench.line([P(565, 975, 2330), P(805, 975, 2460)], 1.0, op=.5)                                                 # probe lead
 layers.append(bench)
 
 st = Layer('st-watch', 'Watches', '#now', depth=1.05)
-for i, (x0, x1) in enumerate(((1480, 1580), (1600, 1700), (1720, 1820))):   # three covered trays
+for i, (x0, x1) in enumerate(((1285, 1385), (1405, 1505), (1525, 1625))):   # three covered trays
     box(st, x0, x1, 945, 975, 2300, 2400, w=1.4)
     st.line([P(x0 + 10, 945, 2320), P(x1 - 10, 945, 2320)], 1.0, op=.5)
-st.line([P(1500, 975, 2470), P(1560, 975, 2470)], 1.6)                     # loupe
-st.line([P(1530 + 22 * math.cos(math.radians(t)), 975, 2500 + 22 * math.sin(math.radians(t)) * .6) for t in range(0, 361, 30)], 1.4)
+st.line([P(1305, 975, 2470), P(1365, 975, 2470)], 1.6)                     # loupe
+st.line([P(1335 + 22 * math.cos(math.radians(t)), 975, 2500 + 22 * math.sin(math.radians(t)) * .6) for t in range(0, 361, 30)], 1.4)
 for k in range(4):                                                         # oilers in a block
-    st.line([P(1610 + k * 18, 975, 2480), P(1610 + k * 18, 940, 2480)], 1.2)
-st.line([P(1600, 975, 2470), P(1680, 975, 2470), P(1680, 975, 2500), P(1600, 975, 2500)], 1.2, closed=True)
-st.line([P(1720 + 40 * math.cos(math.radians(t)), 975, 2520 + 40 * math.sin(math.radians(t)) * .6) for t in range(0, 361, 30)], 1.3)  # palette
-box(st, 1790, 1820, 925, 975, 2500, 2530, w=1.2)                           # medium bottle
-st.line([P(1700, 975, 2560), P(1760, 975, 2580)], 1.1)                     # two brushes
-st.line([P(1700, 975, 2575), P(1762, 975, 2592)], 1.1)
+    st.line([P(1415 + k * 18, 975, 2480), P(1415 + k * 18, 940, 2480)], 1.2)
+st.line([P(1405, 975, 2470), P(1485, 975, 2470), P(1485, 975, 2500), P(1405, 975, 2500)], 1.2, closed=True)
+st.line([P(1525 + 40 * math.cos(math.radians(t)), 975, 2520 + 40 * math.sin(math.radians(t)) * .6) for t in range(0, 361, 30)], 1.3)  # palette
+box(st, 1595, 1625, 925, 975, 2500, 2530, w=1.2)                           # medium bottle
+st.line([P(1505, 975, 2560), P(1565, 975, 2580)], 1.1)                     # two brushes
+st.line([P(1505, 975, 2575), P(1567, 975, 2592)], 1.1)
 layers.append(st)
 
 # ---- 5. doorway to the studio (back wall, right) ----
 st = Layer('st-door', 'Studio', '#about', depth=.96)
-wall_rect(st, 'B', 1930, 2290, 300, 1350, w=2.4)
-st.line([P(1930, 300, D), P(1930, 300, D + 240), P(1930, 1350, D + 240)], 1.6, op=.6)   # jamb depth
+wall_rect(st, 'B', 1930, 2290, 250, 1350, w=2.4)
+st.line([P(1930, 250, D), P(1930, 250, D + 240), P(1930, 1350, D + 240)], 1.6, op=.6)   # jamb depth
 # through the door: a kit in silhouette, a mic stand, the drape edge
 kz = D + 900
 st.line([P(2110 + 70 * math.cos(math.radians(t)), 1040 + 70 * math.sin(math.radians(t)), kz) for t in range(0, 361, 20)], 1.4, op=.6)   # kick
@@ -195,37 +204,59 @@ st.line([P(2180 + 55 * math.cos(math.radians(t)), 820 + 14 * math.sin(math.radia
 st.line([P(2180, 820, kz), P(2180, 1130, kz)], 1.0, op=.5)
 st.line([P(1990, 700, kz - 300), P(1990, 1150, kz - 300)], 1.2, op=.6)   # mic stand
 st.line([P(1975, 690, kz - 300), P(2005, 690, kz - 300)], 1.4, op=.6)
-st.hatch([P(1930, 300, D), P(2290, 300, D), P(2290, 1350, D), P(1930, 1350, D)], angle=75, gap=26, op=.1)   # the dark beyond
+st.hatch([P(1930, 250, D), P(2290, 250, D), P(2290, 1350, D), P(1930, 1350, D)], angle=75, gap=26, op=.1)   # the dark beyond
 # light spilling onto the floor
 st.line([P(1930, 1350, D), P(1760, 1350, D - 700), P(2460, 1350, D - 700), P(2290, 1350, D)], 1.0, op=.3, double=False)
 layers.append(st)
 
 # ---- 6. bookshelf (right wall, near) ----
 st = Layer('st-books', 'Reading', '#now', depth=1.08)
-wall_rect(st, 'R', 420, 1180, 330, 1350, w=2.2)
+wall_rect(st, 'R', 120, 880, 330, 1350, w=2.2)
 for y in (520, 700, 880, 1060, 1240):
-    st.line([P(W, y, 420), P(W, y, 1180)], 1.6)
-    st.line([P(W, y, 420), P(W - 240, y, 420)], 1.0, op=.4)             # shelf depth hint at the near end
+    st.line([P(W, y, 120), P(W, y, 880)], 1.6)
+    st.line([P(W, y, 120), P(W - 240, y, 120)], 1.0, op=.4)             # shelf depth hint at the near end
 for y0 in (520, 700, 880, 1060):
-    z = 440
-    while z < 1150:
+    z = 140
+    while z < 850:
         wdt = random.uniform(22, 48); hgt = random.uniform(120, 165)
         st.line([P(W, y0 + 180 - hgt, z), P(W, y0 + 180 - hgt, z + wdt), P(W, y0 + 180, z + wdt)], 1.1, op=.55, double=False)
         z += wdt + random.uniform(2, 8)
-st.hatch([P(W, 330, 420), P(W, 330, 460), P(W, 1350, 460), P(W, 1350, 420)], angle=0, gap=16, op=.15)
+st.hatch([P(W, 330, 120), P(W, 330, 160), P(W, 1350, 160), P(W, 1350, 120)], angle=0, gap=16, op=.15)
 layers.append(st)
 
 # ---- 7. gallery wall (right wall, far) ----
 st = Layer('st-gallery', 'Sketchbook', '#sketchbook', depth=1.0)
-frames = [(1280, 1520, 330, 560), (1560, 1700, 360, 480), (1560, 1700, 510, 640), (1740, 2060, 300, 540), (1290, 1480, 600, 760), (1740, 1900, 580, 700), (1940, 2060, 580, 760), (2100, 2300, 380, 640)]
+frames = [(980, 1220, 330, 560), (1260, 1400, 360, 480), (1260, 1400, 510, 640), (1440, 1760, 300, 540), (990, 1180, 600, 760), (1440, 1600, 580, 700), (1640, 1760, 580, 760), (1800, 2000, 380, 640)]
 for z0, z1, y0, y1 in frames:
     wall_rect(st, 'R', z0, z1, y0, y1, w=1.8)
     wall_rect(st, 'R', z0 + 14, z1 - 14, y0 + 14, y1 - 14, w=1.0, op=.5, double=False)
     st.hatch([P(W, y0, z0), P(W, y0, z1), P(W, y0 + 12, z1), P(W, y0 + 12, z0)], angle=0, gap=6, op=.2)   # frame top shadow
-box(st, 2200, W, 1040, 1350, 1500, 2000, w=1.6)                            # side table under the frames
-st.line([P(2230, 1120, 1540), P(2230, 1320, 1540), P(2380, 1320, 1540), P(2380, 1120, 1540)], 1.2, closed=True)  # record crate
+st.line([P(2230, 1120, 960), P(2230, 1320, 960), P(2380, 1320, 960), P(2380, 1120, 960)], 1.2, closed=True)  # record crate on the floor by the shelf
 for k in range(8):
-    st.line([P(2240 + k * 17, 1125, 1545), P(2240 + k * 17, 1310, 1545)], .9, op=.4, double=False)
+    st.line([P(2240 + k * 17, 1125, 965), P(2240 + k * 17, 1310, 965)], .9, op=.4, double=False)
+layers.append(st)
+
+
+# ---- seating: a reading chair on the small rug, angled toward the room, and a floor lamp ----
+st = Layer('furniture', depth=1.04)
+def chair(cx, cz, w=340, d=340, seat=1060, back=760, arm=940):
+    x0, x1, z0, z1 = cx - w / 2, cx + w / 2, cz - d / 2, cz + d / 2
+    box(st, x0, x1, seat, 1350, z0, z1, w=1.6)                                    # seat block
+    box(st, x0, x0 + 70, arm, 1350, z0, z1, w=1.4)                                 # left arm
+    box(st, x1 - 70, x1, arm, 1350, z0, z1, w=1.4)                                 # right arm
+    box(st, x0, x1, back, arm, z1 - 90, z1, w=1.6)                                 # back cushion
+    st.line([P(x0 + 30, seat, z0 + 30), P(x1 - 30, seat, z0 + 30), P(x1 - 30, seat, z1 - 110), P(x0 + 30, seat, z1 - 110)], 1.0, op=.5, closed=True, double=False)
+    st.hatch([P(x0, arm, z1 - 90), P(x1, arm, z1 - 90), P(x1, back, z1 - 90), P(x0, back, z1 - 90)], angle=15, gap=20, op=.12)
+chair(2060, 1010, w=310, d=310)
+# floor lamp beside the chair
+st.line([P(2290, 1350, 1320), P(2290, 560, 1320)], 1.6)
+st.line([P(2290 + 40 * math.cos(math.radians(t)), 1345, 1320 + 40 * math.sin(math.radians(t)) * .5) for t in range(0, 361, 30)], 1.3)
+st.line([P(2200, 560, 1320), P(2380, 560, 1320), P(2350, 420, 1320), P(2230, 420, 1320)], 1.6, closed=True)   # shade
+# a low table in front of the chair with a mug and an open book
+box(st, 1950, 2170, 1180, 1350, 560, 720, w=1.4)
+st.line([P(1990, 1180, 600), P(2050, 1180, 600), P(2050, 1180, 660), P(1990, 1180, 660)], 1.1, closed=True)
+st.line([P(2080, 1180, 590), P(2150, 1180, 590), P(2150, 1180, 690), P(2080, 1180, 690)], 1.1, closed=True)
+st.line([P(2115, 1180, 590), P(2115, 1180, 690)], 1.0, op=.5)
 layers.append(st)
 
 # ---- assemble ----
