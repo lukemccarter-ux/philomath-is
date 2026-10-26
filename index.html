@@ -577,13 +577,13 @@ loadJSON('now-data', 'now.json', NOW).then(function(data){
   if(!sec) return;
   var STOPS=[
     {id:'shell',      k:'The workshop',  h:'Everything in one room.',            t:'Not a real room: a composite of the places the work actually happens. Each object is a door. Scroll to walk it, or click what you want.', pos:'t', href:null, cover:true},
-    {id:'st-monitors',k:'Projects',      h:'What is on the screens.',             t:'CMMS pipelines, sensor feeds, automation lanes. The practical builds, in a compact grid.', pos:'r', href:'#projects'},
+    {id:'st-monitors',k:'Projects',      h:'What is on the screens.',             t:'Three screens in an arc and a chair built for someone tall. CMMS pipelines, sensor feeds, automation lanes: the practical builds, in a compact grid.', pos:'r', href:'#projects'},
     {id:'st-guitars', k:'Music',         h:'Hung up between sessions.',           t:'Violin, drums, guitar. Symphony on one night, an indie-rock room on another.', pos:'r', href:'#about'},
-    {id:'st-bench',   k:'Builds',        h:'Opened up on the bench.',             t:'A guitar body on its blueprint, a meter on the control cavity. The half-finished things are the honest ones.', pos:'l', href:'#projects'},
-    {id:'st-watch',   k:'Watches',       h:'The small corner.',                   t:'A loupe, a few oilers, a palette of mixed oils and two brushes. Dials painted a dot at a time.', pos:'l', href:'#now'},
+    {id:'st-bench',   k:'Builds',        h:'Opened up on the island.',            t:'A guitar body on its blueprint, a soldering iron warming in its stand, two stools. The half-finished things are the honest ones.', pos:'l', href:'#projects'},
+    {id:'st-watch',   k:'Watches',       h:'The end of the island.',              t:'A loupe, a few oilers, a palette of mixed oils and two brushes, covered trays. Dials painted a dot at a time.', pos:'l', href:'#now'},
     {id:'st-door',    k:'The studio',    h:'Next door, the loud room.',           t:'Drums under black drapes, a mic on a stand, the recording rig on a folding table.', pos:'l', href:'#about'},
     {id:'st-books',   k:'Reading',       h:'The shelf.',                          t:'What is open right now, and the crate underneath. There is also a box of things free to take.', pos:'l', href:'#now', extra:'<a href="free/">free to take &rarr;</a>'},
-    {id:'st-gallery', k:'Sketchbook',    h:'The wall.',                           t:'Stipple, pencil, the occasional watch dial. The frames fill from the sketchbook.', pos:'l', href:'#sketchbook'}
+    {id:'st-gallery', k:'Sketchbook',    h:'The wall.',                           t:'Stipple, pencil, the occasional watch dial. The frames fill from the sketchbook.', pos:'r', href:'#sketchbook'}
   ];
   sec.style.setProperty('--stops', STOPS.length);
   var cams=[], cur=-1, svg=null, groups={}, SW=0, SH=0, raf=0, lastP=-1;
