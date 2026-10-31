@@ -55,16 +55,18 @@ main,header,footer{position:relative;z-index:1}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .5 0 0 0 0 .44 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-size:300px 300px}
 
 
-/* the workshop: one drawing, every object a door */
+/* the house: one cutaway drawing, every room a door; each room has its own sketch */
 .ws{position:relative}
-.ws-track{height:calc(var(--stops,8) * 85vh);min-height:100vh}
-.ws-stage{position:sticky;top:0;height:100vh;overflow:hidden;background:transparent}
-.ws-art{position:absolute;left:0;top:0;width:2400px;height:1350px;transform-origin:0 0;will-change:transform}
-.ws-art svg{display:block;width:2400px;height:1350px;overflow:visible}
-.ws-art g[id^="st-"]{transition:opacity .35s linear}
-.ws-art .hot{fill:transparent;stroke:none;pointer-events:all;cursor:pointer}
-.ws-art g.lit .hot:hover ~ path{opacity:1}
-.ws-copy{position:absolute;max-width:min(34ch,calc(100% - 2*var(--gutter)));padding:.2rem .4rem;pointer-events:none;transition:opacity .25s linear;background:rgba(244,241,235,.88);box-shadow:0 0 34px 26px rgba(244,241,235,.88);border-radius:2px}
+.ws-track{height:calc(var(--stops,7) * 90vh);min-height:100vh}
+.ws-stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.ws-art{position:absolute;left:0;top:0;width:1448px;height:1086px;transform-origin:0 0;will-change:transform}
+.ws-map{display:block;width:1448px;height:1086px;-webkit-mask-image:radial-gradient(ellipse 70% 68% at 50% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 70% 68% at 50% 50%,#000 58%,transparent 100%)}
+.ws-hots{position:absolute;inset:0}
+.ws-hots a{position:absolute;display:block;border-radius:6px;transition:box-shadow .3s,background .3s}
+.ws-hots a:hover,.ws-hots a:focus-visible{background:rgba(192,94,47,.07);box-shadow:inset 0 0 0 2px rgba(192,94,47,.55)}
+.ws-detail{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;opacity:0;transition:opacity .12s linear}
+.ws-detail img{width:min(100%,calc(100vh * 1.333));height:auto;max-height:100%;display:block;-webkit-mask-image:radial-gradient(ellipse 62% 62% at 50% 50%,#000 64%,transparent 100%);mask-image:radial-gradient(ellipse 62% 62% at 50% 50%,#000 64%,transparent 100%)}
+.ws-copy{position:absolute;max-width:min(34ch,calc(100% - 2*var(--gutter)));padding:.2rem .4rem;pointer-events:none;transition:opacity .2s linear;background:rgba(244,241,235,.86);box-shadow:0 0 34px 26px rgba(244,241,235,.86);border-radius:2px}
 .ws-copy .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-deep);margin-bottom:.5rem;display:flex;align-items:center;gap:.6rem}
 .ws-copy .k::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--terra)}
 .ws-copy h2{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,3.2vw,2.3rem);letter-spacing:-.03em;line-height:1.05;margin:0 0 .5rem}
@@ -82,12 +84,12 @@ main,header,footer{position:relative;z-index:1}
 .ws-hint span{display:inline-block;animation:nudge 2.2s var(--ease) infinite}
 @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
 .ws.still .ws-track{height:auto}.ws.still .ws-stage{position:static;height:auto;overflow:visible}
-.ws.still .ws-art{position:static;width:100%;height:auto;transform:none!important}.ws.still .ws-art svg{width:100%;height:auto}
-.ws.still .ws-copy,.ws.still .ws-dots,.ws.still .ws-hint{display:none}
-.ws.still .ws-list{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;padding:1rem var(--gutter) 2rem;list-style:none;margin:0}
-.ws-list{display:none}
+.ws.still .ws-art{position:static;width:100%;height:auto;transform:none!important}.ws.still .ws-map{width:100%;height:auto}
+.ws.still .ws-copy,.ws.still .ws-dots,.ws.still .ws-hint,.ws.still .ws-detail{display:none}
+.ws-list{display:none;flex-wrap:wrap;gap:.6rem 1.4rem;padding:1rem var(--gutter) 2rem;list-style:none;margin:0}
+.ws.still .ws-list{display:flex}
 .ws-list a{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-deep)}
-@media(max-width:640px){.ws-copy{max-width:calc(100% - 2*var(--gutter))}.ws-copy.l,.ws-copy.r{top:auto;bottom:calc(var(--gutter) + 2.6rem);transform:none;text-align:left}.ws-copy.r .k{justify-content:flex-start}.ws-dots{right:auto;left:var(--gutter);bottom:.6rem}.ws-hint{display:none}}
+@media(max-width:640px){.ws-copy{max-width:calc(100% - 2*var(--gutter))}.ws-copy.l,.ws-copy.r{top:auto;bottom:calc(var(--gutter) + 2.6rem);transform:none;text-align:left}.ws-copy.r .k{justify-content:flex-start}.ws-dots{right:auto;left:var(--gutter);bottom:.6rem}.ws-hint{display:none}.ws-detail{align-items:start;padding-top:4rem}}
 
 /* dotted rule: the site's unit is the dot */
 .rule{height:3px;background:radial-gradient(circle,var(--rule) 0 1px,transparent 1.3px) 0 50%/9px 3px repeat-x;transform-origin:left;transform:scaleX(1)}
@@ -304,7 +306,7 @@ footer{overflow:hidden;padding:1.6rem 0 2rem;border-top:1px solid rgba(138,125,1
   <div class="bar" id="pbar"></div>
   <a class="mark" href="#top" aria-label="Top of page">&phi;</a>
   <ul>
-    <li><a href="#workshop" data-s="workshop">Workshop</a></li>
+    <li><a href="#workshop" data-s="workshop">House</a></li>
     <li><a href="#about" data-s="about">About</a></li>
     <li><a href="#sketchbook" data-s="sketchbook">Sketchbook</a></li>
     <li><a href="#projects" data-s="projects">Projects</a></li>
@@ -325,16 +327,16 @@ footer{overflow:hidden;padding:1.6rem 0 2rem;border-top:1px solid rgba(138,125,1
 </header>
 
 <main>
-<section class="ws" id="workshop" aria-label="The workshop">
+<section class="ws" id="workshop" aria-label="The house, drawn">
   <div class="ws-track" id="wsTrack">
     <div class="ws-stage" id="wsStage">
-      <div class="ws-art" id="wsArt"></div>
+      <div class="ws-art" id="wsArt"><img class="ws-map" id="wsMap" src="img/rooms/cutaway.webp" alt="A cutaway sketch of the house: a guitar workshop, a music room, a study with three screens, and a garage with the car" width="1448" height="1086" decoding="async"><div class="ws-hots" id="wsHots"></div></div>
+      <div class="ws-detail" id="wsDetail" aria-hidden="true"></div>
       <div class="ws-copy" id="wsCopy" aria-live="polite"></div>
-      <ol class="ws-dots" id="wsDots" aria-label="Stations"></ol>
-      <div class="ws-hint" id="wsHint"><span>scroll to walk the room</span></div>
+      <ol class="ws-dots" id="wsDots" aria-label="Rooms"></ol>
+      <div class="ws-hint" id="wsHint"><span>scroll to walk the house</span></div>
     </div>
   </div>
-  <noscript><img src="img/workshop.svg" alt="A sketch of the workshop" style="width:100%"></noscript>
 </section>
   <section id="about">
     <div class="container wide rv">
@@ -571,36 +573,32 @@ loadJSON('now-data', 'now.json', NOW).then(function(data){
 })();
 
 
-/* ---------- the workshop: scroll walks the camera from station to station ---------- */
-(function workshop(){
-  var sec=$('#workshop'), track=$('#wsTrack'), stage=$('#wsStage'), art=$('#wsArt'), copy=$('#wsCopy'), dots=$('#wsDots'), hint=$('#wsHint');
+/* ---------- the house: scroll zooms the cutaway from room to room; each room has its own sketch ---------- */
+(function house(){
+  var sec=$('#workshop'), track=$('#wsTrack'), stage=$('#wsStage'), art=$('#wsArt'), map=$('#wsMap'), hots=$('#wsHots'), det=$('#wsDetail'), copy=$('#wsCopy'), dots=$('#wsDots'), hint=$('#wsHint');
   if(!sec) return;
+  var IW=1448, IH=1086;
+  /* box: x,y,w,h in the cutaway's pixels. img: the room's own sketch, shown when the camera settles there. */
   var STOPS=[
-    {id:'shell',      k:'The workshop',  h:'Everything in one room.',            t:'Not a real room: a composite of the places the work actually happens. Each object is a door. Scroll to walk it, or click what you want.', pos:'t', href:null, cover:true},
-    {id:'st-monitors',k:'Projects',      h:'What is on the screens.',             t:'Three screens in an arc and a chair built for someone tall. CMMS pipelines, sensor feeds, automation lanes: the practical builds, in a compact grid.', pos:'r', href:'#projects'},
-    {id:'st-guitars', k:'Music',         h:'Hung up between sessions.',           t:'Violin, drums, guitar. Symphony on one night, an indie-rock room on another.', pos:'r', href:'#about'},
-    {id:'st-bench',   k:'Builds',        h:'Opened up on the island.',            t:'A guitar body on its blueprint, a soldering iron warming in its stand, two stools. The half-finished things are the honest ones.', pos:'l', href:'#projects'},
-    {id:'st-watch',   k:'Watches',       h:'The end of the island.',              t:'A loupe, a few oilers, a palette of mixed oils and two brushes, covered trays. Dials painted a dot at a time.', pos:'l', href:'#now'},
-    {id:'st-door',    k:'The studio',    h:'Next door, the loud room.',           t:'Drums under black drapes, a mic on a stand, the recording rig on a folding table.', pos:'l', href:'#about'},
-    {id:'st-books',   k:'Reading',       h:'The shelf.',                          t:'What is open right now, and the crate underneath. There is also a box of things free to take.', pos:'l', href:'#now', extra:'<a href="free/">free to take &rarr;</a>'},
-    {id:'st-gallery', k:'Sketchbook',    h:'The wall.',                           t:'Stipple, pencil, the occasional watch dial. The frames fill from the sketchbook.', pos:'r', href:'#sketchbook'}
+    {id:'house',  k:'The house',   h:'Everything under one roof.',          t:'Not a real floor plan: a composite of the rooms the work happens in. Each room is a door. Scroll to walk it, or click a room.', pos:'t', cover:true},
+    {id:'study',  k:'Projects',    h:'The study.',                           t:'Three screens in an arc, a chair built for someone tall, workflow nodes on the screen and a tray of oilers at the elbow. The practical builds live here.', pos:'r', box:[70,480,470,360], img:'img/rooms/study.webp', href:'#projects'},
+    {id:'shelf',  k:'Reading',     h:'The shelf.',                           t:'What is open right now, and what is queued behind it. There is also a box of things free to take.', pos:'r', box:[70,500,230,220], href:'#now', extra:'<a href="free/">free to take &rarr;</a>'},
+    {id:'bench',  k:'Builds',      h:'The guitar bench.',                    t:'A Telecaster on the stand, jars on the shelf, the body on the bench. The half-finished things are the honest ones.', pos:'l', box:[80,110,560,350], img:'img/rooms/guitar-bench.webp', href:'#projects'},
+    {id:'music',  k:'Music',       h:'The loud room.',                       t:'Drums under the drapes with a mic on everything, a desk for the recording rig, a music stand and a violin case on the side table.', pos:'l', box:[690,90,620,390], img:'img/rooms/music-room.webp', href:'#about'},
+    {id:'garage', k:'The garage',  h:'Slightly lowered.',                    t:'The GTI, a bike on the wall, the toolbox. The other kind of tuning.', pos:'l', box:[970,460,420,370], img:'img/rooms/garage.webp', href:'#about'},
+    {id:'walls',  k:'Sketchbook',  h:'The walls.',                           t:'Stipple, pencil, the occasional watch dial. The frames fill from the sketchbook.', pos:'r', box:[280,440,260,150], href:'#sketchbook'}
   ];
   sec.style.setProperty('--stops', STOPS.length);
-  var cams=[], cur=-1, svg=null, groups={}, SW=0, SH=0, raf=0, lastP=-1;
+  var cams=[], cur=-1, SW=0, SH=0, raf=0, lastP=-1, imgs={};
   function smooth(t){ return t*t*(3-2*t); }
   function fit(){
     SW=stage.clientWidth; SH=stage.clientHeight; cams=[];
     STOPS.forEach(function(st){
-      var g=groups[st.id], bb; try{ bb=g.getBBox(); }catch(e){ bb={x:0,y:0,width:2400,height:1350}; }
-      var pad = st.cover? 1 : (SW<700? 1.25 : 1.45), sc;
-      if(st.cover){ sc=Math.max(SW/2400, SH/1350); }
-      else { sc=Math.min(SW/(bb.width*pad), SH/(bb.height*pad)); sc=Math.min(sc, SW<700? 2.4 : 2.8); sc=Math.max(sc, Math.max(SW/2400, SH/1350)); }
-      var cx=bb.x+bb.width/2, cy=bb.y+bb.height/2;
-      /* leave room for the copy on the side it sits on */
-      var shift = st.pos==='l'? SW*.14 : st.pos==='r'? -SW*.14 : 0; if(SW<700) shift=0;
-      var tx=SW/2-cx*sc+shift, ty=SH/2-cy*sc;
-      if(st.cover){ tx=Math.min(0,Math.max(SW-2400*sc,tx)); ty=Math.min(0,Math.max(SH-1350*sc,ty)); }
-      cams.push({s:sc,x:tx,y:ty});
+      var sc, cx, cy;
+      if(st.cover){ sc=Math.min(SW/IW, SH/IH)*1.02; cx=IW/2; cy=IH/2; }
+      else { var bx=st.box, pad=SW<700? 1.15:1.35; sc=Math.min(SW/(bx[2]*pad), SH/(bx[3]*pad)); sc=Math.min(sc, 2.2); sc=Math.max(sc, Math.min(SW/IW,SH/IH)); cx=bx[0]+bx[2]/2; cy=bx[1]+bx[3]/2; }
+      var shift = st.pos==='l'? SW*.13 : st.pos==='r'? -SW*.13 : 0; if(SW<700||st.cover) shift=0;
+      cams.push({s:sc, x:SW/2-cx*sc+shift, y:SH/2-cy*sc});
     });
     lastP=-1; render();
   }
@@ -610,45 +608,37 @@ loadJSON('now-data', 'now.json', NOW).then(function(data){
     copy.innerHTML='<div class="k">'+st.k+'</div><h2>'+st.h+'</h2><p>'+st.t+'</p>'+(st.href? '<a href="'+st.href+'">enter &rarr;</a>':'')+(st.extra? ' &nbsp; '+st.extra:'');
     $$('button',dots).forEach(function(b,k){ b.classList.toggle('on',k===i); b.setAttribute('aria-current', k===i? 'true':'false'); });
     hint.style.opacity = i===0? 1 : 0;
+    if(st.img && !imgs[st.id]){ var im=new Image(); im.src=st.img; im.alt=''; im.decoding='async'; imgs[st.id]=im; det.innerHTML=''; det.appendChild(im); }
+    else if(st.img){ det.innerHTML=''; det.appendChild(imgs[st.id]); }
   }
   function render(){
     raf=0; if(!cams.length) return;
     var r=track.getBoundingClientRect(), span=r.height-SH, p=span>0? Math.min(1,Math.max(0,-r.top/span)):0;
-    p*= (STOPS.length-1); if(p===lastP) return; lastP=p;
+    p*=(STOPS.length-1); if(p===lastP) return; lastP=p;
     var i=Math.min(STOPS.length-2, Math.floor(p)), t=smooth(p-i), a=cams[i], b=cams[i+1];
     var s=a.s+(b.s-a.s)*t, x=a.x+(b.x-a.x)*t, y=a.y+(b.y-a.y)*t;
     art.style.transform='translate3d('+x.toFixed(1)+'px,'+y.toFixed(1)+'px,0) scale('+s.toFixed(4)+')';
-    STOPS.forEach(function(st,k){
-      var g=groups[st.id]; if(!g||st.id==='shell') return;
-      var w=Math.max(0,1-Math.abs(p-k));            /* 1 when the camera is on this station */
-      g.style.opacity=(.38+.62*w).toFixed(3);
-      g.classList.toggle('lit', w>.5);
-      var d=parseFloat(g.getAttribute('data-depth')||'1')-1;   /* paper depth: nearer sheets slide a touch more */
-      g.style.transform='translate('+(d*-x*.06).toFixed(1)+'px,'+(d*-y*.06).toFixed(1)+'px)';
-    });
-    var near=Math.round(p); copy.style.opacity=Math.max(0,1-Math.abs(p-near)*2.2).toFixed(2); setCopy(near);
+    var near=Math.round(p), w=Math.max(0,1-Math.abs(p-near)*2.2);
+    setCopy(near);
+    copy.style.opacity=w.toFixed(2);
+    /* the room's own sketch fades in as the camera settles; the cutaway dims under it */
+    var st=STOPS[near], dw = st.img? Math.max(0, (w-.35)/.65) : 0;
+    det.style.opacity=dw.toFixed(2);
+    map.style.opacity=(1-dw*.85).toFixed(2);
   }
   function go(i){ var top=track.getBoundingClientRect().top+scrollY, span=track.offsetHeight-SH; scrollTo({top: top+span*i/(STOPS.length-1), behavior: RM? 'auto':'smooth'}); }
-  function ready(txt){
-    art.innerHTML=txt; svg=art.querySelector('svg'); if(!svg) return;
-    STOPS.forEach(function(st){ groups[st.id]=svg.getElementById(st.id); });
-    /* a hit area over every station, so the whole object is a door */
-    STOPS.forEach(function(st,i){ var g=groups[st.id]; if(!g||!st.href) return; var bb=g.getBBox();
-      var hot=document.createElementNS('http://www.w3.org/2000/svg','rect'); hot.setAttribute('class','hot');
-      hot.setAttribute('x',bb.x-20); hot.setAttribute('y',bb.y-20); hot.setAttribute('width',bb.width+40); hot.setAttribute('height',bb.height+40);
-      var title=document.createElementNS('http://www.w3.org/2000/svg','title'); title.textContent=st.k; hot.appendChild(title);
-      hot.addEventListener('click',function(){ if(cur===i){ location.hash=st.href; } else go(i); });
-      g.insertBefore(hot,g.firstChild); });
-    if(RM || !('IntersectionObserver' in window)){ sec.classList.add('still');
-      var ul=document.createElement('ul'); ul.className='ws-list'; ul.innerHTML=STOPS.filter(function(s){return s.href}).map(function(s){return '<li><a href="'+s.href+'">'+s.k+'</a></li>'}).join(''); sec.appendChild(ul); ul.style.display='flex'; return; }
-    dots.innerHTML=STOPS.map(function(st,i){ return '<li><button type="button" aria-label="'+st.k+'"><i></i></button></li>'; }).join('');
-    $$('button',dots).forEach(function(b,i){ b.addEventListener('click',function(){ go(i); }); });
-    fit(); addEventListener('resize',function(){ clearTimeout(fit._t); fit._t=setTimeout(fit,120); });
-    addEventListener('scroll',function(){ if(!raf) raf=requestAnimationFrame(render); },{passive:true});
-  }
-  var inline=$('#wsSvg');
-  if(inline){ ready(inline.textContent); }
-  else fetch('img/workshop.svg',{cache:'no-cache'}).then(function(r){return r.text()}).then(ready).catch(function(){ sec.classList.add('still'); art.innerHTML='<img src="img/workshop.svg" alt="A sketch of the workshop" style="width:100%">'; });
+  if(RM || !('IntersectionObserver' in window)){ sec.classList.add('still');
+    var ul=document.createElement('ul'); ul.className='ws-list'; ul.innerHTML=STOPS.filter(function(s){return s.href}).map(function(s){return '<li><a href="'+s.href+'">'+s.k+'</a></li>'}).join(''); sec.appendChild(ul); return; }
+  /* hit areas over the rooms: click when the camera is there enters the section, otherwise walks there */
+  STOPS.forEach(function(st,i){ if(!st.box) return; var h=document.createElement('a'); h.href=st.href||'#'; h.setAttribute('aria-label',st.k);
+    h.style.left=st.box[0]+'px'; h.style.top=st.box[1]+'px'; h.style.width=st.box[2]+'px'; h.style.height=st.box[3]+'px';
+    h.addEventListener('click',function(e){ if(cur!==i){ e.preventDefault(); go(i); } }); hots.appendChild(h); });
+  dots.innerHTML=STOPS.map(function(st){ return '<li><button type="button" aria-label="'+st.k+'"><i></i></button></li>'; }).join('');
+  $$('button',dots).forEach(function(b,i){ b.addEventListener('click',function(){ go(i); }); });
+  STOPS.forEach(function(st){ if(st.img){ var im=new Image(); im.src=st.img; im.alt=''; im.decoding='async'; imgs[st.id]=im; } });   /* warm the cache */
+  if(map.complete) fit(); else map.addEventListener('load', fit);
+  addEventListener('resize',function(){ clearTimeout(fit._t); fit._t=setTimeout(fit,120); });
+  addEventListener('scroll',function(){ if(!raf) raf=requestAnimationFrame(render); },{passive:true});
 })();
 
 /* ---------- grid depth (parallax on the coarse grid) ---------- */
