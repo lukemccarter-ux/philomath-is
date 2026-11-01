@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Field notes &middot; philomath.is</title>
+<meta name="description" content="A weekly note on what the newsletters I follow taught me about maintenance, workflow automation and building with LLMs. A sentence or two, then the practical takeaways, each linked to its source.">
+<meta property="og:title" content="Field notes &middot; philomath.is">
+<meta property="og:description" content="Weekly practical takeaways on maintenance, workflow automation and building with LLMs.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://philomath.is/notes/">
+<meta property="og:image" content="https://philomath.is/img/og.png">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@300;400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f4f1eb;--paper-2:#ebe6dc;--paper-3:#e3ddd1;
+  --ink:#2c2825;--ink-2:#5a534c;--ink-3:#6e675f;--ink-4:#8a8279;
+  --terra:#c05e2f;--terra-deep:#9e4a22;--terra-soft:rgba(192,94,47,.12);
+  --rule:#8a7d6f;--rule-2:#b8b0a6;
+  --display:'Outfit','Helvetica Neue',Arial,sans-serif;
+  --body:'DM Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'DM Mono','Consolas','Menlo',monospace;
+  --wide:1080px;--gutter:clamp(1.25rem,4vw,2.5rem);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--paper);
+  background-image:linear-gradient(rgba(193,156,112,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(193,156,112,.16) 1px,transparent 1px);
+  background-size:24px 24px;color:var(--ink);font-family:var(--body);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.grid-deep{position:fixed;inset:-20vh 0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(138,125,111,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(138,125,111,.14) 1px,transparent 1px);
+  background-size:96px 96px;will-change:transform}
+a{color:var(--terra-deep);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+a:hover{border-bottom-color:currentColor}
+:focus-visible{outline:2px solid var(--terra);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:1rem;top:-3rem;background:var(--ink);color:var(--paper);padding:.5rem .9rem;font-family:var(--mono);font-size:.7rem;z-index:50;border-radius:3px}
+.skip:focus{top:1rem}
+.container{max-width:var(--wide);margin:0 auto;padding:0 var(--gutter)}
+.narrow{max-width:46rem}
+main,header,footer{position:relative;z-index:1}
+.paper{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .5 0 0 0 0 .44 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");background-size:300px 300px}
+.rule{height:3px;background:radial-gradient(circle,var(--rule) 0 1px,transparent 1.3px) 0 50%/9px 3px repeat-x}
+.label{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-deep);display:flex;align-items:center;gap:.7rem;margin-bottom:1.6rem}
+.label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--terra);flex:none}
+.label .dim{color:var(--ink-4);letter-spacing:.06em;text-transform:none;margin-left:auto;font-size:.68rem}
+
+/* nav, always shown on this page */
+.hnav{position:fixed;top:0;left:0;right:0;z-index:40;height:54px;display:flex;align-items:center;gap:1.4rem;padding:0 var(--gutter);
+  background:rgba(244,241,235,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(138,125,111,.35)}
+.hnav .mark{font-family:var(--display);font-weight:800;font-size:1.25rem;color:var(--ink);border:0;line-height:1}
+.hnav ul{list-style:none;display:flex;gap:1.2rem;margin-left:auto}
+.hnav li a{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);border:0;padding:.35rem 0;position:relative}
+.hnav li a::after{content:'';position:absolute;left:0;right:100%;bottom:0;height:2px;background:var(--terra);transition:right .35s var(--ease)}
+.hnav li a.on{color:var(--ink)}.hnav li a.on::after{right:0}
+
+/* header: a pencil-drawn notebook in place of the crate */
+.hero{padding:clamp(6rem,14vh,8.5rem) 0 2.6rem}
+.hero .book{display:block;margin:0 0 .6rem -2px;animation:settle 1s var(--ease) both}
+@keyframes settle{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:1.4rem;animation:fadeUp .9s var(--ease) both}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5.6vw,3.8rem);line-height:.95;letter-spacing:-.045em;color:var(--ink);text-wrap:balance;animation:fadeUp .9s var(--ease) .1s both}
+h1 .dot{color:var(--terra)}
+.lede{max-width:40rem;font-size:1.08rem;color:var(--ink-2);margin-top:1.4rem;animation:fadeUp .9s var(--ease) .3s both}
+.meta{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-top:1.6rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:var(--ink-4);animation:fadeUp .9s var(--ease) .45s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+section{padding:2.4rem 0}
+h2{font-family:var(--display);font-size:clamp(1.9rem,4vw,2.5rem);font-weight:700;letter-spacing:-.03em;line-height:1.1;margin-bottom:1.2rem;text-wrap:balance}
+
+/* one week = one entry */
+.entry{position:relative;padding:1.6rem 0 1.8rem;border-top:1px dotted var(--rule-2);animation:rise .7s var(--ease) both;animation-delay:calc(var(--i,0) * 80ms);scroll-margin-top:72px}
+.entry:first-of-type{border-top:0;padding-top:.4rem}
+.entry .when{display:flex;align-items:baseline;gap:.8rem;flex-wrap:wrap;margin-bottom:.7rem}
+.entry h3{font-family:var(--display);font-size:1.35rem;font-weight:700;letter-spacing:-.015em;line-height:1.2}
+.entry h3 a{color:inherit}
+.chip{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;border-radius:3px;white-space:nowrap;background:rgba(90,83,76,.1);color:var(--ink-2)}
+.chip.new{background:var(--terra-soft);color:var(--terra-deep)}
+.chip.draft{background:#3a3430;color:#f4f1eb}
+.entry .lead{font-size:1.04rem;color:var(--ink-2);line-height:1.65;margin-bottom:1rem;max-width:42rem}
+.entry ul{list-style:none;display:grid;gap:.85rem;max-width:42rem}
+.entry li{padding-left:1.15rem;position:relative;line-height:1.6;font-size:.96rem}
+.entry li::before{content:'';position:absolute;left:.1rem;top:.68em;width:5px;height:5px;border-radius:50%;background:var(--terra)}
+.entry li .via{display:inline-block;margin-left:.35rem;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--ink-3);white-space:nowrap}
+.entry li .via a{color:var(--ink-3)}.entry li .via a:hover{color:var(--terra-deep)}
+
+/* how the page is made */
+.ideas{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.8rem}
+.idea{padding:1.1rem 1.2rem;background:var(--paper-2);border-radius:6px;border-top:2px solid var(--rule);animation:rise .7s var(--ease) both;animation-delay:calc(var(--i,0) * 80ms)}
+.idea .n{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;color:var(--terra-deep);margin-bottom:.5rem}
+.idea .t{font-family:var(--display);font-weight:700;font-size:1rem;letter-spacing:-.01em;line-height:1.3;margin-bottom:.4rem}
+.idea .d{font-size:.86rem;color:var(--ink-2);line-height:1.55}
+
+footer{padding:2.2rem 0 2.6rem}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:1.6rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;color:var(--ink-3)}
+.foot b{font-family:var(--display);font-weight:700;font-size:.9rem;color:var(--ink);letter-spacing:0}
+.foot a{color:var(--ink-3)}
+.empty{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);padding:1rem 0}
+
+@media(max-width:900px){.ideas{grid-template-columns:1fr}}
+@media(max-width:640px){
+  .hnav{gap:1rem}.hnav ul{gap:.6rem}.hnav li a{font-size:.58rem;letter-spacing:.1em}
+  .entry li .via{display:block;margin:.15rem 0 0}
+  .foot{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<div class="grid-deep" id="gridDeep" aria-hidden="true"></div>
+<div class="paper" aria-hidden="true"></div>
+<a class="skip" href="#weeks">Skip to content</a>
+
+<nav class="hnav" aria-label="Sections">
+  <a class="mark" href="../" aria-label="philomath.is home">&phi;</a>
+  <ul>
+    <li><a href="../#workshop">House</a></li>
+    <li><a href="../#about">About</a></li>
+    <li><a href="../#sketchbook">Sketchbook</a></li>
+    <li><a href="../#projects">Projects</a></li>
+    <li><a href="./" class="on" aria-current="page">Notes</a></li>
+    <li><a href="../free/">Free</a></li>
+    <li><a href="../#connect">Connect</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <svg class="book" viewBox="0 0 120 84" width="120" height="84" aria-hidden="true" fill="none" stroke="#5a5248" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 22 L58 16 L60 70 L16 76 Z"/><path d="M60 70 L104 76 L106 22 L62 16"/><path d="M58 16 Q60 13 62 16" opacity=".8"/><path d="M22 30 L52 26.2 M22.4 38 L52.3 34.2 M22.8 46 L50 42.6 M23.2 54 L46 51.2" opacity=".55"/><path d="M68 26.2 L98 30 M68.3 34.2 L98.2 38 M68.6 42.2 L91 45" opacity=".55"/><path d="M84 70 L96 30.5" stroke-width="2.4" opacity=".85"/><path d="M96 30.5 L98.6 25.6 L97.4 31.3" opacity=".85"/></svg>
+    <p class="eyebrow">from the reading pile</p>
+    <h1>Field notes<span class="dot">.</span></h1>
+    <p class="lede" id="intro">What the newsletters taught me this week about maintenance, workflow automation and building with LLMs.</p>
+    <div class="meta" id="meta"></div>
+  </div>
+</header>
+
+<main>
+  <section id="weeks">
+    <div class="container">
+      <div class="rule" style="margin-bottom:2.4rem"></div>
+      <div class="label">Week by week <span class="dim" id="count"></span></div>
+      <div class="narrow" id="list"></div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="container">
+      <div class="rule" style="margin-bottom:2.4rem"></div>
+      <div class="label">How this page is made</div>
+      <h2>A small automation, with a person at the gate</h2>
+      <div class="ideas">
+        <div class="idea" style="--i:0"><div class="n">01</div><div class="t">A short reading list</div><div class="d">Nate&rsquo;s Newsletter, The Headless Brief, Claude Code for Non-Coders, Design with AI and a few other Substacks on agents, automation and AI tooling. Nothing else goes in.</div></div>
+        <div class="idea" style="--i:1"><div class="n">02</div><div class="t">Drafted by an agent</div><div class="d">Once a week an agent reads that week&rsquo;s issues, keeps only the technical and practical parts, and drafts the note in plain language with a link back to every source.</div></div>
+        <div class="idea" style="--i:2"><div class="n">03</div><div class="t">Nothing posts without me</div><div class="d">I read every draft and approve it before it goes up. A quiet week gets no note rather than a padded one.</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container foot"><b>&phi; philomath.is</b><span>summaries are mine; the ideas belong to the writers linked</span></div>
+</footer>
+
+<script>
+(function(){
+  var $=function(s){return document.querySelector(s)};
+  var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
+  var showAll=/[?&]all\b/.test(location.search);   /* ?all previews drafts; the live page shows approved weeks only */
+  function day(iso,opts){ var d=new Date(iso+'T12:00:00'); return isNaN(d)? iso : d.toLocaleDateString('en-CA',opts||{year:'numeric',month:'long',day:'numeric'}); }
+
+  function entry(e,i){
+    var h='<article class="entry" style="--i:'+i+'" id="'+esc(e.id)+'">';
+    h+='<div class="when"><h3><a href="#'+esc(e.id)+'">Week of '+esc(day(e.week_of,{month:'long',day:'numeric'}))+'</a></h3>';
+    h+='<span class="chip">'+esc(day(e.id))+'</span>'+(i===0&&e.state==='live'?'<span class="chip new">latest</span>':'')+(e.state!=='live'?'<span class="chip draft">draft</span>':'')+'</div>';
+    if(e.lede) h+='<p class="lead">'+esc(e.lede)+'</p>';
+    if(e.points&&e.points.length){
+      h+='<ul>'+e.points.map(function(p){ return '<li>'+esc(p.t)+(p.url?'<span class="via">via <a href="'+esc(p.url)+'" rel="noopener">'+esc(p.via||'source')+' &rarr;</a></span>':'')+'</li>'; }).join('')+'</ul>';
+    }
+    return h+'</article>';
+  }
+
+  function render(d){
+    if(d.intro) $('#intro').textContent=d.intro;
+    var list=(d.entries||[]).filter(function(e){ return showAll||e.state==='live'; })
+      .sort(function(a,b){ return a.id<b.id? 1 : a.id>b.id? -1 : 0; });
+    $('#list').innerHTML=list.length? list.map(entry).join('') : '<div class="empty">The first note is on its way.</div>';
+    $('#count').textContent=list.length+(list.length===1?' week':' weeks');
+    $('#meta').innerHTML=['weekly','technical and practical only','every source linked',d.updated?'updated '+esc(day(d.updated)):''].filter(Boolean).map(function(x){return '<span>'+x+'</span>'}).join('');
+    if(location.hash){ var t=document.getElementById(location.hash.slice(1)); if(t) setTimeout(function(){ t.scrollIntoView(); }, 60); }
+  }
+
+  var inline=document.getElementById('notesData');
+  if(inline){ try{ render(JSON.parse(inline.textContent)); return; }catch(e){} }
+  fetch('notes.json',{cache:'no-cache'}).then(function(r){return r.json()}).then(render).catch(function(){ $('#list').innerHTML='<div class="empty">Could not load the notes. Try again in a minute.</div>'; });
+})();
+
+/* ---------- grid depth (parallax on the coarse grid), same as the home page ---------- */
+(function depth(){
+  var g=document.getElementById('gridDeep'), RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches; if(!g||RM) return; var last=-1;
+  function tick(){ var y=window.scrollY; if(y!==last){ g.style.transform='translateY('+(-y*.12)+'px)'; last=y; } requestAnimationFrame(tick); }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

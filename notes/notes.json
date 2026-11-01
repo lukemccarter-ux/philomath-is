@@ -1,0 +1,40 @@
+{
+  "title": "Field notes",
+  "intro": "Once a week I go through the newsletters I follow on agents, automation and AI tooling and keep the parts a maintenance or operations person could actually use: a sentence or two on the week, then the takeaways, each linked to where it came from.",
+  "updated": "2026-11-01",
+  "entries": [
+    {
+      "id": "2026-11-01",
+      "week_of": "2026-10-26",
+      "state": "live",
+      "lede": "This week’s thread was quiet failure: agents that stall without erroring, answers that say “nothing found” when nothing was checked, and the growing need to fence what an agent is allowed to touch.",
+      "points": [
+        {
+          "t": "Make “couldn’t check” a separate result from “checked, found nothing.” Any scheduled report should list the sources it could not reach; a clean zero only counts when every source answered.",
+          "via": "Claude Code for Non-Coders",
+          "url": "https://claudecodefornoncoders.substack.com/p/build-a-system-that-doesnt-let-things"
+        },
+        {
+          "t": "Alarm on silence, not only on errors. A loop that only watches flagged items cannot see the one that went quiet; add a “no update in X hours” check, the same idea as flagging a PM nobody has touched.",
+          "via": "Claude Code for Non-Coders",
+          "url": "https://claudecodefornoncoders.substack.com/p/build-a-system-that-doesnt-let-things"
+        },
+        {
+          "t": "Before an agent buys, pays or cancels anything: narrow its access, require an explicit approval for each action, and check the result where it lands (the order, the PO), not in the agent’s own summary.",
+          "via": "Nate’s Newsletter",
+          "url": "https://natesnewsletter.substack.com/p/ai-agents-website-access"
+        },
+        {
+          "t": "Give each contributor, human or agent, its own folder and protect the main branch. Changes that stay in scope can be approved automatically; anything else gets a review.",
+          "via": "Design with AI",
+          "url": "https://designwithai.substack.com/p/design-studio"
+        },
+        {
+          "t": "Keep shared work in open formats (Markdown, Mermaid diagrams, plain files) so it survives a change of model or vendor.",
+          "via": "Design with AI",
+          "url": "https://designwithai.substack.com/p/design-studio"
+        }
+      ]
+    }
+  ]
+}

@@ -11,6 +11,8 @@ or two.
 | `index.html` | The whole page: markup, CSS, JS. The master file. | Yes, for design or copy changes |
 | `now.json` | The Now strip and the rotating hero completions | Yes, by hand, any time |
 | `gallery.json` | The Sketchbook strip; the importer mixes subjects evenly, newest first within each (`note` = longer blurb shown in the lightbox) | Usually via the importer; by hand to fix a caption |
+| `notes/notes.json` | Field notes: one entry per week, `state` `live` or `draft` (drafts show only at `notes/?all`); the newest live entry also shows as one line in Now | Written by the weekly field-notes task; edit by hand to fix wording |
+| `notes/index.html` | The Field notes page | For design or copy changes |
 | `gallery/` | Sketchbook images (WebP, 1600 px long edge) and clips (mp4 + WebP poster) | Via the importer |
 | `img/` | Project screenshots, marks, diagrams used by the Projects cards | Rarely |
 | `tools/import_media.py` | Inbox importer: resize, convert, caption, append to `gallery.json` | No |
@@ -88,7 +90,17 @@ drop a new file to add one. Then run `python tools\reconcile_gallery.py --write`
 Replaced sources move to `gallery\_replaced\` (ignored by git). New files get a caption from their filename;
 fix it in `gallery.json`.
 
-### 4. Anything else (copy, a new project card, design)
+### 4. Field notes (weekly)
+
+A scheduled task reads the week's issues from the Gmail label NERD!, keeps only the technical newsletters
+(Nate's Newsletter, The Headless Brief, Claude Code for Non-Coders, Design with AI and other individual
+Substack publications; never Luke's own mail, platform digests, marketing or anything with an attachment),
+and drafts one entry: a sentence or two, then three to five practical takeaways, each with its source link.
+Nothing goes live without Luke's approval. To publish a draft by hand, change its `state` from `draft` to
+`live` in `notes/notes.json`, run `python build.py --check`, commit and push. Summaries are paraphrased,
+never quoted, and carry no employer detail.
+
+### 5. Anything else (copy, a new project card, design)
 
 Edit `index.html` directly, run `python build.py` and open `dist\philomath-standalone.html` to eyeball it,
 then commit and push. `dist\philomath-artifact.html` is the same page trimmed for the Claude Artifact tool
