@@ -60,6 +60,16 @@ def validate(now, gal):
             if it.get("cover") and not str(it["cover"]).startswith(("http://", "https://")):
                 if not os.path.exists(os.path.join(ROOT, it["cover"])):
                     problems.append("now.json: cover not found: " + it["cover"])
+        for key in ("records", "made"):
+            for it in now.get(key, []):
+                if PLACEHOLDER.match(str(it.get("title", "")).strip()):
+                    warnings.append("now.json: %s slot still holds a placeholder and will not show: %s" % (key, it.get("title")))
+                if it.get("cover") and not str(it["cover"]).startswith(("http://", "https://")) and not os.path.exists(os.path.join(ROOT, it["cover"])):
+                    problems.append("now.json: cover not found: " + it["cover"])
+        for side in ("reads", "listens"):
+            for it in (now.get("backlog") or {}).get(side, []):
+                if PLACEHOLDER.match(str(it.get("title", "")).strip()):
+                    warnings.append("now.json: backlog %s slot still holds a placeholder and will not show: %s" % (side, it.get("title")))
     if not isinstance(gal, list):
         problems.append("gallery.json must be a list")
     else:

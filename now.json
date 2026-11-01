@@ -41,5 +41,44 @@
       "cover": "https://covers.openlibrary.org/b/isbn/9781895415001-M.jpg",
       "v": "Castaway on Cape Breton: two shipwreck narratives, Ensign Prenties in 1780 and Samuel Burrows in 1823. Found in Cape Breton, and fantastic."
     }
+  ],
+  "records": [
+    {
+      "k": "Spinning",
+      "title": "(album)",
+      "by": "(artist)",
+      "cover": "",
+      "v": "(a line on why)"
+    },
+    {
+      "k": "Last spun",
+      "title": "(album)",
+      "by": "(artist)",
+      "cover": "",
+      "v": "(a line on why)"
+    }
+  ],
+  "backlog": {
+    "reads": [
+      {
+        "title": "(book)",
+        "by": "(author)",
+        "note": "(optional: who recommended it, or why)"
+      }
+    ],
+    "listens": [
+      {
+        "title": "(album)",
+        "by": "(artist)",
+        "note": "(optional)"
+      }
+    ]
+  },
+  "made": [
+    {
+      "title": "(track name)",
+      "v": "(a line about it)",
+      "url": "(link, or audio/file.mp3 in the repo)"
+    }
   ]
 }

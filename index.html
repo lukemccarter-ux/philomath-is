@@ -91,6 +91,34 @@ main,header,footer{position:relative;z-index:1}
 .ws-list a{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-deep)}
 @media(max-width:640px){.ws-copy{max-width:calc(100% - 2*var(--gutter))}.ws-copy.l,.ws-copy.r{top:auto;bottom:calc(var(--gutter) + 2.6rem);transform:none;text-align:left}.ws-copy.r .k{justify-content:flex-start}.ws-dots{right:auto;left:var(--gutter);bottom:.6rem}.ws-hint{display:none}.ws-detail{align-items:start;padding-top:4rem}}
 
+
+/* blown-up About cards, opened from the house (study: the technical, music room: the creative) */
+.sheet.big{width:min(780px,92vw);padding:clamp(1.8rem,4vw,3rem)}
+.sheet.big .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-deep);display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem}
+.sheet.big .k::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--terra)}
+.sheet.big h3{font-size:clamp(2rem,4.4vw,3rem);letter-spacing:-.035em;line-height:1;margin-bottom:1.1rem}
+.sheet.big p{font-size:clamp(1.08rem,1.8vw,1.34rem);line-height:1.7;color:var(--ink-2)}
+.sheet.big .go{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:1.4rem}
+.sheet.big .go a{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-deep);border-bottom:1px solid var(--terra)}
+.ws-copy .spec{list-style:none;margin:.1rem 0 .2rem;padding:0;font-family:var(--mono);font-size:.64rem;line-height:1.65;letter-spacing:.02em;color:var(--ink-3)}
+.ws-copy .spec li:first-child{color:var(--ink-2);font-weight:400}
+.ws-copy.r .spec{text-align:right}
+
+/* Now: records row, the backlog, music I made (now.json; empty or "(placeholder)" rows never publish) */
+.now-sub{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra-deep);display:flex;align-items:center;gap:.7rem;margin:3rem 0 1.4rem}
+.now-sub::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--terra);flex:none}
+.now-item.record .cover{width:86px;height:86px}
+.now-item.record .v b{font-weight:500}.now-item.record .v .by{color:var(--ink-3)}
+.pile{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem 2.4rem}
+.pile h4{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-weight:400;margin-bottom:.7rem;display:flex;align-items:baseline;gap:.5rem}
+.pile h4::after{content:'';flex:1;border-bottom:1px dotted var(--rule-2);transform:translateY(-.25em)}
+.pile ul{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+.pile li{line-height:1.45}.pile li b{font-weight:500;color:var(--ink)}.pile li .by{color:var(--ink-3)}.pile li .note{display:block;font-size:.9rem;color:var(--ink-3)}
+.made{list-style:none;margin:0;padding:0;display:grid;gap:.8rem}
+.made li{display:grid;gap:.15rem}.made li b{font-weight:500}.made li .note{color:var(--ink-3);font-size:.95rem}
+.made audio{width:min(100%,420px);margin-top:.3rem}
+@media(max-width:640px){.pile{grid-template-columns:1fr}}
+
 /* dotted rule: the site's unit is the dot */
 .rule{height:3px;background:radial-gradient(circle,var(--rule) 0 1px,transparent 1.3px) 0 50%/9px 3px repeat-x;transform-origin:left;transform:scaleX(1)}
 .rv .rule{transform:scaleX(0)}
@@ -122,12 +150,12 @@ main,header,footer{position:relative;z-index:1}
 .hero-inner{position:relative;width:100%}
 .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:1.6rem;animation:fadeUp .9s var(--ease) both}
 .hero h1{font-family:var(--display);font-weight:800;line-height:.95;letter-spacing:-.045em;color:var(--ink);text-wrap:balance}
-.hero .word{display:block;font-size:clamp(3rem,8.4vw,6.2rem);transition:color .5s}
+.hero .word{display:block;font-size:clamp(2.35rem,6.5vw,4.85rem);transition:color .5s}
 /* the title: pre-rendered stipple (vector, crisp at any density); the real word stays for screen readers and phones */
-.hero .stipple{display:none;height:clamp(3rem,8.4vw,6.2rem);width:auto;max-width:100%;margin:0 0 .1rem -.02em;transition:opacity .2s;animation:settle 1.1s var(--ease) both}
+.hero .stipple{display:none;height:clamp(2.35rem,6.5vw,4.85rem);width:auto;max-width:100%;margin:0 0 .1rem -.02em;transition:opacity .2s;animation:settle 1.1s var(--ease) both}
 @media(min-width:641px){.hero.stip .stipple{display:block}.hero.stip .word{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}}
 @keyframes settle{from{opacity:0;filter:blur(2px);transform:translateY(6px)}to{opacity:1;filter:none;transform:none}}
-.hero .trail{display:block;position:relative;font-weight:300;font-size:clamp(1.2rem,2.6vw,1.95rem);letter-spacing:-.02em;color:var(--ink-3);margin-top:.55rem;line-height:1.3;animation:fadeUp .9s var(--ease) .15s both}
+.hero .trail{display:block;position:relative;font-weight:300;font-size:clamp(.95rem,2.05vw,1.5rem);letter-spacing:-.02em;color:var(--ink-3);margin-top:.5rem;line-height:1.3;animation:fadeUp .9s var(--ease) .15s both}
 .hero .trail .sizer{display:block;visibility:hidden}
 .hero .trail .live{position:absolute;left:0;top:0;right:0}
 .hero .trail .tw{color:var(--ink);font-weight:300}
@@ -460,7 +488,7 @@ footer{overflow:hidden;padding:1.6rem 0 2rem;border-top:1px solid rgba(138,125,1
       </div>
 
       <a class="free-band rv" href="free/" id="freeBand" style="--i:7">
-        <div class="fb-k">Free to take</div>
+        <div class="fb-k">Stuff I made for you to take</div>
         <div class="fb-t">Practical Claude skills, given away<span class="fb-dot">.</span></div>
         <div class="fb-d">A plugin that gives Claude durable memory of your job, a paste-in setup coach for the Claude app, and the checklist that keeps my employer out of both. MIT, no email.</div>
         <div class="fb-go">see what is in the box &rarr;</div>
@@ -472,6 +500,7 @@ footer{overflow:hidden;padding:1.6rem 0 2rem;border-top:1px solid rgba(138,125,1
     <div class="container wide rv">
       <div class="label">Now <span class="dim" id="nowDate">updated recently</span></div>
       <div class="now-grid stag" id="nowGrid"></div>
+      <div id="nowMore"></div>
     </div>
   </section>
 
@@ -495,6 +524,7 @@ footer{overflow:hidden;padding:1.6rem 0 2rem;border-top:1px solid rgba(138,125,1
   <div class="container wide foot"><b>&phi; philomath.is</b><span>Toronto &middot; 2026</span></div>
 </footer>
 
+<dialog id="cardBig" aria-label="About"><div class="sheet big" id="cardSheet"></div></dialog>
 <dialog id="pd" aria-label="Project details"><div class="sheet" id="pdSheet"></div></dialog>
 <dialog id="lb" aria-label="Artwork"><figure class="sheet"><img id="lbImg" src="" alt=""><video id="lbVid" controls playsinline preload="none" hidden></video><figcaption id="lbCap"></figcaption><button class="x" id="lbX" aria-label="Close">&times;</button></figure></dialog>
 
@@ -540,7 +570,36 @@ function renderNow(){
     }
     g.appendChild(d);
   });
+  renderNowMore();
   if(NOW.updated){ var dt = new Date(NOW.updated+'T12:00:00'); $('#nowDate').textContent = 'updated '+dt.toLocaleDateString('en-CA',{year:'numeric',month:'long'}); }
+}
+
+function isPh(v){ return !v || /^\(.*\)$/.test(String(v).trim()); }
+function renderNowMore(){
+  var box=$('#nowMore'); if(!box) return; box.innerHTML='';
+  function esc(t){ return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]}); }
+  /* records: same shape as the books, square sleeves */
+  var recs=(NOW.records||[]).filter(function(r){ return r && !isPh(r.title) && !isPh(r.v); });
+  if(recs.length){
+    var h='<div class="now-sub">Records</div><div class="now-grid">';
+    recs.forEach(function(r){ h+='<div class="now-item book record'+(r.w?' w'+r.w:' w3')+'"><div class="k">'+esc(r.k||'Spinning')+'</div><div class="row"><div class="cover'+(r.cover?'':' fallback')+'">'+(r.cover?'<img alt="" loading="lazy" width="86" height="86" src="'+esc(r.cover)+'">':'')+'<span class="ph">'+esc(r.title)+'</span></div><div class="v"><b>'+esc(r.title)+'</b>'+(r.by&&!isPh(r.by)?' <span class="by">'+esc(r.by)+'</span>':'')+'<br>'+esc(r.v)+'</div></div></div>'; });
+    box.insertAdjacentHTML('beforeend', h+'</div>');
+    $$('.record .cover img',box).forEach(function(im){ im.addEventListener('error',function(){ im.parentNode.classList.add('fallback'); }); });
+  }
+  /* the backlog: recommended reads and listens */
+  var bl=NOW.backlog||{}, cols=[['Reads',bl.reads],['Listens',bl.listens]].map(function(c){ return [c[0],(c[1]||[]).filter(function(x){ return x && !isPh(x.title); })]; }).filter(function(c){ return c[1].length; });
+  if(cols.length){
+    var p='<div class="now-sub">On the pile</div><div class="pile">';
+    cols.forEach(function(c){ p+='<div><h4>'+c[0]+'</h4><ul>'+c[1].map(function(x){ return '<li><b>'+esc(x.title)+'</b>'+(x.by&&!isPh(x.by)?' <span class="by">'+esc(x.by)+'</span>':'')+(x.note&&!isPh(x.note)?'<span class="note">'+esc(x.note)+'</span>':'')+'</li>'; }).join('')+'</ul></div>'; });
+    box.insertAdjacentHTML('beforeend', p+'</div>');
+  }
+  /* music I made */
+  var made=(NOW.made||[]).filter(function(m){ return m && !isPh(m.title); });
+  if(made.length){
+    var m='<div class="now-sub">Music I made</div><ul class="made">';
+    made.forEach(function(x){ var u=x.url&&!isPh(x.url)? x.url : ''; m+='<li><b>'+esc(x.title)+'</b>'+(x.v&&!isPh(x.v)?'<span class="note">'+esc(x.v)+'</span>':'')+(u? (/\.(mp3|m4a|ogg|wav)$/i.test(u)? '<audio controls preload="none" src="'+esc(u)+'"></audio>' : '<a href="'+esc(u)+'">listen &rarr;</a>') : '')+'</li>'; });
+    box.insertAdjacentHTML('beforeend', m+'</ul>');
+  }
 }
 
 /* ---------- typewriter: the sentence never finishes ---------- */
@@ -573,6 +632,20 @@ loadJSON('now-data', 'now.json', NOW).then(function(data){
 })();
 
 
+/* ---------- About cards: the creative / the technical, blown up ---------- */
+function openCard(which){
+  var dlg=$('#cardBig'), sh=$('#cardSheet'); if(!dlg||!sh) return;
+  var cols=$$('#about .about-cols > div'), col=cols[which==='technical'? 1 : 0]; if(!col) return;
+  var h=$('h3',col), p=$('p',col);
+  var go = which==='technical'? '<a href="#projects">the projects &rarr;</a><a href="free/">stuff I made for you to take &rarr;</a>' : '<a href="#sketchbook">the sketchbook &rarr;</a><a href="#now">reading and records &rarr;</a>';
+  sh.innerHTML='<button class="x" type="button" aria-label="Close">&times;</button><div class="k">'+(which==='technical'? 'The study' : 'The loud room')+'</div><h3></h3><p></p><div class="go">'+go+'</div>';
+  $('h3',sh).textContent=h? h.textContent : ''; $('p',sh).textContent=p? p.textContent : '';
+  $('.x',sh).addEventListener('click',function(){ dlg.close(); });
+  $$('.go a',sh).forEach(function(a){ a.addEventListener('click',function(){ dlg.close(); }); });
+  if(!dlg._wired){ dlg.addEventListener('click',function(e){ if(e.target===dlg) dlg.close(); }); dlg._wired=true; }
+  dlg.showModal();
+}
+
 /* ---------- the house: scroll zooms the cutaway from room to room; each room has its own sketch ---------- */
 (function house(){
   var sec=$('#workshop'), track=$('#wsTrack'), stage=$('#wsStage'), art=$('#wsArt'), map=$('#wsMap'), hots=$('#wsHots'), det=$('#wsDetail'), copy=$('#wsCopy'), dots=$('#wsDots'), hint=$('#wsHint');
@@ -581,12 +654,13 @@ loadJSON('now-data', 'now.json', NOW).then(function(data){
   /* box: x,y,w,h in the cutaway's pixels. img: the room's own sketch, shown when the camera settles there. */
   var STOPS=[
     {id:'house',  k:'The house',   h:'Everything under one roof.',          t:'Not a real floor plan: a composite of the rooms the work happens in. Each room is a door. Scroll to walk it, or click a room.', pos:'t', cover:true},
-    {id:'study',  k:'Projects',    h:'The study.',                           t:'Two screens close together with workflow nodes on them, an L-shaped desk, a watch movement on the wall. The practical builds live here.', pos:'r', box:[80,500,420,330], img:'img/rooms/study.webp', href:'#projects'},
-    {id:'shelf',  k:'Reading',     h:'The shelf.',                           t:'What is open right now, and what is queued behind it. There is also a box of things free to take.', pos:'r', box:[700,440,180,220], href:'#now', extra:'<a href="free/">free to take &rarr;</a>'},
+    {id:'study',  k:'Projects',    h:'The study.',                           t:'A dedicated workspace for playing with workflows, with the tools required for photo and 360 video editing: a Canon R10, an Insta360 R1 and the liquid-cooled case required to keep all the good editing software running.', pos:'r', box:[80,500,420,330], img:'img/rooms/study.webp', href:'#projects', card:'technical'},
+    {id:'shelf',  k:'Reading',     h:'The shelf.',                           t:'Books and records I&rsquo;ve been into lately, and a few items I&rsquo;ve put together to share with whoever is interested!', pos:'r', box:[700,440,180,220], href:'#now', extra:'<a href="free/">stuff I made for you to take &rarr;</a>'},
     {id:'bench',  k:'Builds',      h:'The guitar bench.',                    t:'A Telecaster on the stand, jars on the shelf, the toolbox on casters. The half-finished things are the honest ones.', pos:'l', box:[80,100,560,340], img:'img/rooms/guitar-bench.webp', href:'#projects'},
     {id:'easel',  k:'Sketchbook',  h:'The easel.',                           t:'Stipple, pencil, the occasional watch dial. Whatever is under the pen right now, and everything before it.', pos:'r', box:[520,70,150,160], href:'#sketchbook'},
-    {id:'music',  k:'Music',       h:'The loud room.',                       t:'A mic on every drum, the mixing desk in the corner, a music stand at standing height and the violin case open on the side table.', pos:'l', box:[700,90,620,380], img:'img/rooms/music-room.webp', href:'#about'},
-    {id:'garage', k:'The garage',  h:'Slightly lowered.',                    t:'The GTI, a bike on the wall, the toolbox. The other kind of tuning.', pos:'l', box:[960,450,430,350], img:'img/rooms/garage.webp', href:'#about'}
+    {id:'music',  k:'Music',       h:'The loud room.',                       t:'A rehearsal and recording space, ready for whenever inspiration may strike.', pos:'l', box:[700,90,620,380], img:'img/rooms/music-room.webp', href:'#about', card:'creative'},
+    {id:'garage', k:'',            h:'The Garage',                           t:'My GTI project, mountain bike and the tools to get greasy.', pos:'l', box:[960,450,430,350], img:'img/rooms/garage.webp',
+      notes:['2017 Volkswagen GTI Performance','EQT Stage 2 ECU Tune, 93 Oct','EQT TCU Tune','APR Open Intake','APR Turbo Inlet','IE Downpipe','CTS Exhaust','H&amp;R Sport Springs on OEM DCC']}
   ];
   sec.style.setProperty('--stops', STOPS.length);
   var cams=[], cur=-1, SW=0, SH=0, raf=0, lastP=-1, imgs={};
@@ -605,7 +679,7 @@ loadJSON('now-data', 'now.json', NOW).then(function(data){
   function setCopy(i){
     if(i===cur) return; cur=i; var st=STOPS[i];
     copy.className='ws-copy '+st.pos;
-    copy.innerHTML='<div class="k">'+st.k+'</div><h2>'+st.h+'</h2><p>'+st.t+'</p>'+(st.href? '<a href="'+st.href+'">enter &rarr;</a>':'')+(st.extra? ' &nbsp; '+st.extra:'');
+    copy.innerHTML=(st.k? '<div class="k">'+st.k+'</div>':'')+'<h2>'+st.h+'</h2><p>'+st.t+'</p>'+(st.notes? '<ul class="spec">'+st.notes.map(function(n){return '<li>'+n+'</li>'}).join('')+'</ul>':'')+(st.href? '<a href="'+st.href+'"'+(st.card? ' data-card="'+st.card+'"':'')+'>enter &rarr;</a>':'')+(st.extra? ' &nbsp; '+st.extra:'');
     $$('button',dots).forEach(function(b,k){ b.classList.toggle('on',k===i); b.setAttribute('aria-current', k===i? 'true':'false'); });
     hint.style.opacity = i===0? 1 : 0;
     if(st.img && !imgs[st.id]){ var im=new Image(); im.src=st.img; im.alt=''; im.decoding='async'; imgs[st.id]=im; det.innerHTML=''; det.appendChild(im); }
@@ -630,10 +704,11 @@ loadJSON('now-data', 'now.json', NOW).then(function(data){
   if(RM || !('IntersectionObserver' in window)){ sec.classList.add('still');
     var ul=document.createElement('ul'); ul.className='ws-list'; ul.innerHTML=STOPS.filter(function(s){return s.href}).map(function(s){return '<li><a href="'+s.href+'">'+s.k+'</a></li>'}).join(''); sec.appendChild(ul); return; }
   /* hit areas over the rooms: click when the camera is there enters the section, otherwise walks there */
-  STOPS.forEach(function(st,i){ if(!st.box) return; var h=document.createElement('a'); h.href=st.href||'#'; h.setAttribute('aria-label',st.k);
+  STOPS.forEach(function(st,i){ if(!st.box) return; var h=document.createElement('a'); h.href=st.href||'#'; h.setAttribute('aria-label',st.k||st.h);
     h.style.left=st.box[0]+'px'; h.style.top=st.box[1]+'px'; h.style.width=st.box[2]+'px'; h.style.height=st.box[3]+'px';
-    h.addEventListener('click',function(e){ if(cur!==i){ e.preventDefault(); go(i); } }); hots.appendChild(h); });
-  dots.innerHTML=STOPS.map(function(st){ return '<li><button type="button" aria-label="'+st.k+'"><i></i></button></li>'; }).join('');
+    h.addEventListener('click',function(e){ if(cur!==i){ e.preventDefault(); go(i); } else if(st.card){ e.preventDefault(); openCard(st.card); } else if(!st.href){ e.preventDefault(); } }); hots.appendChild(h); });
+  dots.innerHTML=STOPS.map(function(st){ return '<li><button type="button" aria-label="'+(st.k||st.h)+'"><i></i></button></li>'; }).join('');
+  copy.addEventListener('click',function(e){ var a=e.target.closest('[data-card]'); if(a){ e.preventDefault(); openCard(a.getAttribute('data-card')); } });
   $$('button',dots).forEach(function(b,i){ b.addEventListener('click',function(){ go(i); }); });
   STOPS.forEach(function(st){ if(st.img){ var im=new Image(); im.src=st.img; im.alt=''; im.decoding='async'; imgs[st.id]=im; } });   /* warm the cache */
   if(map.complete) fit(); else map.addEventListener('load', fit);
