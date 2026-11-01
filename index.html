@@ -118,6 +118,11 @@ main,header,footer{position:relative;z-index:1}
 .made li{display:grid;gap:.15rem}.made li b{font-weight:500}.made li .note{color:var(--ink-3);font-size:.95rem}
 .made audio{width:min(100%,420px);margin-top:.3rem}
 @media(max-width:640px){.pile{grid-template-columns:1fr}}
+/* Now: the latest field note (notes/notes.json; drafts never show here) */
+.fnote{max-width:46rem}
+.fnote .fn-when{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4);margin-bottom:.4rem}
+.fnote p{color:var(--ink-2);line-height:1.6;margin:0 0 .7rem}
+.fnote a{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-right:1.4rem}
 
 /* dotted rule: the site's unit is the dot */
 .rule{height:3px;background:radial-gradient(circle,var(--rule) 0 1px,transparent 1.3px) 0 50%/9px 3px repeat-x;transform-origin:left;transform:scaleX(1)}
@@ -500,6 +505,7 @@ footer{overflow:hidden;padding:1.6rem 0 2rem;border-top:1px solid rgba(138,125,1
     <div class="container wide rv">
       <div class="label">Now <span class="dim" id="nowDate">updated recently</span></div>
       <div class="now-grid stag" id="nowGrid"></div>
+      <div id="nowNotes"></div>
       <div id="nowMore"></div>
     </div>
   </section>
@@ -620,6 +626,17 @@ function typewriter(){
   }
   setTimeout(step, 2600);
 }
+/* ---------- field notes: the newest approved week, one line in Now (notes/notes.json) ---------- */
+function renderNotesRow(d){
+  var box=$('#nowNotes'); if(!box||!d) return;
+  var e=(d.entries||[]).filter(function(x){ return x && x.state==='live' && x.lede; }).sort(function(a,b){ return a.id<b.id? 1 : -1; })[0];
+  if(!e) return;
+  function esc(t){ return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]}); }
+  var wk=new Date(e.week_of+'T12:00:00'), when=isNaN(wk)? '' : 'week of '+wk.toLocaleDateString('en-CA',{month:'long',day:'numeric'});
+  box.innerHTML='<div class="now-sub">Field notes</div><div class="fnote"><div class="fn-when">'+esc(when)+'</div><p>'+esc(e.lede)+'</p><a href="notes/#'+esc(e.id)+'">the takeaways &rarr;</a><a href="notes/">every week &rarr;</a></div>';
+}
+loadJSON('notes-data', 'notes/notes.json', null).then(renderNotesRow);
+
 loadJSON('now-data', 'now.json', NOW).then(function(data){
   if(data && data.completions && data.completions.length) NOW = data;
   renderNow(); typewriter();
@@ -637,7 +654,7 @@ function openCard(which){
   var dlg=$('#cardBig'), sh=$('#cardSheet'); if(!dlg||!sh) return;
   var cols=$$('#about .about-cols > div'), col=cols[which==='technical'? 1 : 0]; if(!col) return;
   var h=$('h3',col), p=$('p',col);
-  var go = which==='technical'? '<a href="#projects">the projects &rarr;</a><a href="free/">stuff I made for you to take &rarr;</a>' : '<a href="#sketchbook">the sketchbook &rarr;</a><a href="#now">reading and records &rarr;</a>';
+  var go = which==='technical'? '<a href="#projects">the projects &rarr;</a><a href="notes/">field notes &rarr;</a><a href="free/">stuff I made for you to take &rarr;</a>' : '<a href="#sketchbook">the sketchbook &rarr;</a><a href="#now">reading and records &rarr;</a>';
   sh.innerHTML='<button class="x" type="button" aria-label="Close">&times;</button><div class="k">'+(which==='technical'? 'The study' : 'The loud room')+'</div><h3></h3><p></p><div class="go">'+go+'</div>';
   $('h3',sh).textContent=h? h.textContent : ''; $('p',sh).textContent=p? p.textContent : '';
   $('.x',sh).addEventListener('click',function(){ dlg.close(); });
@@ -655,7 +672,7 @@ function openCard(which){
   var STOPS=[
     {id:'house',  k:'The house',   h:'Everything under one roof.',          t:'Not a real floor plan: a composite of the rooms the work happens in. Each room is a door. Scroll to walk it, or click a room.', pos:'t', cover:true},
     {id:'study',  k:'Projects',    h:'The study.',                           t:'A dedicated workspace for playing with workflows, with the tools required for photo and 360 video editing: a Canon R10, an Insta360 R1 and the liquid-cooled case required to keep all the good editing software running.', pos:'r', box:[70,420,530,410], img:'img/rooms/study.webp', href:'#projects', card:'technical'},
-    {id:'shelf',  k:'Reading',     h:'The shelf.',                           t:'Books and records I&rsquo;ve been into lately, and a few items I&rsquo;ve put together to share with whoever is interested!', pos:'r', box:[590,340,280,320], href:'#now', extra:'<a href="free/">stuff I made for you to take &rarr;</a>'},
+    {id:'shelf',  k:'Reading',     h:'The shelf.',                           t:'Books and records I&rsquo;ve been into lately, and a few items I&rsquo;ve put together to share with whoever is interested!', pos:'r', box:[590,340,280,320], href:'#now', extra:'<a href="free/">stuff I made for you to take &rarr;</a> &nbsp; <a href="notes/">field notes &rarr;</a>'},
     {id:'bench',  k:'Builds',      h:'The workbench.',                       t:'A Telecaster on the stand, a soldering gun and a multimeter, and on the mat a loupe, oilers and a watch movement in its holder, with a palette and two fine brushes for the dials. The half-finished things are the honest ones.', pos:'l', box:[90,90,700,370], img:'img/rooms/guitar-bench.webp', href:'#projects'},
     {id:'easel',  k:'Sketchbook',  h:'The easel.',                           t:'Stipple, pencil, the occasional watch dial. Whatever is under the pen right now, and everything before it.', pos:'r', box:[540,80,110,160], href:'#sketchbook'},
     {id:'music',  k:'Music',       h:'The loud room.',                       t:'A rehearsal and recording space, ready for whenever inspiration may strike.', pos:'l', box:[780,60,620,340], img:'img/rooms/music-room.webp', href:'#about', card:'creative'},

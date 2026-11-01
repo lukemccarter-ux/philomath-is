@@ -161,11 +161,48 @@ def validate_free():
     print("free/free.json OK: %d items, %d live" % (len(d["items"]), live))
 
 
+def validate_notes():
+    """notes/notes.json: Field notes. Fails on bad JSON, a missing key, a bad date, a duplicate week,
+    a takeaway without a source link, or an em-dash. Drafts are allowed; the page hides them."""
+    path = os.path.join(ROOT, "notes", "notes.json")
+    if not os.path.exists(path):
+        return
+    try:
+        with open(path, encoding="utf-8") as f:
+            raw = f.read()
+        d = json.loads(raw)
+    except Exception as e:
+        fail("notes/notes.json: %s" % e)
+    if "\u2014" in raw or "\u2013" in raw:
+        fail("notes/notes.json: contains an em-dash or en-dash")
+    if not isinstance(d, dict) or not isinstance(d.get("entries"), list):
+        fail("notes/notes.json must be an object with an 'entries' list")
+    iso = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+    seen = set()
+    for i, e in enumerate(d["entries"]):
+        for k in ("id", "week_of", "state", "lede", "points"):
+            if not e.get(k):
+                fail("notes/notes.json entry %d is missing '%s'" % (i, k))
+        if not iso.match(e["id"]) or not iso.match(e["week_of"]):
+            fail("notes/notes.json entry %s: id and week_of must be YYYY-MM-DD" % e["id"])
+        if e["id"] in seen:
+            fail("notes/notes.json: duplicate entry id " + e["id"])
+        seen.add(e["id"])
+        if e["state"] not in ("live", "draft"):
+            fail("notes/notes.json entry %s: state must be 'live' or 'draft'" % e["id"])
+        for j, pt in enumerate(e["points"]):
+            if not pt.get("t") or not pt.get("via") or not str(pt.get("url", "")).startswith("https://"):
+                fail("notes/notes.json entry %s point %d needs 't', 'via' and an https 'url'" % (e["id"], j))
+    live = sum(1 for e in d["entries"] if e["state"] == "live")
+    print("notes/notes.json OK: weeks %d, live %d, draft %d" % (len(d["entries"]), live, len(d["entries"]) - live))
+
+
 def main():
     check_only = "--check" in sys.argv
     now = load_json("now.json")
     gal = load_json("gallery.json")
     validate_free()
+    validate_notes()
     validate(now, gal)
     print("now.json OK: %d completions, %d Now items, updated %s" % (len(now.get("completions", [])), len(now.get("now", [])), now.get("updated")))
     print("gallery.json OK: %d entries" % len(gal))
@@ -191,7 +228,7 @@ def main():
     keep = re.findall(r"<title>.*?</title>|<link[^>]+(?:fonts\.googleapis|fonts\.gstatic)[^>]*>|<style>.*?</style>", head, re.S)
     artifact = "\n".join(keep) + "\n" + body
     # The artifact host serves supporting files by exact path, so point the Free link at the file.
-    artifact = artifact.replace('href="free/"', 'href="free/index.html"')
+    artifact = artifact.replace('href="free/"', 'href="free/index.html"').replace('href="notes/', 'href="notes/index.html')
     art_path = os.path.join(DIST, "philomath-artifact.html")
     open(art_path, "w", encoding="utf-8").write(artifact)
 
