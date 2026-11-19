@@ -341,7 +341,7 @@ footer{overflow:hidden;padding:1.6rem 0 2rem;border-top:1px solid rgba(138,125,1
     <li><a href="#about" data-s="about">About</a></li>
     <li><a href="#sketchbook" data-s="sketchbook">Sketchbook</a></li>
     <li><a href="#projects" data-s="projects">Projects</a></li>
-    <li><a href="#now" data-s="now">Now</a></li>
+    <li><a href="#notes" data-s="notes">Field notes</a></li>
     <li><a href="free/">Free</a></li>
     <li><a href="#connect" data-s="connect">Connect</a></li>
   </ul>
@@ -499,12 +499,10 @@ footer{overflow:hidden;padding:1.6rem 0 2rem;border-top:1px solid rgba(138,125,1
     </div>
   </section>
 
-  <section class="now" id="now">
+  <section class="now" id="notes">
     <div class="container wide rv">
-      <div class="label">Now <span class="dim" id="nowDate">updated recently</span></div>
-      <div class="now-grid stag" id="nowGrid"></div>
+      <div class="label">Field notes <span class="dim" id="notesDate"></span></div>
       <div id="nowNotes"></div>
-      <div id="nowMore"></div>
     </div>
   </section>
 
@@ -556,56 +554,6 @@ function loadJSON(id, file, fallback){
 
 /* ---------- content: Now strip + hero completions (now.json) ---------- */
 var NOW = {completions:['…a lover of learning'], now:[]};
-function renderNow(){
-  var g = $('#nowGrid'); if(!g) return;
-  var list = (NOW.now||[]).filter(function(it){ return it && it.v && !/^\(.*\)$/.test(String(it.v).trim()); }); /* "(placeholder)" lines never publish */
-  if(!list.length){ var sec = $('#now'); if(sec) sec.hidden = true; var nl = $('.hnav a[data-s="now"]'); if(nl) nl.parentNode.hidden = true; return; }
-  list.forEach(function(it,i){
-    var d = document.createElement('div'); d.className='now-item'+(it.w?' w'+it.w:''); d.style.setProperty('--i', i+1);
-    if(it.title){
-      d.classList.add('book');
-      d.innerHTML = '<div class="k">'+it.k+'</div><div class="row"><div class="cover"><img alt="" loading="lazy" width="58" height="86"><span class="ph"></span></div><div class="v"></div></div>';
-      var c = $('.cover',d), im = $('img',c); $('.ph',c).textContent = it.title; $('.v',d).textContent = it.v;
-      im.addEventListener('error', function(){ c.classList.add('fallback'); });
-      if(it.cover) im.src = it.cover; else c.classList.add('fallback');
-    } else {
-      d.innerHTML = '<div class="k">'+it.k+'</div><div class="v"></div>';
-      d.lastChild.textContent = it.v;
-    }
-    g.appendChild(d);
-  });
-  renderNowMore();
-  if(NOW.updated){ var dt = new Date(NOW.updated+'T12:00:00'); $('#nowDate').textContent = 'updated '+dt.toLocaleDateString('en-CA',{year:'numeric',month:'long'}); }
-}
-
-function isPh(v){ return !v || /^\(.*\)$/.test(String(v).trim()); }
-function renderNowMore(){
-  var box=$('#nowMore'); if(!box) return; box.innerHTML='';
-  function esc(t){ return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]}); }
-  /* records: same shape as the books, square sleeves */
-  var recs=(NOW.records||[]).filter(function(r){ return r && !isPh(r.title) && !isPh(r.v); });
-  if(recs.length){
-    var h='<div class="now-sub">Records</div><div class="now-grid">';
-    recs.forEach(function(r){ h+='<div class="now-item book record'+(r.w?' w'+r.w:' w3')+'"><div class="k">'+esc(r.k||'Spinning')+'</div><div class="row"><div class="cover'+(r.cover?'':' fallback')+'">'+(r.cover?'<img alt="" loading="lazy" width="86" height="86" src="'+esc(r.cover)+'">':'')+'<span class="ph">'+esc(r.title)+'</span></div><div class="v"><b>'+esc(r.title)+'</b>'+(r.by&&!isPh(r.by)?' <span class="by">'+esc(r.by)+'</span>':'')+'<br>'+esc(r.v)+'</div></div></div>'; });
-    box.insertAdjacentHTML('beforeend', h+'</div>');
-    $$('.record .cover img',box).forEach(function(im){ im.addEventListener('error',function(){ im.parentNode.classList.add('fallback'); }); });
-  }
-  /* the backlog: recommended reads and listens */
-  var bl=NOW.backlog||{}, cols=[['Reads',bl.reads],['Listens',bl.listens]].map(function(c){ return [c[0],(c[1]||[]).filter(function(x){ return x && !isPh(x.title); })]; }).filter(function(c){ return c[1].length; });
-  if(cols.length){
-    var p='<div class="now-sub">On the pile</div><div class="pile">';
-    cols.forEach(function(c){ p+='<div><h4>'+c[0]+'</h4><ul>'+c[1].map(function(x){ return '<li><b>'+esc(x.title)+'</b>'+(x.by&&!isPh(x.by)?' <span class="by">'+esc(x.by)+'</span>':'')+(x.note&&!isPh(x.note)?'<span class="note">'+esc(x.note)+'</span>':'')+'</li>'; }).join('')+'</ul></div>'; });
-    box.insertAdjacentHTML('beforeend', p+'</div>');
-  }
-  /* music I made */
-  var made=(NOW.made||[]).filter(function(m){ return m && !isPh(m.title); });
-  if(made.length){
-    var m='<div class="now-sub">Music I made</div><ul class="made">';
-    made.forEach(function(x){ var u=x.url&&!isPh(x.url)? x.url : ''; m+='<li><b>'+esc(x.title)+'</b>'+(x.v&&!isPh(x.v)?'<span class="note">'+esc(x.v)+'</span>':'')+(u? (/\.(mp3|m4a|ogg|wav)$/i.test(u)? '<audio controls preload="none" src="'+esc(u)+'"></audio>' : '<a href="'+esc(u)+'">listen &rarr;</a>') : '')+'</li>'; });
-    box.insertAdjacentHTML('beforeend', m+'</ul>');
-  }
-}
-
 /* ---------- typewriter: the sentence never finishes ---------- */
 function typewriter(){
   var el = $('#tw'), list = NOW.completions||[]; if(!el||!list.length) return;
@@ -624,20 +572,23 @@ function typewriter(){
   }
   setTimeout(step, 2600);
 }
-/* ---------- field notes: the newest approved week, one line in Now (notes/notes.json) ---------- */
-function renderNotesRow(d){
-  var box=$('#nowNotes'); if(!box||!d) return;
-  var e=(d.entries||[]).filter(function(x){ return x && x.state==='live' && x.lede; }).sort(function(a,b){ return a.id<b.id? 1 : -1; })[0];
-  if(!e) return;
+/* ---------- field notes section: the newest approved week (notes/notes.json); the section
+   hides itself, and drops its nav item, when there is no live note yet ---------- */
+function hideNotes(){ var sec=$('#notes'); if(sec) sec.hidden=true; var nl=$('.hnav a[data-s="notes"]'); if(nl) nl.parentNode.hidden=true; }
+function renderNotes(d){
+  var box=$('#nowNotes'); if(!box) return;
+  var e=d&&(d.entries||[]).filter(function(x){ return x && x.state==='live' && x.lede; }).sort(function(a,b){ return a.id<b.id? 1 : -1; })[0];
+  if(!e){ hideNotes(); return; }
   function esc(t){ return String(t==null?'':t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]}); }
   var wk=new Date(e.week_of+'T12:00:00'), when=isNaN(wk)? '' : 'week of '+wk.toLocaleDateString('en-CA',{month:'long',day:'numeric'});
-  box.innerHTML='<div class="now-sub">Field notes</div><div class="fnote"><div class="fn-when">'+esc(when)+'</div><p>'+esc(e.lede)+'</p><a href="notes/#'+esc(e.id)+'">the takeaways &rarr;</a><a href="notes/">every week &rarr;</a></div>';
+  var dd=$('#notesDate'); if(dd) dd.textContent=when;
+  box.innerHTML='<div class="fnote"><p>'+esc(e.lede)+'</p><a href="notes/#'+esc(e.id)+'">the takeaways &rarr;</a><a href="notes/">every week &rarr;</a></div>';
 }
-loadJSON('notes-data', 'notes/notes.json', null).then(renderNotesRow);
+loadJSON('notes-data', 'notes/notes.json', null).then(renderNotes);
 
 loadJSON('now-data', 'now.json', NOW).then(function(data){
   if(data && data.completions && data.completions.length) NOW = data;
-  renderNow(); typewriter();
+  typewriter();
 });
 
 /* ---------- title fade: the word lets go as you scroll into the room ---------- */
@@ -652,7 +603,7 @@ function openCard(which){
   var dlg=$('#cardBig'), sh=$('#cardSheet'); if(!dlg||!sh) return;
   var cols=$$('#about .about-cols > div'), col=cols[which==='technical'? 1 : 0]; if(!col) return;
   var h=$('h3',col), p=$('p',col);
-  var go = which==='technical'? '<a href="#projects">the projects &rarr;</a><a href="notes/">field notes &rarr;</a><a href="free/">stuff I made for you to take &rarr;</a>' : '<a href="#sketchbook">the sketchbook &rarr;</a><a href="#now">reading and records &rarr;</a>';
+  var go = which==='technical'? '<a href="#projects">the projects &rarr;</a><a href="notes/">field notes &rarr;</a><a href="free/">stuff I made for you to take &rarr;</a>' : '<a href="#sketchbook">the sketchbook &rarr;</a>';
   sh.innerHTML='<button class="x" type="button" aria-label="Close">&times;</button><div class="k">'+(which==='technical'? 'The study' : 'The loud room')+'</div><h3></h3><p></p><div class="go">'+go+'</div>';
   $('h3',sh).textContent=h? h.textContent : ''; $('p',sh).textContent=p? p.textContent : '';
   $('.x',sh).addEventListener('click',function(){ dlg.close(); });
@@ -670,7 +621,7 @@ function openCard(which){
   var STOPS=[
     {id:'house',  k:'The house',   h:'Everything under one roof.',          t:'Not a real floor plan: a composite of the rooms the work happens in. Each room is a door. Scroll to walk it, or click a room.', pos:'t', cover:true},
     {id:'study',  k:'Projects',    h:'The study.',                           t:'A dedicated workspace for playing with workflows, with the tools required for photo and 360 video editing: a Canon R10, an Insta360 R1 and the liquid-cooled case required to keep all the good editing software running.', pos:'r', box:[70,420,530,410], img:'img/rooms/study.webp', href:'#projects', card:'technical'},
-    {id:'shelf',  k:'Reading',     h:'The shelf.',                           t:'Books and records I&rsquo;ve been into lately, and a few items I&rsquo;ve put together to share with whoever is interested!', pos:'r', box:[590,340,280,320], href:'#now', extra:'<a href="free/">stuff I made for you to take &rarr;</a> &nbsp; <a href="notes/">field notes &rarr;</a>'},
+    {id:'shelf',  k:'Reading',     h:'The shelf.',                           t:'Books and records I&rsquo;ve been into lately, and a few items I&rsquo;ve put together to share with whoever is interested!', pos:'r', box:[590,340,280,320], href:'#notes', extra:'<a href="free/">stuff I made for you to take &rarr;</a> &nbsp; <a href="notes/">field notes &rarr;</a>'},
     {id:'bench',  k:'Builds',      h:'The workbench.',                       t:'A Telecaster on the stand, a soldering gun and a multimeter, and on the mat a loupe, oilers and a watch movement in its holder, with a palette and two fine brushes for the dials. The half-finished things are the honest ones.', pos:'l', box:[90,90,700,370], img:'img/rooms/guitar-bench.webp', href:'#projects'},
     {id:'easel',  k:'Sketchbook',  h:'The easel.',                           t:'Stipple, pencil, the occasional watch dial. Whatever is under the pen right now, and everything before it.', pos:'r', box:[540,80,110,160], href:'#sketchbook', z:1.5},
     {id:'music',  k:'Music',       h:'The loud room.',                       t:'A rehearsal and recording space, ready for whenever inspiration may strike.', pos:'l', box:[780,60,620,340], img:'img/rooms/music-room.webp', href:'#about', card:'creative'},
