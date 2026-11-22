@@ -37,6 +37,62 @@
       ]
     },
     {
+      "id": "2026-11-15",
+      "week_of": "2026-11-09",
+      "state": "live",
+      "lede": "This week was about running more than one agent without drowning in them: one front door to ask what needs you, a read-only trial before anything acts, and tight sandboxes and permissions so a stray agent cannot do harm.",
+      "points": [
+        {
+          "t": "As you add agents, give them one front door: a single place you ask what happened while you were out and what needs you, instead of reading five separate accounts. Teach that coordinator your priorities once, so a change reaches every agent at the same time.",
+          "via": "Nate’s Newsletter",
+          "url": "https://natesnewsletter.substack.com/p/oddboro-manage-multiple-ai-agents-launch"
+        },
+        {
+          "t": "Trial a new automated decision-maker in shadow mode first: feed it a copy of real data, keep it read-only so it cannot touch the live system, and watch its calls on a dashboard before you let it act for real.",
+          "via": "The Headless Brief",
+          "url": "https://www.headlesshiro.com/effective-immediately-all-client-deliverables-must-pretend-autonomous-agents-take-three-weeks/"
+        },
+        {
+          "t": "Run an autonomous agent in a locked-down sandbox: a non-root user, read-only files, capped memory and no open path to the network. Log what it tries to reach, so a poisoned prompt cannot quietly walk off with your credentials.",
+          "via": "The Headless Brief",
+          "url": "https://www.headlesshiro.com/underground-chip-leasing-networks-prove-global-export-controls-are-working-perfectly/"
+        },
+        {
+          "t": "A tool connection that can write, not just read, can take real action on its own, like staging a campaign or sending a message. Give each connection the narrowest permissions it needs, and require a human confirmation before anything goes out.",
+          "via": "The Headless Brief",
+          "url": "https://www.headlesshiro.com/great-now-the-mcp-server-is-staging-klaviyo-campaigns-without-us/"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-08",
+      "week_of": "2026-11-02",
+      "state": "live",
+      "lede": "This week the useful thread was where the work really lives and where it waits: keep a job’s state outside the chat, watch for the next place the work piles up, and be honest about what a task actually costs.",
+      "points": [
+        {
+          "t": "Keep each job’s state in a short plain-text file outside the chat, holding only what the next session needs and stamped with the time. A fresh start, or a nightly reset, then loses nothing, because the note is the memory.",
+          "via": "Claude Code for Non-Coders",
+          "url": "https://claudecodefornoncoders.substack.com/p/build-the-handoff-into-the-system"
+        },
+        {
+          "t": "When you speed up one step, the wait just moves to the next one. Look for where your work actually piles up, and turn the review comments you keep repeating into automatic checks the tool runs before a person looks.",
+          "via": "Nate’s Newsletter",
+          "url": "https://natesnewsletter.substack.com/p/openai-pando-git-backend"
+        },
+        {
+          "t": "Polite words like “please” do not change what a task costs; the number of tokens does. Measure tokens per task if you want to cut the bill, and keep your own timestamped log of what the automation did, separate from the tool that did it.",
+          "via": "The Headless Brief",
+          "url": "https://www.headlesshiro.com/dont-worry-a-solo-founder-running-mouse-trials-is-completely-safe/"
+        },
+        {
+          "t": "Agents put work in reach that used to need a team, so the real question is what is worth doing. Judge a new automation by the hours it frees and what those hours are worth, and set a ceiling on what one run may spend before you start it.",
+          "via": "Nate’s Newsletter",
+          "url": "https://natesnewsletter.substack.com/p/ai-agent-cost-worth-it"
+        }
+      ]
+    },
+    {
       "id": "2026-11-01",
       "week_of": "2026-10-26",
       "state": "live",
