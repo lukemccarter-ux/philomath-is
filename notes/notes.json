@@ -1,8 +1,41 @@
 {
   "title": "Field notes",
   "intro": "Once a week I go through the newsletters I follow on agents, automation and AI tooling and keep the parts a maintenance or operations person could actually use: a sentence or two on the week, then the takeaways, each linked to where it came from.",
-  "updated": "2026-11-01",
+  "updated": "2026-11-22",
   "entries": [
+    {
+      "id": "2026-11-22",
+      "week_of": "2026-11-16",
+      "state": "live",
+      "lede": "This week’s thread is trust you can check. The useful advice was about building the check into the system itself: sources you can trace, records that outlast the session, scheduled tests, approval queues and pass or fail gates.",
+      "points": [
+        {
+          "t": "Make every number traceable. When an AI tool pulls figures or dates from documents, have it cite the file, page and line for each. Then check by type of item rather than a sample of the first few, and always verify money, dates and names against the original.",
+          "via": "Claude Code for Non-Coders",
+          "url": "https://claudecodefornoncoders.substack.com/p/always-ask-claude-to-list-its-sources"
+        },
+        {
+          "t": "Organize an AI system around the piece of work, not the persona or the chat session. Keep each job’s history, open items, decisions and next review date in a readable record, so any model or person can pick it up cold.",
+          "via": "Claude Code for Non-Coders",
+          "url": "https://claudecodefornoncoders.substack.com/p/ai-agents-for-executives-why-they-disappoint"
+        },
+        {
+          "t": "Per The Headless Brief, providers may lower default reasoning effort or reroute requests under load. Set model and reasoning settings explicitly, and run a scheduled test that sends fixed prompts and confirms the response names the model you asked for.",
+          "via": "The Headless Brief",
+          "url": "https://www.headlesshiro.com/disable-continuous-pytest-regressions-so-quiet-model-downgrades-remain-an-exciting-surprise/"
+        },
+        {
+          "t": "Replace stop-and-wait approvals with a queue. Let background automation keep working on what it can, gather its decision requests into one structured list, and bring in a person only for the calls that need one.",
+          "via": "The Headless Brief",
+          "url": "https://www.headlesshiro.com/the-agent-swarm-placed-you-in-an-asynchronous-human-approval-queue/"
+        },
+        {
+          "t": "Control model spend with a pass or fail gate. Send routine tasks to the cheapest model first, test the output against a fixed check such as required fields, and escalate to a costlier model only when the check fails.",
+          "via": "The Headless Brief",
+          "url": "https://www.headlesshiro.com/fivefold-token-spikes-just-mean-pytest-fails-five-times-faster-in-standup/"
+        }
+      ]
+    },
     {
       "id": "2026-11-01",
       "week_of": "2026-10-26",
